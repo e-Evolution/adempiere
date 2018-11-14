@@ -16,11 +16,20 @@
   * Created by victor.perez@e-evolution.com , www.e-evolution.com
   */
 
-package org.eevolution.model
+package org.eevolution.domain.service
 
-import java.util.Properties
+import org.eevolution.domain.api.repository.ContractRepositoryComponent
+import org.eevolution.domain.api.service.ContractServiceComponent
+import org.eevolution.domain.ubiquitouslanguage.Contract
 
-class MSContractLine(ctx: Properties, contractId: Int, trxName: String)
-  extends X_S_ContractLine(ctx: Properties, contractId: Int, trxName: String) {
+/**
+  * Contract Domain Service Implementation for Contract Entity
+  */
+trait ContractService extends ContractServiceComponent {
+  this: ContractRepositoryComponent =>
+
+  final override object contractService extends ContractServiceTrait {
+    override def getById(id: Integer): Option[Contract] = contractRepository.getById(id)
+  }
 
 }

@@ -16,12 +16,15 @@
   * Created by victor.perez@e-evolution.com , www.e-evolution.com
   */
 
+package org.eevolution.domain.api.repository
 
-package org.eevolution.model
+import org.eevolution.domain.ubiquitouslanguage.Domain
 
-import java.util.Properties
+/*
+Standard API to implement Repository Pattern for infrastructure application
+ */
+trait RepositoryComponent {
 
-class MSServiceType (ctx: Properties, contractId: Int, trxName: String)
-  extends X_S_ServiceType (ctx: Properties, contractId: Int, trxName: String) {
+  def getById(id: Integer): Option[Domain]
 
 }
