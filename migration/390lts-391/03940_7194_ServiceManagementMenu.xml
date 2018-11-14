@@ -14,7 +14,7 @@
         <Data AD_Column_ID="15597" Column="Created">2018-07-03 13:30:54.683</Data>
         <Data AD_Column_ID="15600" Column="UpdatedBy">100</Data>
         <Data AD_Column_ID="15604" Column="Version">1.0</Data>
-        <Data AD_Column_ID="15605" Column="ModelPackage">com.eevolution.model</Data>
+        <Data AD_Column_ID="15605" Column="ModelPackage">org.eevolution.domain.model</Data>
         <Data AD_Column_ID="15606" Column="Classpath" isNewNull="true"/>
         <Data AD_Column_ID="15598" Column="CreatedBy">100</Data>
         <Data AD_Column_ID="15601" Column="Name">e-Evolution Service Management</Data>

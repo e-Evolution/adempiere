@@ -41,6 +41,40 @@ public interface I_C_InvoiceLine
 
     /** Load Meta Data */
 
+    /** Column name AD_Client_ID */
+    public static final String COLUMNNAME_AD_Client_ID = "AD_Client_ID";
+
+	/** Get Client.
+	  * Client/Tenant for this installation.
+	  */
+	public int getAD_Client_ID();
+
+    /** Column name AD_OrgTrx_ID */
+    public static final String COLUMNNAME_AD_OrgTrx_ID = "AD_OrgTrx_ID";
+
+	/** Set Trx Organization.
+	  * Performing or initiating organization
+	  */
+	public void setAD_OrgTrx_ID (int AD_OrgTrx_ID);
+
+	/** Get Trx Organization.
+	  * Performing or initiating organization
+	  */
+	public int getAD_OrgTrx_ID();
+
+    /** Column name AD_Org_ID */
+    public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
+
+	/** Set Organization.
+	  * Organizational entity within client
+	  */
+	public void setAD_Org_ID (int AD_Org_ID);
+
+	/** Get Organization.
+	  * Organizational entity within client
+	  */
+	public int getAD_Org_ID();
+
     /** Column name A_Asset_Group_ID */
     public static final String COLUMNNAME_A_Asset_Group_ID = "A_Asset_Group_ID";
 
@@ -59,13 +93,13 @@ public interface I_C_InvoiceLine
     /** Column name A_Asset_ID */
     public static final String COLUMNNAME_A_Asset_ID = "A_Asset_ID";
 
-	/** Set Asset.
-	  * Asset used internally or by customers
+	/** Set Fixed Asset.
+	  * Fixed Asset used internally or by customers
 	  */
 	public void setA_Asset_ID (int A_Asset_ID);
 
-	/** Get Asset.
-	  * Asset used internally or by customers
+	/** Get Fixed Asset.
+	  * Fixed Asset used internally or by customers
 	  */
 	public int getA_Asset_ID();
 
@@ -88,40 +122,6 @@ public interface I_C_InvoiceLine
 
 	/** Get Create Asset	  */
 	public boolean isA_CreateAsset();
-
-    /** Column name AD_Client_ID */
-    public static final String COLUMNNAME_AD_Client_ID = "AD_Client_ID";
-
-	/** Get Client.
-	  * Client/Tenant for this installation.
-	  */
-	public int getAD_Client_ID();
-
-    /** Column name AD_Org_ID */
-    public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
-
-	/** Set Organization.
-	  * Organizational entity within client
-	  */
-	public void setAD_Org_ID (int AD_Org_ID);
-
-	/** Get Organization.
-	  * Organizational entity within client
-	  */
-	public int getAD_Org_ID();
-
-    /** Column name AD_OrgTrx_ID */
-    public static final String COLUMNNAME_AD_OrgTrx_ID = "AD_OrgTrx_ID";
-
-	/** Set Trx Organization.
-	  * Performing or initiating organization
-	  */
-	public void setAD_OrgTrx_ID (int AD_OrgTrx_ID);
-
-	/** Get Trx Organization.
-	  * Performing or initiating organization
-	  */
-	public int getAD_OrgTrx_ID();
 
     /** Column name A_Processed */
     public static final String COLUMNNAME_A_Processed = "A_Processed";
@@ -177,6 +177,19 @@ public interface I_C_InvoiceLine
 
 	public org.compiere.model.I_C_Charge getC_Charge() throws RuntimeException;
 
+    /** Column name C_InvoiceLine_ID */
+    public static final String COLUMNNAME_C_InvoiceLine_ID = "C_InvoiceLine_ID";
+
+	/** Set Invoice Line.
+	  * Invoice Detail Line
+	  */
+	public void setC_InvoiceLine_ID (int C_InvoiceLine_ID);
+
+	/** Get Invoice Line.
+	  * Invoice Detail Line
+	  */
+	public int getC_InvoiceLine_ID();
+
     /** Column name C_Invoice_ID */
     public static final String COLUMNNAME_C_Invoice_ID = "C_Invoice_ID";
 
@@ -192,19 +205,6 @@ public interface I_C_InvoiceLine
 
 	public org.compiere.model.I_C_Invoice getC_Invoice() throws RuntimeException;
 
-    /** Column name C_InvoiceLine_ID */
-    public static final String COLUMNNAME_C_InvoiceLine_ID = "C_InvoiceLine_ID";
-
-	/** Set Invoice Line.
-	  * Invoice Detail Line
-	  */
-	public void setC_InvoiceLine_ID (int C_InvoiceLine_ID);
-
-	/** Get Invoice Line.
-	  * Invoice Detail Line
-	  */
-	public int getC_InvoiceLine_ID();
-
     /** Column name C_OrderLine_ID */
     public static final String COLUMNNAME_C_OrderLine_ID = "C_OrderLine_ID";
 
@@ -219,21 +219,6 @@ public interface I_C_InvoiceLine
 	public int getC_OrderLine_ID();
 
 	public org.compiere.model.I_C_OrderLine getC_OrderLine() throws RuntimeException;
-
-    /** Column name C_Project_ID */
-    public static final String COLUMNNAME_C_Project_ID = "C_Project_ID";
-
-	/** Set Project.
-	  * Financial Project
-	  */
-	public void setC_Project_ID (int C_Project_ID);
-
-	/** Get Project.
-	  * Financial Project
-	  */
-	public int getC_Project_ID();
-
-	public org.compiere.model.I_C_Project getC_Project() throws RuntimeException;
 
     /** Column name C_ProjectPhase_ID */
     public static final String COLUMNNAME_C_ProjectPhase_ID = "C_ProjectPhase_ID";
@@ -265,21 +250,20 @@ public interface I_C_InvoiceLine
 
 	public org.compiere.model.I_C_ProjectTask getC_ProjectTask() throws RuntimeException;
 
-    /** Column name Created */
-    public static final String COLUMNNAME_Created = "Created";
+    /** Column name C_Project_ID */
+    public static final String COLUMNNAME_C_Project_ID = "C_Project_ID";
 
-	/** Get Created.
-	  * Date this record was created
+	/** Set Project.
+	  * Financial Project
 	  */
-	public Timestamp getCreated();
+	public void setC_Project_ID (int C_Project_ID);
 
-    /** Column name CreatedBy */
-    public static final String COLUMNNAME_CreatedBy = "CreatedBy";
-
-	/** Get Created By.
-	  * User who created this records
+	/** Get Project.
+	  * Financial Project
 	  */
-	public int getCreatedBy();
+	public int getC_Project_ID();
+
+	public org.compiere.model.I_C_Project getC_Project() throws RuntimeException;
 
     /** Column name C_Tax_ID */
     public static final String COLUMNNAME_C_Tax_ID = "C_Tax_ID";
@@ -310,6 +294,22 @@ public interface I_C_InvoiceLine
 	public int getC_UOM_ID();
 
 	public org.compiere.model.I_C_UOM getC_UOM() throws RuntimeException;
+
+    /** Column name Created */
+    public static final String COLUMNNAME_Created = "Created";
+
+	/** Get Created.
+	  * Date this record was created
+	  */
+	public Timestamp getCreated();
+
+    /** Column name CreatedBy */
+    public static final String COLUMNNAME_CreatedBy = "CreatedBy";
+
+	/** Get Created By.
+	  * User who created this records
+	  */
+	public int getCreatedBy();
 
     /** Column name Description */
     public static final String COLUMNNAME_Description = "Description";
@@ -501,6 +501,36 @@ public interface I_C_InvoiceLine
 
 	public org.compiere.model.I_M_RMALine getM_RMALine() throws RuntimeException;
 
+    /** Column name PP_PeriodDefinition_ID */
+    public static final String COLUMNNAME_PP_PeriodDefinition_ID = "PP_PeriodDefinition_ID";
+
+	/** Set Current Period.
+	  * Period Definition, allows to define time cycles for the Operational Calendar
+	  */
+	public void setPP_PeriodDefinition_ID (int PP_PeriodDefinition_ID);
+
+	/** Get Current Period.
+	  * Period Definition, allows to define time cycles for the Operational Calendar
+	  */
+	public int getPP_PeriodDefinition_ID();
+
+	public org.eevolution.model.I_PP_PeriodDefinition getPP_PeriodDefinition() throws RuntimeException;
+
+    /** Column name PP_Period_ID */
+    public static final String COLUMNNAME_PP_Period_ID = "PP_Period_ID";
+
+	/** Set Operational Period.
+	  * Forecast Definition Periods.
+	  */
+	public void setPP_Period_ID (int PP_Period_ID);
+
+	/** Get Operational Period.
+	  * Forecast Definition Periods.
+	  */
+	public int getPP_Period_ID();
+
+	public org.eevolution.model.I_PP_Period getPP_Period() throws RuntimeException;
+
     /** Column name PriceActual */
     public static final String COLUMNNAME_PriceActual = "PriceActual";
 
@@ -592,30 +622,6 @@ public interface I_C_InvoiceLine
 	  */
 	public BigDecimal getQtyInvoiced();
 
-    /** Column name Ref_InvoiceLine_ID */
-    public static final String COLUMNNAME_Ref_InvoiceLine_ID = "Ref_InvoiceLine_ID";
-
-	/** Set Referenced Invoice Line	  */
-	public void setRef_InvoiceLine_ID (int Ref_InvoiceLine_ID);
-
-	/** Get Referenced Invoice Line	  */
-	public int getRef_InvoiceLine_ID();
-
-    /** Column name ReversalLine_ID */
-    public static final String COLUMNNAME_ReversalLine_ID = "ReversalLine_ID";
-
-	/** Set Reversal Line.
-	  * Use to keep the reversal line ID for reversing costing purpose
-	  */
-	public void setReversalLine_ID (int ReversalLine_ID);
-
-	/** Get Reversal Line.
-	  * Use to keep the reversal line ID for reversing costing purpose
-	  */
-	public int getReversalLine_ID();
-
-	public org.compiere.model.I_C_InvoiceLine getReversalLine() throws RuntimeException;
-
     /** Column name RRAmt */
     public static final String COLUMNNAME_RRAmt = "RRAmt";
 
@@ -642,6 +648,45 @@ public interface I_C_InvoiceLine
 	  */
 	public Timestamp getRRStartDate();
 
+    /** Column name Ref_InvoiceLine_ID */
+    public static final String COLUMNNAME_Ref_InvoiceLine_ID = "Ref_InvoiceLine_ID";
+
+	/** Set Referenced Invoice Line	  */
+	public void setRef_InvoiceLine_ID (int Ref_InvoiceLine_ID);
+
+	/** Get Referenced Invoice Line	  */
+	public int getRef_InvoiceLine_ID();
+
+    /** Column name ReversalLine_ID */
+    public static final String COLUMNNAME_ReversalLine_ID = "ReversalLine_ID";
+
+	/** Set Reversal Line.
+	  * Use to keep the reversal line ID for reversing costing purpose
+	  */
+	public void setReversalLine_ID (int ReversalLine_ID);
+
+	/** Get Reversal Line.
+	  * Use to keep the reversal line ID for reversing costing purpose
+	  */
+	public int getReversalLine_ID();
+
+	public org.compiere.model.I_C_InvoiceLine getReversalLine() throws RuntimeException;
+
+    /** Column name S_ContractLine_ID */
+    public static final String COLUMNNAME_S_ContractLine_ID = "S_ContractLine_ID";
+
+	/** Set Service Contract Line.
+	  * Service Contract Line
+	  */
+	public void setS_ContractLine_ID (int S_ContractLine_ID);
+
+	/** Get Service Contract Line.
+	  * Service Contract Line
+	  */
+	public int getS_ContractLine_ID();
+
+	public org.eevolution.model.I_S_ContractLine getS_ContractLine() throws RuntimeException;
+
     /** Column name S_ResourceAssignment_ID */
     public static final String COLUMNNAME_S_ResourceAssignment_ID = "S_ResourceAssignment_ID";
 
@@ -667,6 +712,19 @@ public interface I_C_InvoiceLine
 	  * Tax Amount for a document
 	  */
 	public BigDecimal getTaxAmt();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";
@@ -743,17 +801,4 @@ public interface I_C_InvoiceLine
 	public int getUser4_ID();
 
 	public org.compiere.model.I_C_ElementValue getUser4() throws RuntimeException;
-
-    /** Column name UUID */
-    public static final String COLUMNNAME_UUID = "UUID";
-
-	/** Set Immutable Universally Unique Identifier.
-	  * Immutable Universally Unique Identifier
-	  */
-	public void setUUID (String UUID);
-
-	/** Get Immutable Universally Unique Identifier.
-	  * Immutable Universally Unique Identifier
-	  */
-	public String getUUID();
 }

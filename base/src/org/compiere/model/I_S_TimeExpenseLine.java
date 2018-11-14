@@ -49,6 +49,19 @@ public interface I_S_TimeExpenseLine
 	  */
 	public int getAD_Client_ID();
 
+    /** Column name AD_OrgTrx_ID */
+    public static final String COLUMNNAME_AD_OrgTrx_ID = "AD_OrgTrx_ID";
+
+	/** Set Trx Organization.
+	  * Performing or initiating organization
+	  */
+	public void setAD_OrgTrx_ID (int AD_OrgTrx_ID);
+
+	/** Get Trx Organization.
+	  * Performing or initiating organization
+	  */
+	public int getAD_OrgTrx_ID();
+
     /** Column name AD_Org_ID */
     public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
 
@@ -61,6 +74,19 @@ public interface I_S_TimeExpenseLine
 	  * Organizational entity within client
 	  */
 	public int getAD_Org_ID();
+
+    /** Column name AllocatedAmt */
+    public static final String COLUMNNAME_AllocatedAmt = "AllocatedAmt";
+
+	/** Set Allocated Amountt.
+	  * Amount allocated to this document
+	  */
+	public void setAllocatedAmt (BigDecimal AllocatedAmt);
+
+	/** Get Allocated Amountt.
+	  * Amount allocated to this document
+	  */
+	public BigDecimal getAllocatedAmt();
 
     /** Column name C_Activity_ID */
     public static final String COLUMNNAME_C_Activity_ID = "C_Activity_ID";
@@ -282,6 +308,19 @@ public interface I_S_TimeExpenseLine
 	  */
 	public String getDescription();
 
+    /** Column name DiscountAmt */
+    public static final String COLUMNNAME_DiscountAmt = "DiscountAmt";
+
+	/** Set Discount Amount.
+	  * Calculated amount of discount
+	  */
+	public void setDiscountAmt (BigDecimal DiscountAmt);
+
+	/** Get Discount Amount.
+	  * Calculated amount of discount
+	  */
+	public BigDecimal getDiscountAmt();
+
     /** Column name ExpenseAmt */
     public static final String COLUMNNAME_ExpenseAmt = "ExpenseAmt";
 
@@ -333,6 +372,19 @@ public interface I_S_TimeExpenseLine
 	  * Is this invoiced?
 	  */
 	public boolean isInvoiced();
+
+    /** Column name IsPaid */
+    public static final String COLUMNNAME_IsPaid = "IsPaid";
+
+	/** Set Paid.
+	  * The document is paid
+	  */
+	public void setIsPaid (boolean IsPaid);
+
+	/** Get Paid.
+	  * The document is paid
+	  */
+	public boolean isPaid();
 
     /** Column name IsTimeReport */
     public static final String COLUMNNAME_IsTimeReport = "IsTimeReport";
@@ -414,6 +466,51 @@ public interface I_S_TimeExpenseLine
 	  */
 	public String getNote();
 
+    /** Column name PP_Calendar_ID */
+    public static final String COLUMNNAME_PP_Calendar_ID = "PP_Calendar_ID";
+
+	/** Set Operational Calendar.
+	  * Operational Period, allows to define the periods for the Operational Calendar
+	  */
+	public void setPP_Calendar_ID (int PP_Calendar_ID);
+
+	/** Get Operational Calendar.
+	  * Operational Period, allows to define the periods for the Operational Calendar
+	  */
+	public int getPP_Calendar_ID();
+
+	public org.eevolution.model.I_PP_Calendar getPP_Calendar() throws RuntimeException;
+
+    /** Column name PP_PeriodDefinition_ID */
+    public static final String COLUMNNAME_PP_PeriodDefinition_ID = "PP_PeriodDefinition_ID";
+
+	/** Set Current Period.
+	  * Period Definition, allows to define time cycles for the Operational Calendar
+	  */
+	public void setPP_PeriodDefinition_ID (int PP_PeriodDefinition_ID);
+
+	/** Get Current Period.
+	  * Period Definition, allows to define time cycles for the Operational Calendar
+	  */
+	public int getPP_PeriodDefinition_ID();
+
+	public org.eevolution.model.I_PP_PeriodDefinition getPP_PeriodDefinition() throws RuntimeException;
+
+    /** Column name PP_Period_ID */
+    public static final String COLUMNNAME_PP_Period_ID = "PP_Period_ID";
+
+	/** Set Operational Period.
+	  * Forecast Definition Periods.
+	  */
+	public void setPP_Period_ID (int PP_Period_ID);
+
+	/** Get Operational Period.
+	  * Forecast Definition Periods.
+	  */
+	public int getPP_Period_ID();
+
+	public org.eevolution.model.I_PP_Period getPP_Period() throws RuntimeException;
+
     /** Column name PriceInvoiced */
     public static final String COLUMNNAME_PriceInvoiced = "PriceInvoiced";
 
@@ -491,6 +588,21 @@ public interface I_S_TimeExpenseLine
 	  * The reimbursed quantity
 	  */
 	public BigDecimal getQtyReimbursed();
+
+    /** Column name S_ContractLine_ID */
+    public static final String COLUMNNAME_S_ContractLine_ID = "S_ContractLine_ID";
+
+	/** Set Service Contract Line.
+	  * Service Contract Line
+	  */
+	public void setS_ContractLine_ID (int S_ContractLine_ID);
+
+	/** Get Service Contract Line.
+	  * Service Contract Line
+	  */
+	public int getS_ContractLine_ID();
+
+	public org.eevolution.model.I_S_ContractLine getS_ContractLine() throws RuntimeException;
 
     /** Column name S_ResourceAssignment_ID */
     public static final String COLUMNNAME_S_ResourceAssignment_ID = "S_ResourceAssignment_ID";
@@ -589,4 +701,64 @@ public interface I_S_TimeExpenseLine
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
+
+    /** Column name User1_ID */
+    public static final String COLUMNNAME_User1_ID = "User1_ID";
+
+	/** Set User List 1.
+	  * User defined list element #1
+	  */
+	public void setUser1_ID (int User1_ID);
+
+	/** Get User List 1.
+	  * User defined list element #1
+	  */
+	public int getUser1_ID();
+
+	public org.compiere.model.I_C_ElementValue getUser1() throws RuntimeException;
+
+    /** Column name User2_ID */
+    public static final String COLUMNNAME_User2_ID = "User2_ID";
+
+	/** Set User List 2.
+	  * User defined list element #2
+	  */
+	public void setUser2_ID (int User2_ID);
+
+	/** Get User List 2.
+	  * User defined list element #2
+	  */
+	public int getUser2_ID();
+
+	public org.compiere.model.I_C_ElementValue getUser2() throws RuntimeException;
+
+    /** Column name User3_ID */
+    public static final String COLUMNNAME_User3_ID = "User3_ID";
+
+	/** Set User List 3.
+	  * User defined list element #3
+	  */
+	public void setUser3_ID (int User3_ID);
+
+	/** Get User List 3.
+	  * User defined list element #3
+	  */
+	public int getUser3_ID();
+
+	public org.compiere.model.I_C_ElementValue getUser3() throws RuntimeException;
+
+    /** Column name User4_ID */
+    public static final String COLUMNNAME_User4_ID = "User4_ID";
+
+	/** Set User List 4.
+	  * User defined list element #4
+	  */
+	public void setUser4_ID (int User4_ID);
+
+	/** Get User List 4.
+	  * User defined list element #4
+	  */
+	public int getUser4_ID();
+
+	public org.compiere.model.I_C_ElementValue getUser4() throws RuntimeException;
 }

@@ -49,19 +49,6 @@ public interface I_C_Invoice
 	  */
 	public int getAD_Client_ID();
 
-    /** Column name AD_Org_ID */
-    public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
-
-	/** Set Organization.
-	  * Organizational entity within client
-	  */
-	public void setAD_Org_ID (int AD_Org_ID);
-
-	/** Get Organization.
-	  * Organizational entity within client
-	  */
-	public int getAD_Org_ID();
-
     /** Column name AD_OrgTrx_ID */
     public static final String COLUMNNAME_AD_OrgTrx_ID = "AD_OrgTrx_ID";
 
@@ -74,6 +61,19 @@ public interface I_C_Invoice
 	  * Performing or initiating organization
 	  */
 	public int getAD_OrgTrx_ID();
+
+    /** Column name AD_Org_ID */
+    public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
+
+	/** Set Organization.
+	  * Organizational entity within client
+	  */
+	public void setAD_Org_ID (int AD_Org_ID);
+
+	/** Get Organization.
+	  * Organizational entity within client
+	  */
+	public int getAD_Org_ID();
 
     /** Column name AD_User_ID */
     public static final String COLUMNNAME_AD_User_ID = "AD_User_ID";
@@ -210,21 +210,6 @@ public interface I_C_Invoice
 
 	public org.compiere.model.I_C_Currency getC_Currency() throws RuntimeException;
 
-    /** Column name C_DocType_ID */
-    public static final String COLUMNNAME_C_DocType_ID = "C_DocType_ID";
-
-	/** Set Document Type.
-	  * Document type or rules
-	  */
-	public void setC_DocType_ID (int C_DocType_ID);
-
-	/** Get Document Type.
-	  * Document type or rules
-	  */
-	public int getC_DocType_ID();
-
-	public org.compiere.model.I_C_DocType getC_DocType() throws RuntimeException;
-
     /** Column name C_DocTypeTarget_ID */
     public static final String COLUMNNAME_C_DocTypeTarget_ID = "C_DocTypeTarget_ID";
 
@@ -239,6 +224,21 @@ public interface I_C_Invoice
 	public int getC_DocTypeTarget_ID();
 
 	public org.compiere.model.I_C_DocType getC_DocTypeTarget() throws RuntimeException;
+
+    /** Column name C_DocType_ID */
+    public static final String COLUMNNAME_C_DocType_ID = "C_DocType_ID";
+
+	/** Set Document Type.
+	  * Document type or rules
+	  */
+	public void setC_DocType_ID (int C_DocType_ID);
+
+	/** Get Document Type.
+	  * Document type or rules
+	  */
+	public int getC_DocType_ID();
+
+	public org.compiere.model.I_C_DocType getC_DocType() throws RuntimeException;
 
     /** Column name C_DunningLevel_ID */
     public static final String COLUMNNAME_C_DunningLevel_ID = "C_DunningLevel_ID";
@@ -279,20 +279,20 @@ public interface I_C_Invoice
 
 	public org.compiere.model.I_C_Order getC_Order() throws RuntimeException;
 
-    /** Column name C_Payment_ID */
-    public static final String COLUMNNAME_C_Payment_ID = "C_Payment_ID";
+    /** Column name C_POS_ID */
+    public static final String COLUMNNAME_C_POS_ID = "C_POS_ID";
 
-	/** Set Payment.
-	  * Payment identifier
+	/** Set POS Terminal.
+	  * Point of Sales Terminal
 	  */
-	public void setC_Payment_ID (int C_Payment_ID);
+	public void setC_POS_ID (int C_POS_ID);
 
-	/** Get Payment.
-	  * Payment identifier
+	/** Get POS Terminal.
+	  * Point of Sales Terminal
 	  */
-	public int getC_Payment_ID();
+	public int getC_POS_ID();
 
-	public org.compiere.model.I_C_Payment getC_Payment() throws RuntimeException;
+	public org.compiere.model.I_C_POS getC_POS() throws RuntimeException;
 
     /** Column name C_PaymentTerm_ID */
     public static final String COLUMNNAME_C_PaymentTerm_ID = "C_PaymentTerm_ID";
@@ -309,20 +309,20 @@ public interface I_C_Invoice
 
 	public org.compiere.model.I_C_PaymentTerm getC_PaymentTerm() throws RuntimeException;
 
-    /** Column name C_POS_ID */
-    public static final String COLUMNNAME_C_POS_ID = "C_POS_ID";
+    /** Column name C_Payment_ID */
+    public static final String COLUMNNAME_C_Payment_ID = "C_Payment_ID";
 
-	/** Set POS Terminal.
-	  * Point of Sales Terminal
+	/** Set Payment.
+	  * Payment identifier
 	  */
-	public void setC_POS_ID (int C_POS_ID);
+	public void setC_Payment_ID (int C_Payment_ID);
 
-	/** Get POS Terminal.
-	  * Point of Sales Terminal
+	/** Get Payment.
+	  * Payment identifier
 	  */
-	public int getC_POS_ID();
+	public int getC_Payment_ID();
 
-	public org.compiere.model.I_C_POS getC_POS() throws RuntimeException;
+	public org.compiere.model.I_C_Payment getC_Payment() throws RuntimeException;
 
     /** Column name C_Project_ID */
     public static final String COLUMNNAME_C_Project_ID = "C_Project_ID";
@@ -365,6 +365,19 @@ public interface I_C_Invoice
 	  */
 	public String getCopyFrom();
 
+    /** Column name CreateFrom */
+    public static final String COLUMNNAME_CreateFrom = "CreateFrom";
+
+	/** Set Create lines from.
+	  * Process which will generate a new document lines based on an existing document
+	  */
+	public void setCreateFrom (String CreateFrom);
+
+	/** Get Create lines from.
+	  * Process which will generate a new document lines based on an existing document
+	  */
+	public String getCreateFrom();
+
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";
 
@@ -380,19 +393,6 @@ public interface I_C_Invoice
 	  * User who created this records
 	  */
 	public int getCreatedBy();
-
-    /** Column name CreateFrom */
-    public static final String COLUMNNAME_CreateFrom = "CreateFrom";
-
-	/** Set Create lines from.
-	  * Process which will generate a new document lines based on an existing document
-	  */
-	public void setCreateFrom (String CreateFrom);
-
-	/** Get Create lines from.
-	  * Process which will generate a new document lines based on an existing document
-	  */
-	public String getCreateFrom();
 
     /** Column name DateAcct */
     public static final String COLUMNNAME_DateAcct = "DateAcct";
@@ -559,7 +559,6 @@ public interface I_C_Invoice
 	  */
 	public boolean isActive();
 
-
     /** Column name IsApproved */
     public static final String COLUMNNAME_IsApproved = "IsApproved";
 
@@ -651,19 +650,6 @@ public interface I_C_Invoice
 	  */
 	public boolean isPrinted();
 
-    /** Column name IsSelfService */
-    public static final String COLUMNNAME_IsSelfService = "IsSelfService";
-
-	/** Set Self-Service.
-	  * This is a Self-Service entry or this entry can be changed via Self-Service
-	  */
-	public void setIsSelfService (boolean IsSelfService);
-
-	/** Get Self-Service.
-	  * This is a Self-Service entry or this entry can be changed via Self-Service
-	  */
-	public boolean isSelfService();
-
     /** Column name IsSOTrx */
     public static final String COLUMNNAME_IsSOTrx = "IsSOTrx";
 
@@ -676,6 +662,19 @@ public interface I_C_Invoice
 	  * This is a Sales Transaction
 	  */
 	public boolean isSOTrx();
+
+    /** Column name IsSelfService */
+    public static final String COLUMNNAME_IsSelfService = "IsSelfService";
+
+	/** Set Self-Service.
+	  * This is a Self-Service entry or this entry can be changed via Self-Service
+	  */
+	public void setIsSelfService (boolean IsSelfService);
+
+	/** Get Self-Service.
+	  * This is a Self-Service entry or this entry can be changed via Self-Service
+	  */
+	public boolean isSelfService();
 
     /** Column name IsTaxIncluded */
     public static final String COLUMNNAME_IsTaxIncluded = "IsTaxIncluded";
@@ -733,19 +732,6 @@ public interface I_C_Invoice
 
 	public org.compiere.model.I_M_RMA getM_RMA() throws RuntimeException;
 
-    /** Column name PaymentRule */
-    public static final String COLUMNNAME_PaymentRule = "PaymentRule";
-
-	/** Set Payment Rule.
-	  * How you pay the invoice
-	  */
-	public void setPaymentRule (String PaymentRule);
-
-	/** Get Payment Rule.
-	  * How you pay the invoice
-	  */
-	public String getPaymentRule();
-
     /** Column name POReference */
     public static final String COLUMNNAME_POReference = "POReference";
 
@@ -758,6 +744,49 @@ public interface I_C_Invoice
 	  * Transaction Reference Number (Sales Order, Purchase Order) of your Business Partner
 	  */
 	public String getPOReference();
+
+    /** Column name PP_PeriodDefinition_ID */
+    public static final String COLUMNNAME_PP_PeriodDefinition_ID = "PP_PeriodDefinition_ID";
+
+	/** Set Current Period.
+	  * Period Definition, allows to define time cycles for the Operational Calendar
+	  */
+	public void setPP_PeriodDefinition_ID (int PP_PeriodDefinition_ID);
+
+	/** Get Current Period.
+	  * Period Definition, allows to define time cycles for the Operational Calendar
+	  */
+	public int getPP_PeriodDefinition_ID();
+
+	public org.eevolution.model.I_PP_PeriodDefinition getPP_PeriodDefinition() throws RuntimeException;
+
+    /** Column name PP_Period_ID */
+    public static final String COLUMNNAME_PP_Period_ID = "PP_Period_ID";
+
+	/** Set Operational Period.
+	  * Forecast Definition Periods.
+	  */
+	public void setPP_Period_ID (int PP_Period_ID);
+
+	/** Get Operational Period.
+	  * Forecast Definition Periods.
+	  */
+	public int getPP_Period_ID();
+
+	public org.eevolution.model.I_PP_Period getPP_Period() throws RuntimeException;
+
+    /** Column name PaymentRule */
+    public static final String COLUMNNAME_PaymentRule = "PaymentRule";
+
+	/** Set Payment Rule.
+	  * How you pay the invoice
+	  */
+	public void setPaymentRule (String PaymentRule);
+
+	/** Get Payment Rule.
+	  * How you pay the invoice
+	  */
+	public String getPaymentRule();
 
     /** Column name Posted */
     public static final String COLUMNNAME_Posted = "Posted";
@@ -831,6 +860,21 @@ public interface I_C_Invoice
 
 	public org.compiere.model.I_C_Invoice getReversal() throws RuntimeException;
 
+    /** Column name S_Contract_ID */
+    public static final String COLUMNNAME_S_Contract_ID = "S_Contract_ID";
+
+	/** Set Service Contract.
+	  * Service Contract
+	  */
+	public void setS_Contract_ID (int S_Contract_ID);
+
+	/** Get Service Contract.
+	  * Service Contract
+	  */
+	public int getS_Contract_ID();
+
+	public org.eevolution.model.I_S_Contract getS_Contract() throws RuntimeException;
+
     /** Column name SalesRep_ID */
     public static final String COLUMNNAME_SalesRep_ID = "SalesRep_ID";
 
@@ -871,6 +915,19 @@ public interface I_C_Invoice
 	  * Total of all document lines
 	  */
 	public BigDecimal getTotalLines();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";
@@ -947,17 +1004,4 @@ public interface I_C_Invoice
 	public int getUser4_ID();
 
 	public org.compiere.model.I_C_ElementValue getUser4() throws RuntimeException;
-
-    /** Column name UUID */
-    public static final String COLUMNNAME_UUID = "UUID";
-
-	/** Set Immutable Universally Unique Identifier.
-	  * Immutable Universally Unique Identifier
-	  */
-	public void setUUID (String UUID);
-
-	/** Get Immutable Universally Unique Identifier.
-	  * Immutable Universally Unique Identifier
-	  */
-	public String getUUID();
 }

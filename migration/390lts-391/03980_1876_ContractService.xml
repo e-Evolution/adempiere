@@ -5793,7 +5793,7 @@ There are two reasons for de-activating and not deleting records:
         <Data AD_Column_ID="116" Column="ColumnName">M_PriceList_ID</Data>
         <Data AD_Column_ID="113" Column="Help">Price Lists are used to determine the pricing, margin and cost of items purchased or sold.</Data>
         <Data AD_Column_ID="3360" Column="IsUpdateable">true</Data>
-        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.model.CalloutContract.priceList</Data>
+        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.domain.model.CalloutContract.priceList</Data>
         <Data AD_Column_ID="11617" Column="IsAlwaysUpdateable">false</Data>
         <Data AD_Column_ID="128" Column="IsEncrypted">N</Data>
         <Data AD_Column_ID="54358" Column="InfoFactoryClass" isNewNull="true"/>
@@ -7547,7 +7547,7 @@ There are two reasons for de-activating and not deleting records:
         <Data AD_Column_ID="116" Column="ColumnName">C_BPartner_Location_ID</Data>
         <Data AD_Column_ID="113" Column="Help">The Partner address indicates the location of a Business Partner</Data>
         <Data AD_Column_ID="3360" Column="IsUpdateable">true</Data>
-        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.model.CalloutContract.tax</Data>
+        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.domain.model.CalloutContract.tax</Data>
         <Data AD_Column_ID="11617" Column="IsAlwaysUpdateable">false</Data>
         <Data AD_Column_ID="128" Column="IsEncrypted">N</Data>
         <Data AD_Column_ID="54358" Column="InfoFactoryClass" isNewNull="true"/>
@@ -7683,7 +7683,7 @@ There are two reasons for de-activating and not deleting records:
         <Data AD_Column_ID="116" Column="ColumnName">C_Charge_ID</Data>
         <Data AD_Column_ID="113" Column="Help">The Charge indicates a type of Charge (Handling, Shipping, Restocking)</Data>
         <Data AD_Column_ID="3360" Column="IsUpdateable">true</Data>
-        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.model.CalloutContract.charge</Data>
+        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.domain.model.CalloutContract.charge</Data>
         <Data AD_Column_ID="11617" Column="IsAlwaysUpdateable">false</Data>
         <Data AD_Column_ID="128" Column="IsEncrypted">N</Data>
         <Data AD_Column_ID="54358" Column="InfoFactoryClass" isNewNull="true"/>
@@ -8082,7 +8082,8 @@ There are two reasons for de-activating and not deleting records:
         <Data AD_Column_ID="116" Column="ColumnName">C_UOM_ID</Data>
         <Data AD_Column_ID="113" Column="Help">The UOM defines a unique non monetary Unit of Measure</Data>
         <Data AD_Column_ID="3360" Column="IsUpdateable">false</Data>
-        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.model.CalloutContract.qty; org.eevolution.model.CalloutContract.amt</Data>
+        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.domain.model.CalloutContract.qty;
+            org.eevolution.domain.model.CalloutContract.amt</Data>
         <Data AD_Column_ID="11617" Column="IsAlwaysUpdateable">false</Data>
         <Data AD_Column_ID="128" Column="IsEncrypted">N</Data>
         <Data AD_Column_ID="54358" Column="InfoFactoryClass" isNewNull="true"/>
@@ -8958,7 +8959,7 @@ There are two reasons for de-activating and not deleting records:
         <Data AD_Column_ID="116" Column="ColumnName">M_AttributeSetInstance_ID</Data>
         <Data AD_Column_ID="113" Column="Help">The values of the actual Product Attribute Instances.  The product level attributes are defined on Product level.</Data>
         <Data AD_Column_ID="3360" Column="IsUpdateable">true</Data>
-        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.model.CalloutContract.qty</Data>
+        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.domain.model.CalloutContract.qty</Data>
         <Data AD_Column_ID="11617" Column="IsAlwaysUpdateable">false</Data>
         <Data AD_Column_ID="128" Column="IsEncrypted">N</Data>
         <Data AD_Column_ID="54358" Column="InfoFactoryClass" isNewNull="true"/>
@@ -9094,7 +9095,7 @@ There are two reasons for de-activating and not deleting records:
         <Data AD_Column_ID="116" Column="ColumnName">M_Product_ID</Data>
         <Data AD_Column_ID="113" Column="Help">Identifies an item which is either purchased or sold in this organization.</Data>
         <Data AD_Column_ID="3360" Column="IsUpdateable">true</Data>
-        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.model.CalloutContract.product</Data>
+        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.domain.model.CalloutContract.product</Data>
         <Data AD_Column_ID="11617" Column="IsAlwaysUpdateable">false</Data>
         <Data AD_Column_ID="128" Column="IsEncrypted">N</Data>
         <Data AD_Column_ID="54358" Column="InfoFactoryClass" isNewNull="true"/>
@@ -9570,7 +9571,7 @@ There are two reasons for de-activating and not deleting records:
         <Data AD_Column_ID="116" Column="ColumnName">PriceEntered</Data>
         <Data AD_Column_ID="113" Column="Help">The price entered is converted to the actual price based on the UoM conversion</Data>
         <Data AD_Column_ID="3360" Column="IsUpdateable">true</Data>
-        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.model.CalloutContract.amt</Data>
+        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.domain.model.CalloutContract.amt</Data>
         <Data AD_Column_ID="11617" Column="IsAlwaysUpdateable">false</Data>
         <Data AD_Column_ID="128" Column="IsEncrypted">N</Data>
         <Data AD_Column_ID="54358" Column="InfoFactoryClass" isNewNull="true"/>
@@ -9706,7 +9707,7 @@ There are two reasons for de-activating and not deleting records:
         <Data AD_Column_ID="116" Column="ColumnName">PriceList</Data>
         <Data AD_Column_ID="113" Column="Help">The List Price is the official List Price in the document currency.</Data>
         <Data AD_Column_ID="3360" Column="IsUpdateable">true</Data>
-        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.model.CalloutContract.amt</Data>
+        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.domain.model.CalloutContract.amt</Data>
         <Data AD_Column_ID="11617" Column="IsAlwaysUpdateable">false</Data>
         <Data AD_Column_ID="128" Column="IsEncrypted">N</Data>
         <Data AD_Column_ID="54358" Column="InfoFactoryClass" isNewNull="true"/>
@@ -9902,7 +9903,8 @@ There are two reasons for de-activating and not deleting records:
         <Data AD_Column_ID="116" Column="ColumnName">QtyEntered</Data>
         <Data AD_Column_ID="113" Column="Help">The Quantity Entered is converted to base product UoM quantity</Data>
         <Data AD_Column_ID="3360" Column="IsUpdateable">true</Data>
-        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.model.CalloutContract.qty; org.eevolution.model.CalloutContract.amt</Data>
+        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.domain.model.CalloutContract.qty;
+            org.eevolution.domain.model.CalloutContract.amt</Data>
         <Data AD_Column_ID="11617" Column="IsAlwaysUpdateable">false</Data>
         <Data AD_Column_ID="128" Column="IsEncrypted">N</Data>
         <Data AD_Column_ID="54358" Column="InfoFactoryClass" isNewNull="true"/>
@@ -10119,7 +10121,8 @@ There are two reasons for de-activating and not deleting records:
         <Data AD_Column_ID="116" Column="ColumnName">QtyOrdered</Data>
         <Data AD_Column_ID="113" Column="Help">The Ordered Quantity indicates the quantity of a product that was ordered.</Data>
         <Data AD_Column_ID="3360" Column="IsUpdateable">true</Data>
-        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.model.CalloutContract.qty; org.eevolution.model.CalloutContract.amt</Data>
+        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.domain.model.CalloutContract.qty;
+            org.eevolution.domain.model.CalloutContract.amt</Data>
         <Data AD_Column_ID="11617" Column="IsAlwaysUpdateable">false</Data>
         <Data AD_Column_ID="128" Column="IsEncrypted">N</Data>
         <Data AD_Column_ID="54358" Column="InfoFactoryClass" isNewNull="true"/>
@@ -10537,7 +10540,8 @@ There are two reasons for de-activating and not deleting records:
         <Data AD_Column_ID="116" Column="ColumnName">S_ResourceAssignment_ID</Data>
         <Data AD_Column_ID="113" Column="Help" isNewNull="true"/>
         <Data AD_Column_ID="3360" Column="IsUpdateable">true</Data>
-        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.model.CalloutAssignment.product; org.eevolution.model.CalloutContract.amt; org.eevolution.model.CalloutContract.qty</Data>
+        <Data AD_Column_ID="1692" Column="Callout">org.eevolution.model.CalloutAssignment.product;
+            org.eevolution.domain.model.CalloutContract.amt; org.eevolution.domain.model.CalloutContract.qty</Data>
         <Data AD_Column_ID="11617" Column="IsAlwaysUpdateable">false</Data>
         <Data AD_Column_ID="128" Column="IsEncrypted">N</Data>
         <Data AD_Column_ID="54358" Column="InfoFactoryClass" isNewNull="true"/>
@@ -31393,7 +31397,7 @@ There are two reasons for de-activating and not deleting records:
     </Step>
     <Step SeqNo="15020" StepType="AD">
       <PO AD_Table_ID="101" Action="U" Record_ID="89300" Table="AD_Column">
-        <Data AD_Column_ID="1692" Column="Callout" isOldNull="true">org.eevolution.model.CalloutContract.product</Data>
+        <Data AD_Column_ID="1692" Column="Callout" isOldNull="true">org.eevolution.domain.model.CalloutContract.product</Data>
       </PO>
     </Step>
     <Step SeqNo="15030" StepType="AD">

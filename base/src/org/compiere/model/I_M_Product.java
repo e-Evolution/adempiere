@@ -62,17 +62,6 @@ public interface I_M_Product
 	  */
 	public int getAD_Org_ID();
 
-    /** Column name C_LandedCostType_ID */
-    public static final String COLUMNNAME_C_LandedCostType_ID = "C_LandedCostType_ID";
-
-	/** Set LandedCostType ID	  */
-	public void setC_LandedCostType_ID (int C_LandedCostType_ID);
-
-	/** Get LandedCostType ID	  */
-	public int getC_LandedCostType_ID();
-
-	public org.compiere.model.I_C_LandedCostType getC_LandedCostType() throws RuntimeException;
-
     /** Column name C_RevenueRecognition_ID */
     public static final String COLUMNNAME_C_RevenueRecognition_ID = "C_RevenueRecognition_ID";
 
@@ -594,21 +583,6 @@ public interface I_M_Product
 	  */
 	public int getLowLevel();
 
-    /** Column name M_AttributeSet_ID */
-    public static final String COLUMNNAME_M_AttributeSet_ID = "M_AttributeSet_ID";
-
-	/** Set Attribute Set.
-	  * Product Attribute Set
-	  */
-	public void setM_AttributeSet_ID (int M_AttributeSet_ID);
-
-	/** Get Attribute Set.
-	  * Product Attribute Set
-	  */
-	public int getM_AttributeSet_ID();
-
-	public org.compiere.model.I_M_AttributeSet getM_AttributeSet() throws RuntimeException;
-
     /** Column name M_AttributeSetInstance_ID */
     public static final String COLUMNNAME_M_AttributeSetInstance_ID = "M_AttributeSetInstance_ID";
 
@@ -623,6 +597,21 @@ public interface I_M_Product
 	public int getM_AttributeSetInstance_ID();
 
 	public I_M_AttributeSetInstance getM_AttributeSetInstance() throws RuntimeException;
+
+    /** Column name M_AttributeSet_ID */
+    public static final String COLUMNNAME_M_AttributeSet_ID = "M_AttributeSet_ID";
+
+	/** Set Attribute Set.
+	  * Product Attribute Set
+	  */
+	public void setM_AttributeSet_ID (int M_AttributeSet_ID);
+
+	/** Get Attribute Set.
+	  * Product Attribute Set
+	  */
+	public int getM_AttributeSet_ID();
+
+	public org.compiere.model.I_M_AttributeSet getM_AttributeSet() throws RuntimeException;
 
     /** Column name M_FreightCategory_ID */
     public static final String COLUMNNAME_M_FreightCategory_ID = "M_FreightCategory_ID";
@@ -788,6 +777,19 @@ public interface I_M_Product
 
 	public org.compiere.model.I_R_MailText getR_MailText() throws RuntimeException;
 
+    /** Column name SKU */
+    public static final String COLUMNNAME_SKU = "SKU";
+
+	/** Set SKU.
+	  * Stock Keeping Unit
+	  */
+	public void setSKU (String SKU);
+
+	/** Get SKU.
+	  * Stock Keeping Unit
+	  */
+	public String getSKU();
+
     /** Column name S_ExpenseType_ID */
     public static final String COLUMNNAME_S_ExpenseType_ID = "S_ExpenseType_ID";
 
@@ -817,6 +819,19 @@ public interface I_M_Product
 	public int getS_Resource_ID();
 
 	public org.compiere.model.I_S_Resource getS_Resource() throws RuntimeException;
+
+    /** Column name S_ServiceType_ID */
+    public static final String COLUMNNAME_S_ServiceType_ID = "S_ServiceType_ID";
+
+	/** Set Service Type.
+	  * Define a Service Type for a Service Contract
+	  */
+	public void setS_ServiceType_ID (int S_ServiceType_ID);
+
+	/** Get Service Type.
+	  * Define a Service Type for a Service Contract
+	  */
+	public int getS_ServiceType_ID();
 
     /** Column name SalesRep_ID */
     public static final String COLUMNNAME_SalesRep_ID = "SalesRep_ID";
@@ -872,18 +887,31 @@ public interface I_M_Product
 	  */
 	public int getShelfWidth();
 
-    /** Column name SKU */
-    public static final String COLUMNNAME_SKU = "SKU";
+    /** Column name UPC */
+    public static final String COLUMNNAME_UPC = "UPC";
 
-	/** Set SKU.
-	  * Stock Keeping Unit
+	/** Set UPC/EAN.
+	  * Bar Code (Universal Product Code or its superset European Article Number)
 	  */
-	public void setSKU (String SKU);
+	public void setUPC (String UPC);
 
-	/** Get SKU.
-	  * Stock Keeping Unit
+	/** Get UPC/EAN.
+	  * Bar Code (Universal Product Code or its superset European Article Number)
 	  */
-	public String getSKU();
+	public String getUPC();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 
     /** Column name UnitsPerPack */
     public static final String COLUMNNAME_UnitsPerPack = "UnitsPerPack";
@@ -911,19 +939,6 @@ public interface I_M_Product
 	  */
 	public BigDecimal getUnitsPerPallet();
 
-    /** Column name UPC */
-    public static final String COLUMNNAME_UPC = "UPC";
-
-	/** Set UPC/EAN.
-	  * Bar Code (Universal Product Code or its superset European Article Number)
-	  */
-	public void setUPC (String UPC);
-
-	/** Get UPC/EAN.
-	  * Bar Code (Universal Product Code or its superset European Article Number)
-	  */
-	public String getUPC();
-
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";
 
@@ -939,19 +954,6 @@ public interface I_M_Product
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
-
-    /** Column name UUID */
-    public static final String COLUMNNAME_UUID = "UUID";
-
-	/** Set Immutable Universally Unique Identifier.
-	  * Immutable Universally Unique Identifier
-	  */
-	public void setUUID (String UUID);
-
-	/** Get Immutable Universally Unique Identifier.
-	  * Immutable Universally Unique Identifier
-	  */
-	public String getUUID();
 
     /** Column name Value */
     public static final String COLUMNNAME_Value = "Value";
