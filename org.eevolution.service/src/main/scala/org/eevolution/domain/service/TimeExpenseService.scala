@@ -25,8 +25,7 @@ import org.eevolution.domain.ubiquitouslanguage.{TimeExpense, TimeExpenseLine}
   * Time Expense Domain Service Implementation for Time Expense Entity
   */
 trait TimeExpenseService extends TimeExpenseServiceComponent {
-  this: TimeExpenseLineRepositoryComponent with
-        TimeExpenseLineRepositoryComponent =>
+  this: TimeExpenseLineRepositoryComponent =>
 
   final override object timeExpenseService extends TimeExpenseServiceTrait {
 
