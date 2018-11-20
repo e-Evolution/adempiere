@@ -10,7 +10,7 @@ crossPaths := false
 scalacOptions ++= Seq("-feature", "-unchecked", "-deprecation", "-encoding" , "utf8")
 javacOptions ++= Seq("-encoding", "UTF-8")
 
-val sourceAdempiere = "/Users/e-Evolution/Develop/ADempiere/391"
+val sourceAdempiere = "../"
 
 unmanagedJars in Compile ++= (file(sourceAdempiere + "/zkwebui/WEB-INF/lib") * "*.jar").classpath
 unmanagedJars in Compile ++= (file(sourceAdempiere + "/tools/lib") * "*.jar").classpath
