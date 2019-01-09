@@ -26,14 +26,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for C_Invoice
  *  @author Adempiere (generated) 
- *  @version Release 3.9.0 - $Id$ */
+ *  @version Release 3.9.1 - $Id$ */
 public class X_C_Invoice extends PO implements I_C_Invoice, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20181028L;
+	private static final long serialVersionUID = 20181220L;
 
     /** Standard Constructor */
     public X_C_Invoice (Properties ctx, int C_Invoice_ID, String trxName)
@@ -111,6 +111,11 @@ public class X_C_Invoice extends PO implements I_C_Invoice, I_Persistent
         .append(get_ID()).append("]");
       return sb.toString();
     }
+
+	public org.compiere.model.I_AD_Org getAD_OrgTrx() throws RuntimeException
+    {
+		return (org.compiere.model.I_AD_Org)MTable.get(getCtx(), org.compiere.model.I_AD_Org.Table_Name)
+			.getPO(getAD_OrgTrx_ID(), get_TrxName());	}
 
 	/** Set Trx Organization.
 		@param AD_OrgTrx_ID 
@@ -1303,62 +1308,6 @@ public class X_C_Invoice extends PO implements I_C_Invoice, I_Persistent
 		return (String)get_Value(COLUMNNAME_POReference);
 	}
 
-	public org.eevolution.model.I_PP_PeriodDefinition getPP_PeriodDefinition() throws RuntimeException
-    {
-		return (org.eevolution.model.I_PP_PeriodDefinition)MTable.get(getCtx(), org.eevolution.model.I_PP_PeriodDefinition.Table_Name)
-			.getPO(getPP_PeriodDefinition_ID(), get_TrxName());	}
-
-	/** Set Current Period.
-		@param PP_PeriodDefinition_ID 
-		Period Definition, allows to define time cycles for the Operational Calendar
-	  */
-	public void setPP_PeriodDefinition_ID (int PP_PeriodDefinition_ID)
-	{
-		if (PP_PeriodDefinition_ID < 1) 
-			set_Value (COLUMNNAME_PP_PeriodDefinition_ID, null);
-		else 
-			set_Value (COLUMNNAME_PP_PeriodDefinition_ID, Integer.valueOf(PP_PeriodDefinition_ID));
-	}
-
-	/** Get Current Period.
-		@return Period Definition, allows to define time cycles for the Operational Calendar
-	  */
-	public int getPP_PeriodDefinition_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_PP_PeriodDefinition_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	public org.eevolution.model.I_PP_Period getPP_Period() throws RuntimeException
-    {
-		return (org.eevolution.model.I_PP_Period)MTable.get(getCtx(), org.eevolution.model.I_PP_Period.Table_Name)
-			.getPO(getPP_Period_ID(), get_TrxName());	}
-
-	/** Set Operational Period.
-		@param PP_Period_ID 
-		Forecast Definition Periods.
-	  */
-	public void setPP_Period_ID (int PP_Period_ID)
-	{
-		if (PP_Period_ID < 1) 
-			set_Value (COLUMNNAME_PP_Period_ID, null);
-		else 
-			set_Value (COLUMNNAME_PP_Period_ID, Integer.valueOf(PP_Period_ID));
-	}
-
-	/** Get Operational Period.
-		@return Forecast Definition Periods.
-	  */
-	public int getPP_Period_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_PP_Period_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
 	/** PaymentRule AD_Reference_ID=195 */
 	public static final int PAYMENTRULE_AD_Reference_ID=195;
 	/** Cash = B */
@@ -1525,34 +1474,6 @@ public class X_C_Invoice extends PO implements I_C_Invoice, I_Persistent
 	public int getReversal_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_Reversal_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	public org.eevolution.model.I_S_Contract getS_Contract() throws RuntimeException
-    {
-		return (org.eevolution.model.I_S_Contract)MTable.get(getCtx(), org.eevolution.model.I_S_Contract.Table_Name)
-			.getPO(getS_Contract_ID(), get_TrxName());	}
-
-	/** Set Service Contract.
-		@param S_Contract_ID 
-		Service Contract
-	  */
-	public void setS_Contract_ID (int S_Contract_ID)
-	{
-		if (S_Contract_ID < 1) 
-			set_Value (COLUMNNAME_S_Contract_ID, null);
-		else 
-			set_Value (COLUMNNAME_S_Contract_ID, Integer.valueOf(S_Contract_ID));
-	}
-
-	/** Get Service Contract.
-		@return Service Contract
-	  */
-	public int getS_Contract_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_S_Contract_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();

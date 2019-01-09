@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for C_InvoiceLine
  *  @author Adempiere (generated) 
- *  @version Release 3.9.0
+ *  @version Release 3.9.1
  */
 public interface I_C_InvoiceLine 
 {
@@ -61,6 +61,8 @@ public interface I_C_InvoiceLine
 	  * Performing or initiating organization
 	  */
 	public int getAD_OrgTrx_ID();
+
+	public org.compiere.model.I_AD_Org getAD_OrgTrx() throws RuntimeException;
 
     /** Column name AD_Org_ID */
     public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
@@ -501,36 +503,6 @@ public interface I_C_InvoiceLine
 
 	public org.compiere.model.I_M_RMALine getM_RMALine() throws RuntimeException;
 
-    /** Column name PP_PeriodDefinition_ID */
-    public static final String COLUMNNAME_PP_PeriodDefinition_ID = "PP_PeriodDefinition_ID";
-
-	/** Set Current Period.
-	  * Period Definition, allows to define time cycles for the Operational Calendar
-	  */
-	public void setPP_PeriodDefinition_ID (int PP_PeriodDefinition_ID);
-
-	/** Get Current Period.
-	  * Period Definition, allows to define time cycles for the Operational Calendar
-	  */
-	public int getPP_PeriodDefinition_ID();
-
-	public org.eevolution.model.I_PP_PeriodDefinition getPP_PeriodDefinition() throws RuntimeException;
-
-    /** Column name PP_Period_ID */
-    public static final String COLUMNNAME_PP_Period_ID = "PP_Period_ID";
-
-	/** Set Operational Period.
-	  * Forecast Definition Periods.
-	  */
-	public void setPP_Period_ID (int PP_Period_ID);
-
-	/** Get Operational Period.
-	  * Forecast Definition Periods.
-	  */
-	public int getPP_Period_ID();
-
-	public org.eevolution.model.I_PP_Period getPP_Period() throws RuntimeException;
-
     /** Column name PriceActual */
     public static final String COLUMNNAME_PriceActual = "PriceActual";
 
@@ -671,21 +643,6 @@ public interface I_C_InvoiceLine
 	public int getReversalLine_ID();
 
 	public org.compiere.model.I_C_InvoiceLine getReversalLine() throws RuntimeException;
-
-    /** Column name S_ContractLine_ID */
-    public static final String COLUMNNAME_S_ContractLine_ID = "S_ContractLine_ID";
-
-	/** Set Service Contract Line.
-	  * Service Contract Line
-	  */
-	public void setS_ContractLine_ID (int S_ContractLine_ID);
-
-	/** Get Service Contract Line.
-	  * Service Contract Line
-	  */
-	public int getS_ContractLine_ID();
-
-	public org.eevolution.model.I_S_ContractLine getS_ContractLine() throws RuntimeException;
 
     /** Column name S_ResourceAssignment_ID */
     public static final String COLUMNNAME_S_ResourceAssignment_ID = "S_ResourceAssignment_ID";
