@@ -14,7 +14,7 @@
  * For the text or an alternative of this public license, you may reach us    *
  * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
-package org.eevolution.model;
+package org.eevolution.domain.model;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -23,7 +23,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for S_ContractPartiesType
  *  @author Adempiere (generated) 
- *  @version Release 3.9.0
+ *  @version Release 3.9.1
  */
 public interface I_S_ContractPartiesType 
 {
@@ -147,10 +147,10 @@ public interface I_S_ContractPartiesType
     /** Column name S_ContractPartiesType_ID */
     public static final String COLUMNNAME_S_ContractPartiesType_ID = "S_ContractPartiesType_ID";
 
-	/** Set Contract Parties Type ID	  */
+	/** Set Contract Parties Type	  */
 	public void setS_ContractPartiesType_ID (int S_ContractPartiesType_ID);
 
-	/** Get Contract Parties Type ID	  */
+	/** Get Contract Parties Type	  */
 	public int getS_ContractPartiesType_ID();
 
     /** Column name UUID */

@@ -22,7 +22,7 @@ package org.eevolution.domain.model
 import java.sql.ResultSet
 import java.util.Properties
 
-import org.eevolution.model.X_S_ServiceType
+import org.eevolution.domain.model.X_S_ServiceType
 
 /**
   * Service Type Entity

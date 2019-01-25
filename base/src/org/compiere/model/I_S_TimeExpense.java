@@ -393,7 +393,7 @@ public interface I_S_TimeExpense
 	  */
 	public int getS_Contract_ID();
 
-	public org.eevolution.model.I_S_Contract getS_Contract() throws RuntimeException;
+	public org.eevolution.domain.model.I_S_Contract getS_Contract() throws RuntimeException;
 
     /** Column name S_TimeExpense_ID */
     public static final String COLUMNNAME_S_TimeExpense_ID = "S_TimeExpense_ID";

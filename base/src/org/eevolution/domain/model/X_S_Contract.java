@@ -15,7 +15,7 @@
  * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
-package org.eevolution.model;
+package org.eevolution.domain.model;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -27,14 +27,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for S_Contract
  *  @author Adempiere (generated) 
- *  @version Release 3.9.0 - $Id$ */
+ *  @version Release 3.9.1 - $Id$ */
 public class X_S_Contract extends PO implements I_S_Contract, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20180924L;
+	private static final long serialVersionUID = 20190125L;
 
     /** Standard Constructor */
     public X_S_Contract (Properties ctx, int S_Contract_ID, String trxName)
@@ -1673,9 +1673,9 @@ public class X_S_Contract extends PO implements I_S_Contract, I_Persistent
 		return false;
 	}
 
-	public org.eevolution.model.I_S_Contract getLink_Contract() throws RuntimeException
+	public org.eevolution.domain.model.I_S_Contract getLink_Contract() throws RuntimeException
     {
-		return (org.eevolution.model.I_S_Contract)MTable.get(getCtx(), org.eevolution.model.I_S_Contract.Table_Name)
+		return (org.eevolution.domain.model.I_S_Contract)MTable.get(getCtx(), org.eevolution.domain.model.I_S_Contract.Table_Name)
 			.getPO(getLink_Contract_ID(), get_TrxName());	}
 
 	/** Set Linked Contract.
@@ -1853,6 +1853,34 @@ public class X_S_Contract extends PO implements I_S_Contract, I_Persistent
 	public int getPP_Calendar_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_PP_Calendar_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.eevolution.model.I_PP_PeriodDefinition getPP_PeriodDefinition() throws RuntimeException
+    {
+		return (org.eevolution.model.I_PP_PeriodDefinition)MTable.get(getCtx(), org.eevolution.model.I_PP_PeriodDefinition.Table_Name)
+			.getPO(getPP_PeriodDefinition_ID(), get_TrxName());	}
+
+	/** Set Current Period.
+		@param PP_PeriodDefinition_ID 
+		Period Definition, allows to define time cycles for the Operational Calendar
+	  */
+	public void setPP_PeriodDefinition_ID (int PP_PeriodDefinition_ID)
+	{
+		if (PP_PeriodDefinition_ID < 1) 
+			set_Value (COLUMNNAME_PP_PeriodDefinition_ID, null);
+		else 
+			set_Value (COLUMNNAME_PP_PeriodDefinition_ID, Integer.valueOf(PP_PeriodDefinition_ID));
+	}
+
+	/** Get Current Period.
+		@return Period Definition, allows to define time cycles for the Operational Calendar
+	  */
+	public int getPP_PeriodDefinition_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_PP_PeriodDefinition_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -2124,9 +2152,9 @@ public class X_S_Contract extends PO implements I_S_Contract, I_Persistent
 		return (String)get_Value(COLUMNNAME_PromotionCode);
 	}
 
-	public org.eevolution.model.I_S_Contract getRef_Contract() throws RuntimeException
+	public org.eevolution.domain.model.I_S_Contract getRef_Contract() throws RuntimeException
     {
-		return (org.eevolution.model.I_S_Contract)MTable.get(getCtx(), org.eevolution.model.I_S_Contract.Table_Name)
+		return (org.eevolution.domain.model.I_S_Contract)MTable.get(getCtx(), org.eevolution.domain.model.I_S_Contract.Table_Name)
 			.getPO(getRef_Contract_ID(), get_TrxName());	}
 
 	/** Set Referenced Contract.
@@ -2152,9 +2180,9 @@ public class X_S_Contract extends PO implements I_S_Contract, I_Persistent
 		return ii.intValue();
 	}
 
-	/** Set Contract Service.
+	/** Set Service Contract.
 		@param S_Contract_ID 
-		Contract Service
+		Service Contract
 	  */
 	public void setS_Contract_ID (int S_Contract_ID)
 	{
@@ -2164,8 +2192,8 @@ public class X_S_Contract extends PO implements I_S_Contract, I_Persistent
 			set_ValueNoCheck (COLUMNNAME_S_Contract_ID, Integer.valueOf(S_Contract_ID));
 	}
 
-	/** Get Contract Service.
-		@return Contract Service
+	/** Get Service Contract.
+		@return Service Contract
 	  */
 	public int getS_Contract_ID () 
 	{

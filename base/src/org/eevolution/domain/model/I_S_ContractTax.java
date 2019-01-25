@@ -14,31 +14,31 @@
  * For the text or an alternative of this public license, you may reach us    *
  * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
-package org.eevolution.model;
+package org.eevolution.domain.model;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import org.compiere.model.*;
 import org.compiere.util.KeyNamePair;
 
-/** Generated Interface for S_ServiceType
+/** Generated Interface for S_ContractTax
  *  @author Adempiere (generated) 
- *  @version Release 3.9.0
+ *  @version Release 3.9.1
  */
-public interface I_S_ServiceType 
+public interface I_S_ContractTax 
 {
 
-    /** TableName=S_ServiceType */
-    public static final String Table_Name = "S_ServiceType";
+    /** TableName=S_ContractTax */
+    public static final String Table_Name = "S_ContractTax";
 
-    /** AD_Table_ID=54440 */
+    /** AD_Table_ID=54446 */
     public static final int Table_ID = MTable.getTable_ID(Table_Name);
 
     KeyNamePair Model = new KeyNamePair(Table_ID, Table_Name);
 
-    /** AccessLevel = 3 - Client - Org 
+    /** AccessLevel = 1 - Org 
      */
-    BigDecimal accessLevel = BigDecimal.valueOf(3);
+    BigDecimal accessLevel = BigDecimal.valueOf(1);
 
     /** Load Meta Data */
 
@@ -63,50 +63,20 @@ public interface I_S_ServiceType
 	  */
 	public int getAD_Org_ID();
 
-    /** Column name C_TaxCategory_ID */
-    public static final String COLUMNNAME_C_TaxCategory_ID = "C_TaxCategory_ID";
+    /** Column name C_Tax_ID */
+    public static final String COLUMNNAME_C_Tax_ID = "C_Tax_ID";
 
-	/** Set Tax Category.
-	  * Tax Category
+	/** Set Tax.
+	  * Tax identifier
 	  */
-	public void setC_TaxCategory_ID (int C_TaxCategory_ID);
+	public void setC_Tax_ID (int C_Tax_ID);
 
-	/** Get Tax Category.
-	  * Tax Category
+	/** Get Tax.
+	  * Tax identifier
 	  */
-	public int getC_TaxCategory_ID();
+	public int getC_Tax_ID();
 
-	public org.compiere.model.I_C_TaxCategory getC_TaxCategory() throws RuntimeException;
-
-    /** Column name C_TaxType_ID */
-    public static final String COLUMNNAME_C_TaxType_ID = "C_TaxType_ID";
-
-	/** Set Tax Type.
-	  * Tax Type
-	  */
-	public void setC_TaxType_ID (int C_TaxType_ID);
-
-	/** Get Tax Type.
-	  * Tax Type
-	  */
-	public int getC_TaxType_ID();
-
-	public org.eevolution.model.I_C_TaxType getC_TaxType() throws RuntimeException;
-
-    /** Column name C_UOM_ID */
-    public static final String COLUMNNAME_C_UOM_ID = "C_UOM_ID";
-
-	/** Set UOM.
-	  * Unit of Measure
-	  */
-	public void setC_UOM_ID (int C_UOM_ID);
-
-	/** Get UOM.
-	  * Unit of Measure
-	  */
-	public int getC_UOM_ID();
-
-	public org.compiere.model.I_C_UOM getC_UOM() throws RuntimeException;
+	public org.compiere.model.I_C_Tax getC_Tax() throws RuntimeException;
 
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";
@@ -124,19 +94,6 @@ public interface I_S_ServiceType
 	  */
 	public int getCreatedBy();
 
-    /** Column name Description */
-    public static final String COLUMNNAME_Description = "Description";
-
-	/** Set Description.
-	  * Optional short description of the record
-	  */
-	public void setDescription (String Description);
-
-	/** Get Description.
-	  * Optional short description of the record
-	  */
-	public String getDescription();
-
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";
 
@@ -150,59 +107,81 @@ public interface I_S_ServiceType
 	  */
 	public boolean isActive();
 
-    /** Column name IsInvoiced */
-    public static final String COLUMNNAME_IsInvoiced = "IsInvoiced";
+    /** Column name IsTaxIncluded */
+    public static final String COLUMNNAME_IsTaxIncluded = "IsTaxIncluded";
 
-	/** Set Invoiced.
-	  * Is this invoiced?
+	/** Set Price includes Tax.
+	  * Tax is included in the price 
 	  */
-	public void setIsInvoiced (boolean IsInvoiced);
+	public void setIsTaxIncluded (boolean IsTaxIncluded);
 
-	/** Get Invoiced.
-	  * Is this invoiced?
+	/** Get Price includes Tax.
+	  * Tax is included in the price 
 	  */
-	public boolean isInvoiced();
+	public boolean isTaxIncluded();
 
-    /** Column name M_Product_Category_ID */
-    public static final String COLUMNNAME_M_Product_Category_ID = "M_Product_Category_ID";
+    /** Column name Processed */
+    public static final String COLUMNNAME_Processed = "Processed";
 
-	/** Set Product Category.
-	  * Category of a Product
+	/** Set Processed.
+	  * The document has been processed
 	  */
-	public void setM_Product_Category_ID (int M_Product_Category_ID);
+	public void setProcessed (boolean Processed);
 
-	/** Get Product Category.
-	  * Category of a Product
+	/** Get Processed.
+	  * The document has been processed
 	  */
-	public int getM_Product_Category_ID();
+	public boolean isProcessed();
 
-	public org.compiere.model.I_M_Product_Category getM_Product_Category() throws RuntimeException;
+    /** Column name S_ContractTax_ID */
+    public static final String COLUMNNAME_S_ContractTax_ID = "S_ContractTax_ID";
 
-    /** Column name Name */
-    public static final String COLUMNNAME_Name = "Name";
+	/** Set Contract Tax ID	  */
+	public void setS_ContractTax_ID (int S_ContractTax_ID);
 
-	/** Set Name.
-	  * Alphanumeric identifier of the entity
+	/** Get Contract Tax ID	  */
+	public int getS_ContractTax_ID();
+
+    /** Column name S_Contract_ID */
+    public static final String COLUMNNAME_S_Contract_ID = "S_Contract_ID";
+
+	/** Set Service Contract.
+	  * Service Contract
 	  */
-	public void setName (String Name);
+	public void setS_Contract_ID (int S_Contract_ID);
 
-	/** Get Name.
-	  * Alphanumeric identifier of the entity
+	/** Get Service Contract.
+	  * Service Contract
 	  */
-	public String getName();
+	public int getS_Contract_ID();
 
-    /** Column name S_ServiceType_ID */
-    public static final String COLUMNNAME_S_ServiceType_ID = "S_ServiceType_ID";
+	public org.eevolution.domain.model.I_S_Contract getS_Contract() throws RuntimeException;
 
-	/** Set Service Type.
-	  * Define a Service Type for a Service Contract
+    /** Column name TaxAmt */
+    public static final String COLUMNNAME_TaxAmt = "TaxAmt";
+
+	/** Set Tax Amount.
+	  * Tax Amount for a document
 	  */
-	public void setS_ServiceType_ID (int S_ServiceType_ID);
+	public void setTaxAmt (BigDecimal TaxAmt);
 
-	/** Get Service Type.
-	  * Define a Service Type for a Service Contract
+	/** Get Tax Amount.
+	  * Tax Amount for a document
 	  */
-	public int getS_ServiceType_ID();
+	public BigDecimal getTaxAmt();
+
+    /** Column name TaxBaseAmt */
+    public static final String COLUMNNAME_TaxBaseAmt = "TaxBaseAmt";
+
+	/** Set Tax base Amount.
+	  * Base for calculating the tax amount
+	  */
+	public void setTaxBaseAmt (BigDecimal TaxBaseAmt);
+
+	/** Get Tax base Amount.
+	  * Base for calculating the tax amount
+	  */
+	public BigDecimal getTaxBaseAmt();
 
     /** Column name UUID */
     public static final String COLUMNNAME_UUID = "UUID";
@@ -232,17 +211,4 @@ public interface I_S_ServiceType
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
-
-    /** Column name Value */
-    public static final String COLUMNNAME_Value = "Value";
-
-	/** Set Search Key.
-	  * Search key for the record in the format required - must be unique
-	  */
-	public void setValue (String Value);
-
-	/** Get Search Key.
-	  * Search key for the record in the format required - must be unique
-	  */
-	public String getValue();
 }

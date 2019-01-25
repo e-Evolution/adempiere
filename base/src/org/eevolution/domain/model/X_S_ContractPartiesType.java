@@ -15,7 +15,7 @@
  * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
-package org.eevolution.model;
+package org.eevolution.domain.model;
 
 import java.sql.ResultSet;
 import java.util.Properties;
@@ -24,14 +24,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for S_ContractPartiesType
  *  @author Adempiere (generated) 
- *  @version Release 3.9.0 - $Id$ */
+ *  @version Release 3.9.1 - $Id$ */
 public class X_S_ContractPartiesType extends PO implements I_S_ContractPartiesType, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20180924L;
+	private static final long serialVersionUID = 20190125L;
 
     /** Standard Constructor */
     public X_S_ContractPartiesType (Properties ctx, int S_ContractPartiesType_ID, String trxName)
@@ -147,8 +147,8 @@ public class X_S_ContractPartiesType extends PO implements I_S_ContractPartiesTy
 		return (String)get_Value(COLUMNNAME_Name);
 	}
 
-	/** Set Contract Parties Type ID.
-		@param S_ContractPartiesType_ID Contract Parties Type ID	  */
+	/** Set Contract Parties Type.
+		@param S_ContractPartiesType_ID Contract Parties Type	  */
 	public void setS_ContractPartiesType_ID (int S_ContractPartiesType_ID)
 	{
 		if (S_ContractPartiesType_ID < 1) 
@@ -157,8 +157,8 @@ public class X_S_ContractPartiesType extends PO implements I_S_ContractPartiesTy
 			set_ValueNoCheck (COLUMNNAME_S_ContractPartiesType_ID, Integer.valueOf(S_ContractPartiesType_ID));
 	}
 
-	/** Get Contract Parties Type ID.
-		@return Contract Parties Type ID	  */
+	/** Get Contract Parties Type.
+		@return Contract Parties Type	  */
 	public int getS_ContractPartiesType_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_S_ContractPartiesType_ID);

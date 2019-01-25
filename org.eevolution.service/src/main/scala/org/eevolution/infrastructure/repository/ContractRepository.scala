@@ -22,7 +22,7 @@ import org.compiere.model.Query
 import org.compiere.util.Env
 import org.eevolution.domain.api.repository.ContractRepositoryComponent
 import org.eevolution.domain.ubiquitouslanguage.Contract
-import org.eevolution.model.I_S_Contract
+import org.eevolution.domain.model.I_S_Contract
 
 /**
   * Contact Repository Implementation the infrastructure for Contract Entity

@@ -14,7 +14,7 @@
  * For the text or an alternative of this public license, you may reach us    *
  * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
-package org.eevolution.model;
+package org.eevolution.domain.model;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -23,7 +23,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for S_ContractLine
  *  @author Adempiere (generated) 
- *  @version Release 3.9.0
+ *  @version Release 3.9.1
  */
 public interface I_S_ContractLine 
 {
@@ -593,7 +593,7 @@ public interface I_S_ContractLine
 	  */
 	public int getLink_ContractLine_ID();
 
-	public org.eevolution.model.I_S_ContractLine getLink_ContractLine() throws RuntimeException;
+	public org.eevolution.domain.model.I_S_ContractLine getLink_ContractLine() throws RuntimeException;
 
     /** Column name M_AttributeSetInstance_ID */
     public static final String COLUMNNAME_M_AttributeSetInstance_ID = "M_AttributeSetInstance_ID";
@@ -887,6 +887,21 @@ public interface I_S_ContractLine
 	  */
 	public Timestamp getRRStartDate();
 
+    /** Column name R_StandardRequestType_ID */
+    public static final String COLUMNNAME_R_StandardRequestType_ID = "R_StandardRequestType_ID";
+
+	/** Set Standard Request Type.
+	  * Standard Request Type
+	  */
+	public void setR_StandardRequestType_ID (int R_StandardRequestType_ID);
+
+	/** Get Standard Request Type.
+	  * Standard Request Type
+	  */
+	public int getR_StandardRequestType_ID();
+
+	public org.compiere.model.I_R_StandardRequestType getR_StandardRequestType() throws RuntimeException;
+
     /** Column name Ref_ContractLine_ID */
     public static final String COLUMNNAME_Ref_ContractLine_ID = "Ref_ContractLine_ID";
 
@@ -900,7 +915,7 @@ public interface I_S_ContractLine
 	  */
 	public int getRef_ContractLine_ID();
 
-	public org.eevolution.model.I_S_ContractLine getRef_ContractLine() throws RuntimeException;
+	public org.eevolution.domain.model.I_S_ContractLine getRef_ContractLine() throws RuntimeException;
 
     /** Column name RunsMax */
     public static final String COLUMNNAME_RunsMax = "RunsMax";
@@ -931,30 +946,30 @@ public interface I_S_ContractLine
     /** Column name S_ContractLine_ID */
     public static final String COLUMNNAME_S_ContractLine_ID = "S_ContractLine_ID";
 
-	/** Set Contract Service Line.
-	  * Contract Service Line
+	/** Set Service Contract Line.
+	  * Service Contract Line
 	  */
 	public void setS_ContractLine_ID (int S_ContractLine_ID);
 
-	/** Get Contract Service Line.
-	  * Contract Service Line
+	/** Get Service Contract Line.
+	  * Service Contract Line
 	  */
 	public int getS_ContractLine_ID();
 
     /** Column name S_Contract_ID */
     public static final String COLUMNNAME_S_Contract_ID = "S_Contract_ID";
 
-	/** Set Contract Service.
-	  * Contract Service
+	/** Set Service Contract.
+	  * Service Contract
 	  */
 	public void setS_Contract_ID (int S_Contract_ID);
 
-	/** Get Contract Service.
-	  * Contract Service
+	/** Get Service Contract.
+	  * Service Contract
 	  */
 	public int getS_Contract_ID();
 
-	public org.eevolution.model.I_S_Contract getS_Contract() throws RuntimeException;
+	public org.eevolution.domain.model.I_S_Contract getS_Contract() throws RuntimeException;
 
     /** Column name S_ResourceAssignment_ID */
     public static final String COLUMNNAME_S_ResourceAssignment_ID = "S_ResourceAssignment_ID";
@@ -981,8 +996,6 @@ public interface I_S_ContractLine
 	  * Define a Service Type for a Service Contract
 	  */
 	public int getS_ServiceType_ID();
-
-	public org.eevolution.model.I_S_ServiceType getS_ServiceType() throws RuntimeException;
 
     /** Column name UUID */
     public static final String COLUMNNAME_UUID = "UUID";

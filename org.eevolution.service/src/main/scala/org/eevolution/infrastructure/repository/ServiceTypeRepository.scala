@@ -18,7 +18,7 @@
 
 package org.eevolution.infrastructure.repository
 
-import org.eevolution.model.I_S_ServiceType
+import org.eevolution.domain.model.I_S_ServiceType
 import org.compiere.model.{I_M_Product, Query}
 import org.compiere.util.Env
 import org.eevolution.domain.api.repository.ServiceTypeRepositoryCompoenent

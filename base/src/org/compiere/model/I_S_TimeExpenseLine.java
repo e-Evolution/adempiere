@@ -602,7 +602,7 @@ public interface I_S_TimeExpenseLine
 	  */
 	public int getS_ContractLine_ID();
 
-	public org.eevolution.model.I_S_ContractLine getS_ContractLine() throws RuntimeException;
+	public org.eevolution.domain.model.I_S_ContractLine getS_ContractLine() throws RuntimeException;
 
     /** Column name S_ResourceAssignment_ID */
     public static final String COLUMNNAME_S_ResourceAssignment_ID = "S_ResourceAssignment_ID";

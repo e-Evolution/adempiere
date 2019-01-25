@@ -14,7 +14,7 @@
  * For the text or an alternative of this public license, you may reach us    *
  * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
-package org.eevolution.model;
+package org.eevolution.domain.model;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -23,7 +23,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for S_Contract
  *  @author Adempiere (generated) 
- *  @version Release 3.9.0
+ *  @version Release 3.9.1
  */
 public interface I_S_Contract 
 {
@@ -957,7 +957,7 @@ public interface I_S_Contract
 	  */
 	public int getLink_Contract_ID();
 
-	public org.eevolution.model.I_S_Contract getLink_Contract() throws RuntimeException;
+	public org.eevolution.domain.model.I_S_Contract getLink_Contract() throws RuntimeException;
 
     /** Column name M_FreightCategory_ID */
     public static final String COLUMNNAME_M_FreightCategory_ID = "M_FreightCategory_ID";
@@ -1046,6 +1046,21 @@ public interface I_S_Contract
 	public int getPP_Calendar_ID();
 
 	public org.eevolution.model.I_PP_Calendar getPP_Calendar() throws RuntimeException;
+
+    /** Column name PP_PeriodDefinition_ID */
+    public static final String COLUMNNAME_PP_PeriodDefinition_ID = "PP_PeriodDefinition_ID";
+
+	/** Set Current Period.
+	  * Period Definition, allows to define time cycles for the Operational Calendar
+	  */
+	public void setPP_PeriodDefinition_ID (int PP_PeriodDefinition_ID);
+
+	/** Get Current Period.
+	  * Period Definition, allows to define time cycles for the Operational Calendar
+	  */
+	public int getPP_PeriodDefinition_ID();
+
+	public org.eevolution.model.I_PP_PeriodDefinition getPP_PeriodDefinition() throws RuntimeException;
 
     /** Column name Pay_BPartner_ID */
     public static final String COLUMNNAME_Pay_BPartner_ID = "Pay_BPartner_ID";
@@ -1203,18 +1218,18 @@ public interface I_S_Contract
 	  */
 	public int getRef_Contract_ID();
 
-	public org.eevolution.model.I_S_Contract getRef_Contract() throws RuntimeException;
+	public org.eevolution.domain.model.I_S_Contract getRef_Contract() throws RuntimeException;
 
     /** Column name S_Contract_ID */
     public static final String COLUMNNAME_S_Contract_ID = "S_Contract_ID";
 
-	/** Set Contract Service.
-	  * Contract Service
+	/** Set Service Contract.
+	  * Service Contract
 	  */
 	public void setS_Contract_ID (int S_Contract_ID);
 
-	/** Get Contract Service.
-	  * Contract Service
+	/** Get Service Contract.
+	  * Service Contract
 	  */
 	public int getS_Contract_ID();
 

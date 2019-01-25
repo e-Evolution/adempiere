@@ -15,7 +15,7 @@
  * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
-package org.eevolution.model;
+package org.eevolution.domain.model;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -27,14 +27,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for S_ContractLine
  *  @author Adempiere (generated) 
- *  @version Release 3.9.0 - $Id$ */
+ *  @version Release 3.9.1 - $Id$ */
 public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20180924L;
+	private static final long serialVersionUID = 20190125L;
 
     /** Standard Constructor */
     public X_S_ContractLine (Properties ctx, int S_ContractLine_ID, String trxName)
@@ -769,6 +769,14 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
 	public static final String FREQUENCYTYPE_Hour = "H";
 	/** Day = D */
 	public static final String FREQUENCYTYPE_Day = "D";
+	/** Month = P */
+	public static final String FREQUENCYTYPE_Month = "P";
+	/** Week = W */
+	public static final String FREQUENCYTYPE_Week = "W";
+	/** Quarter = Q */
+	public static final String FREQUENCYTYPE_Quarter = "Q";
+	/** Year = Y */
+	public static final String FREQUENCYTYPE_Year = "Y";
 	/** Set Frequency Type.
 		@param FrequencyType 
 		Frequency of event
@@ -923,9 +931,9 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
 		return bd;
 	}
 
-	public org.eevolution.model.I_S_ContractLine getLink_ContractLine() throws RuntimeException
+	public org.eevolution.domain.model.I_S_ContractLine getLink_ContractLine() throws RuntimeException
     {
-		return (org.eevolution.model.I_S_ContractLine)MTable.get(getCtx(), org.eevolution.model.I_S_ContractLine.Table_Name)
+		return (org.eevolution.domain.model.I_S_ContractLine)MTable.get(getCtx(), org.eevolution.domain.model.I_S_ContractLine.Table_Name)
 			.getPO(getLink_ContractLine_ID(), get_TrxName());	}
 
 	/** Set Linked Contract Line.
@@ -1442,9 +1450,37 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
 		return (Timestamp)get_Value(COLUMNNAME_RRStartDate);
 	}
 
-	public org.eevolution.model.I_S_ContractLine getRef_ContractLine() throws RuntimeException
+	public org.compiere.model.I_R_StandardRequestType getR_StandardRequestType() throws RuntimeException
     {
-		return (org.eevolution.model.I_S_ContractLine)MTable.get(getCtx(), org.eevolution.model.I_S_ContractLine.Table_Name)
+		return (org.compiere.model.I_R_StandardRequestType)MTable.get(getCtx(), org.compiere.model.I_R_StandardRequestType.Table_Name)
+			.getPO(getR_StandardRequestType_ID(), get_TrxName());	}
+
+	/** Set Standard Request Type.
+		@param R_StandardRequestType_ID 
+		Standard Request Type
+	  */
+	public void setR_StandardRequestType_ID (int R_StandardRequestType_ID)
+	{
+		if (R_StandardRequestType_ID < 1) 
+			set_Value (COLUMNNAME_R_StandardRequestType_ID, null);
+		else 
+			set_Value (COLUMNNAME_R_StandardRequestType_ID, Integer.valueOf(R_StandardRequestType_ID));
+	}
+
+	/** Get Standard Request Type.
+		@return Standard Request Type
+	  */
+	public int getR_StandardRequestType_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_R_StandardRequestType_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.eevolution.domain.model.I_S_ContractLine getRef_ContractLine() throws RuntimeException
+    {
+		return (org.eevolution.domain.model.I_S_ContractLine)MTable.get(getCtx(), org.eevolution.domain.model.I_S_ContractLine.Table_Name)
 			.getPO(getRef_ContractLine_ID(), get_TrxName());	}
 
 	/** Set Referenced Contract Line.
@@ -1510,9 +1546,9 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
 		return ii.intValue();
 	}
 
-	/** Set Contract Service Line.
+	/** Set Service Contract Line.
 		@param S_ContractLine_ID 
-		Contract Service Line
+		Service Contract Line
 	  */
 	public void setS_ContractLine_ID (int S_ContractLine_ID)
 	{
@@ -1522,8 +1558,8 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
 			set_ValueNoCheck (COLUMNNAME_S_ContractLine_ID, Integer.valueOf(S_ContractLine_ID));
 	}
 
-	/** Get Contract Service Line.
-		@return Contract Service Line
+	/** Get Service Contract Line.
+		@return Service Contract Line
 	  */
 	public int getS_ContractLine_ID () 
 	{
@@ -1533,14 +1569,14 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
 		return ii.intValue();
 	}
 
-	public org.eevolution.model.I_S_Contract getS_Contract() throws RuntimeException
+	public org.eevolution.domain.model.I_S_Contract getS_Contract() throws RuntimeException
     {
-		return (org.eevolution.model.I_S_Contract)MTable.get(getCtx(), org.eevolution.model.I_S_Contract.Table_Name)
+		return (org.eevolution.domain.model.I_S_Contract)MTable.get(getCtx(), org.eevolution.domain.model.I_S_Contract.Table_Name)
 			.getPO(getS_Contract_ID(), get_TrxName());	}
 
-	/** Set Contract Service.
+	/** Set Service Contract.
 		@param S_Contract_ID 
-		Contract Service
+		Service Contract
 	  */
 	public void setS_Contract_ID (int S_Contract_ID)
 	{
@@ -1550,8 +1586,8 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
 			set_ValueNoCheck (COLUMNNAME_S_Contract_ID, Integer.valueOf(S_Contract_ID));
 	}
 
-	/** Get Contract Service.
-		@return Contract Service
+	/** Get Service Contract.
+		@return Service Contract
 	  */
 	public int getS_Contract_ID () 
 	{
@@ -1591,11 +1627,6 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
 			 return 0;
 		return ii.intValue();
 	}
-
-	public org.eevolution.model.I_S_ServiceType getS_ServiceType() throws RuntimeException
-    {
-		return (org.eevolution.model.I_S_ServiceType)MTable.get(getCtx(), org.eevolution.model.I_S_ServiceType.Table_Name)
-			.getPO(getS_ServiceType_ID(), get_TrxName());	}
 
 	/** Set Service Type.
 		@param S_ServiceType_ID 

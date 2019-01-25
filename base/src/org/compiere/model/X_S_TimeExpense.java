@@ -33,7 +33,7 @@ public class X_S_TimeExpense extends PO implements I_S_TimeExpense, I_Persistent
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20181220L;
+	private static final long serialVersionUID = 20190125L;
 
     /** Standard Constructor */
     public X_S_TimeExpense (Properties ctx, int S_TimeExpense_ID, String trxName)
@@ -85,6 +85,29 @@ public class X_S_TimeExpense extends PO implements I_S_TimeExpense, I_Persistent
       return sb.toString();
     }
 
+	/** Set Trx Organization.
+		@param AD_OrgTrx_ID 
+		Performing or initiating organization
+	  */
+	public void setAD_OrgTrx_ID (int AD_OrgTrx_ID)
+	{
+		if (AD_OrgTrx_ID < 1) 
+			set_Value (COLUMNNAME_AD_OrgTrx_ID, null);
+		else 
+			set_Value (COLUMNNAME_AD_OrgTrx_ID, Integer.valueOf(AD_OrgTrx_ID));
+	}
+
+	/** Get Trx Organization.
+		@return Performing or initiating organization
+	  */
+	public int getAD_OrgTrx_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_AD_OrgTrx_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
 	/** Set Approval Amount.
 		@param ApprovalAmt 
 		Document Approval Amount
@@ -103,6 +126,34 @@ public class X_S_TimeExpense extends PO implements I_S_TimeExpense, I_Persistent
 		if (bd == null)
 			 return Env.ZERO;
 		return bd;
+	}
+
+	public org.compiere.model.I_C_Activity getC_Activity() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_Activity)MTable.get(getCtx(), org.compiere.model.I_C_Activity.Table_Name)
+			.getPO(getC_Activity_ID(), get_TrxName());	}
+
+	/** Set Activity.
+		@param C_Activity_ID 
+		Business Activity
+	  */
+	public void setC_Activity_ID (int C_Activity_ID)
+	{
+		if (C_Activity_ID < 1) 
+			set_Value (COLUMNNAME_C_Activity_ID, null);
+		else 
+			set_Value (COLUMNNAME_C_Activity_ID, Integer.valueOf(C_Activity_ID));
+	}
+
+	/** Get Activity.
+		@return Business Activity
+	  */
+	public int getC_Activity_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_Activity_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
 	}
 
 	public org.compiere.model.I_C_BPartner getC_BPartner() throws RuntimeException
@@ -133,6 +184,34 @@ public class X_S_TimeExpense extends PO implements I_S_TimeExpense, I_Persistent
 		return ii.intValue();
 	}
 
+	public org.compiere.model.I_C_Campaign getC_Campaign() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_Campaign)MTable.get(getCtx(), org.compiere.model.I_C_Campaign.Table_Name)
+			.getPO(getC_Campaign_ID(), get_TrxName());	}
+
+	/** Set Campaign.
+		@param C_Campaign_ID 
+		Marketing Campaign
+	  */
+	public void setC_Campaign_ID (int C_Campaign_ID)
+	{
+		if (C_Campaign_ID < 1) 
+			set_Value (COLUMNNAME_C_Campaign_ID, null);
+		else 
+			set_Value (COLUMNNAME_C_Campaign_ID, Integer.valueOf(C_Campaign_ID));
+	}
+
+	/** Get Campaign.
+		@return Marketing Campaign
+	  */
+	public int getC_Campaign_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_Campaign_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
 	public org.compiere.model.I_C_Invoice getC_Invoice() throws RuntimeException
     {
 		return (org.compiere.model.I_C_Invoice)MTable.get(getCtx(), org.compiere.model.I_C_Invoice.Table_Name)
@@ -156,6 +235,34 @@ public class X_S_TimeExpense extends PO implements I_S_TimeExpense, I_Persistent
 	public int getC_Invoice_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_C_Invoice_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.compiere.model.I_C_Project getC_Project() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_Project)MTable.get(getCtx(), org.compiere.model.I_C_Project.Table_Name)
+			.getPO(getC_Project_ID(), get_TrxName());	}
+
+	/** Set Project.
+		@param C_Project_ID 
+		Financial Project
+	  */
+	public void setC_Project_ID (int C_Project_ID)
+	{
+		if (C_Project_ID < 1) 
+			set_Value (COLUMNNAME_C_Project_ID, null);
+		else 
+			set_Value (COLUMNNAME_C_Project_ID, Integer.valueOf(C_Project_ID));
+	}
+
+	/** Get Project.
+		@return Financial Project
+	  */
+	public int getC_Project_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_Project_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -336,6 +443,30 @@ public class X_S_TimeExpense extends PO implements I_S_TimeExpense, I_Persistent
 		return false;
 	}
 
+	/** Set Sales Transaction.
+		@param IsSOTrx 
+		This is a Sales Transaction
+	  */
+	public void setIsSOTrx (boolean IsSOTrx)
+	{
+		set_Value (COLUMNNAME_IsSOTrx, Boolean.valueOf(IsSOTrx));
+	}
+
+	/** Get Sales Transaction.
+		@return This is a Sales Transaction
+	  */
+	public boolean isSOTrx () 
+	{
+		Object oo = get_Value(COLUMNNAME_IsSOTrx);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
+	}
+
 	public org.compiere.model.I_M_PriceList getM_PriceList() throws RuntimeException
     {
 		return (org.compiere.model.I_M_PriceList)MTable.get(getCtx(), org.compiere.model.I_M_PriceList.Table_Name)
@@ -392,6 +523,90 @@ public class X_S_TimeExpense extends PO implements I_S_TimeExpense, I_Persistent
 		return ii.intValue();
 	}
 
+	public org.eevolution.model.I_PP_Calendar getPP_Calendar() throws RuntimeException
+    {
+		return (org.eevolution.model.I_PP_Calendar)MTable.get(getCtx(), org.eevolution.model.I_PP_Calendar.Table_Name)
+			.getPO(getPP_Calendar_ID(), get_TrxName());	}
+
+	/** Set Operational Calendar.
+		@param PP_Calendar_ID 
+		Operational Period, allows to define the periods for the Operational Calendar
+	  */
+	public void setPP_Calendar_ID (int PP_Calendar_ID)
+	{
+		if (PP_Calendar_ID < 1) 
+			set_Value (COLUMNNAME_PP_Calendar_ID, null);
+		else 
+			set_Value (COLUMNNAME_PP_Calendar_ID, Integer.valueOf(PP_Calendar_ID));
+	}
+
+	/** Get Operational Calendar.
+		@return Operational Period, allows to define the periods for the Operational Calendar
+	  */
+	public int getPP_Calendar_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_PP_Calendar_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.eevolution.model.I_PP_PeriodDefinition getPP_PeriodDefinition() throws RuntimeException
+    {
+		return (org.eevolution.model.I_PP_PeriodDefinition)MTable.get(getCtx(), org.eevolution.model.I_PP_PeriodDefinition.Table_Name)
+			.getPO(getPP_PeriodDefinition_ID(), get_TrxName());	}
+
+	/** Set Current Period.
+		@param PP_PeriodDefinition_ID 
+		Period Definition, allows to define time cycles for the Operational Calendar
+	  */
+	public void setPP_PeriodDefinition_ID (int PP_PeriodDefinition_ID)
+	{
+		if (PP_PeriodDefinition_ID < 1) 
+			set_Value (COLUMNNAME_PP_PeriodDefinition_ID, null);
+		else 
+			set_Value (COLUMNNAME_PP_PeriodDefinition_ID, Integer.valueOf(PP_PeriodDefinition_ID));
+	}
+
+	/** Get Current Period.
+		@return Period Definition, allows to define time cycles for the Operational Calendar
+	  */
+	public int getPP_PeriodDefinition_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_PP_PeriodDefinition_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.eevolution.model.I_PP_Period getPP_Period() throws RuntimeException
+    {
+		return (org.eevolution.model.I_PP_Period)MTable.get(getCtx(), org.eevolution.model.I_PP_Period.Table_Name)
+			.getPO(getPP_Period_ID(), get_TrxName());	}
+
+	/** Set Operational Period.
+		@param PP_Period_ID 
+		Forecast Definition Periods.
+	  */
+	public void setPP_Period_ID (int PP_Period_ID)
+	{
+		if (PP_Period_ID < 1) 
+			set_Value (COLUMNNAME_PP_Period_ID, null);
+		else 
+			set_Value (COLUMNNAME_PP_Period_ID, Integer.valueOf(PP_Period_ID));
+	}
+
+	/** Get Operational Period.
+		@return Forecast Definition Periods.
+	  */
+	public int getPP_Period_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_PP_Period_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
 	/** Set Processed.
 		@param Processed 
 		The document has been processed
@@ -437,6 +652,34 @@ public class X_S_TimeExpense extends PO implements I_S_TimeExpense, I_Persistent
 		return false;
 	}
 
+	public org.eevolution.domain.model.I_S_Contract getS_Contract() throws RuntimeException
+    {
+		return (org.eevolution.domain.model.I_S_Contract)MTable.get(getCtx(), org.eevolution.domain.model.I_S_Contract.Table_Name)
+			.getPO(getS_Contract_ID(), get_TrxName());	}
+
+	/** Set Service Contract.
+		@param S_Contract_ID 
+		Service Contract
+	  */
+	public void setS_Contract_ID (int S_Contract_ID)
+	{
+		if (S_Contract_ID < 1) 
+			set_Value (COLUMNNAME_S_Contract_ID, null);
+		else 
+			set_Value (COLUMNNAME_S_Contract_ID, Integer.valueOf(S_Contract_ID));
+	}
+
+	/** Get Service Contract.
+		@return Service Contract
+	  */
+	public int getS_Contract_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_S_Contract_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
 	/** Set Expense Report.
 		@param S_TimeExpense_ID 
 		Time and Expense Report
@@ -475,5 +718,117 @@ public class X_S_TimeExpense extends PO implements I_S_TimeExpense, I_Persistent
 	public String getUUID () 
 	{
 		return (String)get_Value(COLUMNNAME_UUID);
+	}
+
+	public org.compiere.model.I_C_ElementValue getUser1() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_ElementValue)MTable.get(getCtx(), org.compiere.model.I_C_ElementValue.Table_Name)
+			.getPO(getUser1_ID(), get_TrxName());	}
+
+	/** Set User List 1.
+		@param User1_ID 
+		User defined list element #1
+	  */
+	public void setUser1_ID (int User1_ID)
+	{
+		if (User1_ID < 1) 
+			set_Value (COLUMNNAME_User1_ID, null);
+		else 
+			set_Value (COLUMNNAME_User1_ID, Integer.valueOf(User1_ID));
+	}
+
+	/** Get User List 1.
+		@return User defined list element #1
+	  */
+	public int getUser1_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_User1_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.compiere.model.I_C_ElementValue getUser2() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_ElementValue)MTable.get(getCtx(), org.compiere.model.I_C_ElementValue.Table_Name)
+			.getPO(getUser2_ID(), get_TrxName());	}
+
+	/** Set User List 2.
+		@param User2_ID 
+		User defined list element #2
+	  */
+	public void setUser2_ID (int User2_ID)
+	{
+		if (User2_ID < 1) 
+			set_Value (COLUMNNAME_User2_ID, null);
+		else 
+			set_Value (COLUMNNAME_User2_ID, Integer.valueOf(User2_ID));
+	}
+
+	/** Get User List 2.
+		@return User defined list element #2
+	  */
+	public int getUser2_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_User2_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.compiere.model.I_C_ElementValue getUser3() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_ElementValue)MTable.get(getCtx(), org.compiere.model.I_C_ElementValue.Table_Name)
+			.getPO(getUser3_ID(), get_TrxName());	}
+
+	/** Set User List 3.
+		@param User3_ID 
+		User defined list element #3
+	  */
+	public void setUser3_ID (int User3_ID)
+	{
+		if (User3_ID < 1) 
+			set_Value (COLUMNNAME_User3_ID, null);
+		else 
+			set_Value (COLUMNNAME_User3_ID, Integer.valueOf(User3_ID));
+	}
+
+	/** Get User List 3.
+		@return User defined list element #3
+	  */
+	public int getUser3_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_User3_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.compiere.model.I_C_ElementValue getUser4() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_ElementValue)MTable.get(getCtx(), org.compiere.model.I_C_ElementValue.Table_Name)
+			.getPO(getUser4_ID(), get_TrxName());	}
+
+	/** Set User List 4.
+		@param User4_ID 
+		User defined list element #4
+	  */
+	public void setUser4_ID (int User4_ID)
+	{
+		if (User4_ID < 1) 
+			set_Value (COLUMNNAME_User4_ID, null);
+		else 
+			set_Value (COLUMNNAME_User4_ID, Integer.valueOf(User4_ID));
+	}
+
+	/** Get User List 4.
+		@return User defined list element #4
+	  */
+	public int getUser4_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_User4_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
 	}
 }

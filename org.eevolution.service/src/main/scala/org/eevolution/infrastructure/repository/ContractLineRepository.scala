@@ -22,7 +22,7 @@ import org.compiere.model.Query
 import org.compiere.util.Env
 import org.eevolution.domain.api.repository.ContractLineRepositoryComponent
 import org.eevolution.domain.ubiquitouslanguage.ContractLine
-import org.eevolution.model.I_S_ContractLine
+import org.eevolution.domain.model.I_S_ContractLine
 
 import scala.collection.JavaConverters._
 import scala.collection.immutable.List

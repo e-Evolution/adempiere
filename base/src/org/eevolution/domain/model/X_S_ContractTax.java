@@ -15,7 +15,7 @@
  * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
-package org.eevolution.model;
+package org.eevolution.domain.model;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -25,14 +25,14 @@ import org.compiere.util.Env;
 
 /** Generated Model for S_ContractTax
  *  @author Adempiere (generated) 
- *  @version Release 3.9.0 - $Id$ */
+ *  @version Release 3.9.1 - $Id$ */
 public class X_S_ContractTax extends PO implements I_S_ContractTax, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20180924L;
+	private static final long serialVersionUID = 20190125L;
 
     /** Standard Constructor */
     public X_S_ContractTax (Properties ctx, int S_ContractTax_ID, String trxName)
@@ -168,14 +168,14 @@ public class X_S_ContractTax extends PO implements I_S_ContractTax, I_Persistent
 		return ii.intValue();
 	}
 
-	public org.eevolution.model.I_S_Contract getS_Contract() throws RuntimeException
+	public org.eevolution.domain.model.I_S_Contract getS_Contract() throws RuntimeException
     {
-		return (org.eevolution.model.I_S_Contract)MTable.get(getCtx(), org.eevolution.model.I_S_Contract.Table_Name)
+		return (org.eevolution.domain.model.I_S_Contract)MTable.get(getCtx(), org.eevolution.domain.model.I_S_Contract.Table_Name)
 			.getPO(getS_Contract_ID(), get_TrxName());	}
 
-	/** Set Contract Service.
+	/** Set Service Contract.
 		@param S_Contract_ID 
-		Contract Service
+		Service Contract
 	  */
 	public void setS_Contract_ID (int S_Contract_ID)
 	{
@@ -185,8 +185,8 @@ public class X_S_ContractTax extends PO implements I_S_ContractTax, I_Persistent
 			set_Value (COLUMNNAME_S_Contract_ID, Integer.valueOf(S_Contract_ID));
 	}
 
-	/** Get Contract Service.
-		@return Contract Service
+	/** Get Service Contract.
+		@return Service Contract
 	  */
 	public int getS_Contract_ID () 
 	{

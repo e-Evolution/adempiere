@@ -33,7 +33,7 @@ public class X_M_Product extends PO implements I_M_Product, I_Persistent
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20181220L;
+	private static final long serialVersionUID = 20190125L;
 
     /** Standard Constructor */
     public X_M_Product (Properties ctx, int M_Product_ID, String trxName)
@@ -1365,6 +1365,29 @@ public class X_M_Product extends PO implements I_M_Product, I_Persistent
 	public int getS_Resource_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_S_Resource_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	/** Set Service Type.
+		@param S_ServiceType_ID 
+		Define a Service Type for a Service Contract
+	  */
+	public void setS_ServiceType_ID (int S_ServiceType_ID)
+	{
+		if (S_ServiceType_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_S_ServiceType_ID, null);
+		else 
+			set_ValueNoCheck (COLUMNNAME_S_ServiceType_ID, Integer.valueOf(S_ServiceType_ID));
+	}
+
+	/** Get Service Type.
+		@return Define a Service Type for a Service Contract
+	  */
+	public int getS_ServiceType_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_S_ServiceType_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();

@@ -15,7 +15,7 @@
  * or via info@adempiere.net or http://www.adempiere.net/license.html         *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
-package org.eevolution.model;
+package org.eevolution.domain.model;
 
 import java.sql.ResultSet;
 import java.util.Properties;
@@ -24,14 +24,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for S_ServiceType
  *  @author Adempiere (generated) 
- *  @version Release 3.9.0 - $Id$ */
+ *  @version Release 3.9.1 - $Id$ */
 public class X_S_ServiceType extends PO implements I_S_ServiceType, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20180903L;
+	private static final long serialVersionUID = 20190125L;
 
     /** Standard Constructor */
     public X_S_ServiceType (Properties ctx, int S_ServiceType_ID, String trxName)

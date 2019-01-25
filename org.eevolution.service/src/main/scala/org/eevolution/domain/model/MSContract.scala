@@ -26,7 +26,7 @@ import org.compiere.model.ModelValidator._
 import org.compiere.model._
 import org.compiere.process.{DocAction, DocumentEngine}
 import org.compiere.util.DB
-import org.eevolution.model.X_S_Contract
+import org.eevolution.domain.model.X_S_Contract
 
 /**
   * Contract Entity

@@ -24,7 +24,7 @@ import org.eevolution.domain.service._
 import org.eevolution.domain.util.ImplicitConverters._
 import org.eevolution.domain.ubiquitouslanguage.Invoice
 import org.eevolution.infrastructure.repository._
-import org.eevolution.model.I_S_Contract
+import org.eevolution.domain.model.I_S_Contract
 import org.eevolution.process.GenerateInvoicesFromTimeExpenseReportAbstract
 
 import scala.collection.mutable
