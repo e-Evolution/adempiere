@@ -19,5 +19,7 @@ package object ubiquitouslanguage{
   type Invoice = MInvoice
   type InvoiceLine = MInvoiceLine
   type Partner = MBPartner
+  type DocumentType = MDocType
+  type AccountingPeriod = MPeriod
   type Domain = PO
 }

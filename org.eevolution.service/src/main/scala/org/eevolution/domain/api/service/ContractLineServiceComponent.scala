@@ -28,7 +28,10 @@ trait ContractLineServiceComponent {
   def contractLineService: ContractLineServiceTrait
 
   trait ContractLineServiceTrait extends ServiceComponent {
+
     override def getById(id: Integer): Option[ContractLine]
+
+    def getByContract(contractId : Integer) : List[ContractLine]
 
     def query(whereClause: String, parameters: List[Object]): List[ContractLine]
   }
