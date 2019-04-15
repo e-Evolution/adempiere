@@ -211,6 +211,8 @@
       <sourceFolder url="file://$MODULE_DIR$/org.adempiere.request/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/org.adempiere.project/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/org.adempiere.crm/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/org.eevolution.service/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/org.eevolution.service/src/main/scala" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />

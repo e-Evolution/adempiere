@@ -34,7 +34,8 @@ libraryDependencies ++= Seq(
   "javax.servlet" % "javax.servlet-api" % "3.0.1" % "provided",
   "com.typesafe" % "config" % "1.2.0",
   "org.scala-lang" % "scala-reflect" % "2.12.8",
-  "org.scalatest" %% "scalatest" % "3.0.5" % Test
+  "org.scalatest" %% "scalatest" % "3.0.5" % Test,
+  "org.typelevel" %% "cats-effect" % "1.2.0"
 )
 
 
