@@ -1161,10 +1161,7 @@ public final class MAllocationHdr extends X_C_AllocationHdr implements DocAction
 						partner.setTotalOpenBalance(newBalance);
 
 					partner.setSOCreditStatus();
-					if (!partner.save(get_TrxName())) {
-						processMsg = "Could not update Business Partner";
-						throw new AdempiereException(processMsg);
-					}
+					partner.saveEx();
 				}); // for all lines
 
 		return true;
