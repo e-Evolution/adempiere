@@ -16,6 +16,16 @@
  *****************************************************************************/
 package org.compiere.model;
 
+import org.adempiere.exceptions.AdempiereException;
+import org.adempiere.exceptions.PeriodClosedException;
+import org.compiere.process.DocAction;
+import org.compiere.process.DocumentEngine;
+import org.compiere.process.DocumentReversalEnabled;
+import org.compiere.util.CLogger;
+import org.compiere.util.DB;
+import org.compiere.util.Env;
+import org.compiere.util.Msg;
+
 import java.io.File;
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
@@ -31,16 +41,6 @@ import java.util.Properties;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.logging.Level;
-
-import org.adempiere.exceptions.AdempiereException;
-import org.adempiere.exceptions.PeriodClosedException;
-import org.compiere.process.DocAction;
-import org.compiere.process.DocumentReversalEnabled;
-import org.compiere.process.DocumentEngine;
-import org.compiere.util.CLogger;
-import org.compiere.util.DB;
-import org.compiere.util.Env;
-import org.compiere.util.Msg;
 
 /**
  *  Payment Allocation Model.
@@ -839,7 +839,7 @@ public final class MAllocationHdr extends X_C_AllocationHdr implements DocAction
 
 		Timestamp currentDate = new Timestamp(System.currentTimeMillis());
 		Optional<Timestamp> loginDateOptional = Optional.of(Env.getContextAsDate(getCtx(),"#Date"));
-		Timestamp reversalDate =  isAccrual ? loginDateOptional.orElse(currentDate) : getDateAcct();
+		Timestamp reversalDate =  isAccrual ? loginDateOptional.orElseGet(() -> currentDate) : getDateAcct();
 
 		MAllocationHdr reversalAllocationHdr;
 
@@ -982,7 +982,7 @@ public final class MAllocationHdr extends X_C_AllocationHdr implements DocAction
 					MInvoice invoice = null;
 
 					if (allocationLine.getC_Invoice_ID() > 0) {
-						invoice = allocationLine.getC_Invoice_ID() > 0 ? new MInvoice(getCtx(), allocationLine.getC_Invoice_ID(), get_TrxName()) : null;
+						invoice = new MInvoice(getCtx(), allocationLine.getC_Invoice_ID(), get_TrxName());
 						isSOTrxInvoice = invoice.isSOTrx();
 					}
 
@@ -1053,6 +1053,8 @@ public final class MAllocationHdr extends X_C_AllocationHdr implements DocAction
 						openBalanceDifference = openBalanceDifference.add(amount);
 					}
 
+					BigDecimal invoiceAmountAccounted = BigDecimal.ZERO;
+					BigDecimal allocationAmountAccounted = BigDecimal.ZERO;
 					// Adjust open amount for currency gain/loss
 					if ((invoice != null) &&
 							((getC_Currency_ID() != client.getC_Currency_ID()) ||
@@ -1066,7 +1068,7 @@ public final class MAllocationHdr extends X_C_AllocationHdr implements DocAction
 								throw new AdempiereException(processMsg);
 							}
 						}
-						BigDecimal invoiceAmountAccounted = MConversionRate.convertBase(getCtx(), invoice.getGrandTotal(),
+						invoiceAmountAccounted = MConversionRate.convertBase(getCtx(), invoice.getGrandTotal(),
 								invoice.getC_Currency_ID(), invoice.getDateAcct(), invoice.getC_ConversionType_ID(), getAD_Client_ID(), getAD_Org_ID());
 						if (invoiceAmountAccounted == null) {
 							processMsg = MConversionRate.getErrorMessage(getCtx(), "ErrorConvertingInvoiceCurrencyToBaseCurrency",
@@ -1074,7 +1076,7 @@ public final class MAllocationHdr extends X_C_AllocationHdr implements DocAction
 							throw new AdempiereException(processMsg);
 						}
 
-						BigDecimal allocationAmountAccounted = MConversionRate.convertBase(getCtx(), allocationAmount,
+						allocationAmountAccounted = MConversionRate.convertBase(getCtx(), allocationAmount,
 								invoice.getC_Currency_ID(), getDateAcct(), invoice.getC_ConversionType_ID(), getAD_Client_ID(), getAD_Org_ID());
 						if (allocationAmountAccounted == null) {
 							processMsg = MConversionRate.getErrorMessage(getCtx(), "ErrorConvertingInvoiceCurrencyToBaseCurrency",
@@ -1082,7 +1084,14 @@ public final class MAllocationHdr extends X_C_AllocationHdr implements DocAction
 							throw new AdempiereException(processMsg);
 						}
 
-						if (allocationAmount.compareTo(invoice.getGrandTotal()) == 0) {
+
+					} else if (invoice != null) {
+						invoiceAmountAccounted = invoice.getGrandTotal();
+					}
+
+
+					if (invoice != null) {
+						if (allocationAmount.compareTo(invoiceAmountAccounted) == 0) {
 							openBalanceDifference = openBalanceDifference.add(invoiceAmountAccounted).subtract(allocationAmountAccounted);
 						} else {
 							//	allocation as a percentage of the invoice
@@ -1106,7 +1115,7 @@ public final class MAllocationHdr extends X_C_AllocationHdr implements DocAction
 					if (newBalance == null)
 						newBalance = Env.ZERO;
 
-					BigDecimal originalBalance = new BigDecimal(newBalance.toString());
+					BigDecimal originalBalance = newBalance;
 
 					if (openBalanceDifference.signum() != 0) {
 						if (isReverse)
