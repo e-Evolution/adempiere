@@ -1090,7 +1090,8 @@ public final class MAllocationHdr extends X_C_AllocationHdr implements DocAction
 					}
 
 
-					if (invoice != null && allocationLine.getC_Payment_ID() < 0) {
+					if ((allocationLine.getC_Invoice_ID() > 0 && allocationLine.getC_Payment_ID() < 0)
+					  || allocationLine.getC_Invoice_ID() > 0 && allocationLine.getC_Payment_ID() > 0) {
 						if (allocationAmount.compareTo(invoiceAmountAccounted) == 0) {
 							openBalanceDifference = openBalanceDifference.add(invoiceAmountAccounted).subtract(allocationAmountAccounted);
 						} else {
