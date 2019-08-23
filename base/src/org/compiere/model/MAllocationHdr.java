@@ -974,8 +974,8 @@ public final class MAllocationHdr extends X_C_AllocationHdr implements DocAction
 	{
 		List<MAllocationLine> allocationLines = Arrays.asList(getLines(false));
 		allocationLines.stream()
-				.filter(allocationLine -> allocationLine.getC_BPartner_ID() != 0
-						|| (allocationLine.getC_Invoice_ID() != 0) && (allocationLine.getC_Payment_ID() != 0))
+				.filter(allocationLine -> (allocationLine.getC_BPartner_ID()  > 0  && (allocationLine.getC_Invoice_ID() != 0))
+						||  (allocationLine.getC_BPartner_ID()  > 0  && allocationLine.getC_Payment_ID() != 0))
 				.forEach(allocationLine -> {
 
 					boolean isSOTrxInvoice = false;
@@ -1093,7 +1093,7 @@ public final class MAllocationHdr extends X_C_AllocationHdr implements DocAction
 
 					//Calculate new Balance Business Partners
 					BigDecimal newBalance = BigDecimal.ZERO;
-					if (allocationLine.getC_Invoice_ID() > 0 && !paymentProcessed) {
+					if (allocationLine.getC_Invoice_ID() > 0) {
 						if (allocationAmount.compareTo(invoiceAmountAccounted) == 0) {
 							openBalanceDifference = openBalanceDifference.add(invoiceAmountAccounted).subtract(allocationAmountAccounted);
 						} else {
@@ -1151,6 +1151,10 @@ public final class MAllocationHdr extends X_C_AllocationHdr implements DocAction
 							else
 								newCreditAmount = newCreditAmount.subtract(invoiceAmountAccounted);
 						}
+						int precision = MCurrency.getStdPrecision(getCtx(), client.getC_Currency_ID());
+						if (newCreditAmount.scale() > precision)
+							newCreditAmount = newCreditAmount.setScale(precision, BigDecimal.ROUND_HALF_UP);
+
 						partner.setSO_CreditUsed(newCreditAmount);
 					}
 
