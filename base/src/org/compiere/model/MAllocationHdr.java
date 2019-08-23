@@ -80,7 +80,7 @@ public final class MAllocationHdr extends X_C_AllocationHdr implements DocAction
 		String sql = "SELECT * FROM C_AllocationHdr h "
 			+ "WHERE IsActive='Y'"
 			+ " AND EXISTS (SELECT * FROM C_AllocationLine l "
-				+ "WHERE h.DocStatus IN ('CO','CL') AND h.C_AllocationHdr_ID=l.C_AllocationHdr_ID AND l.C_Payment_ID=?)";
+				+ "WHERE h.C_AllocationHdr_ID=l.C_AllocationHdr_ID AND l.C_Payment_ID=?)";
 		ArrayList<MAllocationHdr> list = new ArrayList<MAllocationHdr>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -118,7 +118,7 @@ public final class MAllocationHdr extends X_C_AllocationHdr implements DocAction
 		String sql = "SELECT * FROM C_AllocationHdr h "
 			+ "WHERE IsActive='Y'"
 			+ " AND EXISTS (SELECT * FROM C_AllocationLine l "
-				+ "WHERE h.DocStatus IN ('CO','CL') AND h.C_AllocationHdr_ID=l.C_AllocationHdr_ID AND l.C_Invoice_ID=?)";
+				+ "WHERE h.C_AllocationHdr_ID=l.C_AllocationHdr_ID AND l.C_Invoice_ID=?)";
 		ArrayList<MAllocationHdr> list = new ArrayList<MAllocationHdr>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -157,7 +157,7 @@ public final class MAllocationHdr extends X_C_AllocationHdr implements DocAction
 		final String whereClause = "IsActive='Y'"
 			+ " AND EXISTS (SELECT 1 FROM C_CashLine cl, C_AllocationLine al "
 				+ "where cl.C_Cash_ID=? and al.C_CashLine_ID=cl.C_CashLine_ID "
-						+ "AND C_AllocationHdr.DocStatus IN ('CO','CL') AND  C_AllocationHdr.C_AllocationHdr_ID=al.C_AllocationHdr_ID)";
+						+ "AND C_AllocationHdr.C_AllocationHdr_ID=al.C_AllocationHdr_ID)";
 		Query query = MTable.get(ctx, I_C_AllocationHdr.Table_ID)
 							.createQuery(whereClause, trxName);
 		query.setParameters(C_Cash_ID);
