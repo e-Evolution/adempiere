@@ -1098,8 +1098,7 @@ public final class MAllocationHdr extends X_C_AllocationHdr implements DocAction
 							openBalanceDifference = openBalanceDifference.add(invoiceAmountAccounted).subtract(allocationAmountAccounted);
 						} else {
 							//	allocation as a percentage of the invoice
-							if (invoice.getOpenAmt().signum() != 0) {
-								BigDecimal multiplier = allocationAmount.divide(invoice.getOpenAmt(), 8, BigDecimal.ROUND_HALF_UP);
+								BigDecimal multiplier =  allocationAmount.divide(invoice.getOpenAmt(), 8, BigDecimal.ROUND_HALF_UP);
 								//	Reduce Orig Invoice Accounted
 								invoiceAmountAccounted = invoiceAmountAccounted.multiply(multiplier);
 								//	Difference based on percentage of Orig Invoice
@@ -1111,7 +1110,6 @@ public final class MAllocationHdr extends X_C_AllocationHdr implements DocAction
 								int precision = MCurrency.getStdPrecision(getCtx(), client.getC_Currency_ID());
 								if (openBalanceDifference.scale() > precision)
 									openBalanceDifference = openBalanceDifference.setScale(precision, BigDecimal.ROUND_HALF_UP);
-							}
 						}
 					}
 
