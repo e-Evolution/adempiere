@@ -1266,7 +1266,7 @@ public class FinReport extends FinReportAbstract {
 			finReport.saveEx();
 		}
 
-		final MPrintFormat printFormat = MPrintFormat.get(getCtx(), finReport.getAD_PrintFormat_ID(), false);
+		MPrintFormat printFormat = MPrintFormat.get(getCtx(), finReport.getAD_PrintFormat_ID(), false);
 		//	Print Format Sync
 		if (!finReport.getName().equals(printFormat.getName()))
 			printFormat.setName(finReport.getName());
@@ -1408,7 +1408,8 @@ public class FinReport extends FinReportAbstract {
 
 
 		// Reload to pick up changed pfi
-		printFormat = MPrintFormat.get (getCtx(), finReport.getAD_PrintFormat_ID() , true);	//	no cache
+		final int printFormatId = finReport.getAD_PrintFormat_ID();
+		printFormat = MPrintFormat.get (getCtx(), printFormatId , true);	//	no cache
 		MPrintFormat printFormatHeader = MPrintFormat.get(getCtx(), finReport.getAD_PrintFormatHeader_ID(), true);
 		int organizationId = getOrgId() != 0 ? getOrgId() : Env.getAD_Org_ID(Env.getCtx());
 		Optional<MOrgInfo> maybeOrgInfo = Optional.ofNullable(MOrgInfo.get(Env.getCtx(), organizationId, null));
@@ -1421,7 +1422,7 @@ public class FinReport extends FinReportAbstract {
 				AtomicReference<String> printFormatItemToPrint = new AtomicReference<>(printFormatItemName);
 				if (printFormatItemName.equalsIgnoreCase("Report")) {
 					adjustPrintFormatItem(printFormatItem);
-					printFormatItem.setAD_PrintFormatChild_ID(printFormat.get_ID());
+					printFormatItem.setAD_PrintFormatChild_ID(printFormatId);
 					printFormatItemToPrint.updateAndGet(toPrint -> toPrint.replaceFirst("Report",""));
 				}
 				/*if (printFormatItemName.equalsIgnoreCase("page count")) {
