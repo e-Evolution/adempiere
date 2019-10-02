@@ -29,8 +29,10 @@ import java.util.Optional;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.BiFunction;
 import java.util.logging.Level;
 
+import org.adempiere.engine.CostEngineFactory;
 import org.adempiere.exceptions.AdempiereException;
 import org.adempiere.exceptions.BPartnerNoAddressException;
 import org.adempiere.exceptions.DBException;
@@ -2191,7 +2193,6 @@ public class MInvoice extends X_C_Invoice implements DocAction , DocumentReversa
 			return null;
 		}
 		reversal.setC_Payment_ID(0);
-		reversal.setIsPaid(true);
 		reversal.closeIt();
 		reversal.setProcessing (false);
 		reversal.setDocStatus(DOCSTATUS_Reversed);
@@ -2217,7 +2218,6 @@ public class MInvoice extends X_C_Invoice implements DocAction , DocumentReversa
 		setDocStatus(DOCSTATUS_Reversed);	//	may come from void
 		setDocAction(DOCACTION_None);
 		setC_Payment_ID(0);
-		setIsPaid(true);
 
 		//	Create Allocation
 		MAllocationHdr allocationHdr = new MAllocationHdr(getCtx(), false, reversalDate,
