@@ -2183,7 +2183,6 @@ public class MInvoice extends X_C_Invoice implements DocAction , DocumentReversa
 			return null;
 		}
 		reversal.setC_Payment_ID(0);
-		reversal.setIsPaid(true);
 		reversal.closeIt();
 		reversal.setProcessing (false);
 		reversal.setDocStatus(DOCSTATUS_Reversed);
@@ -2209,7 +2208,6 @@ public class MInvoice extends X_C_Invoice implements DocAction , DocumentReversa
 		setDocStatus(DOCSTATUS_Reversed);	//	may come from void
 		setDocAction(DOCACTION_None);
 		setC_Payment_ID(0);
-		setIsPaid(true);
 
 		//	Create Allocation
 		MAllocationHdr allocationHdr = new MAllocationHdr(getCtx(), false, reversalDate,
