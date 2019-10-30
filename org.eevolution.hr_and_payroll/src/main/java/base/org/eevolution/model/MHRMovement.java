@@ -755,10 +755,11 @@ public class MHRMovement extends X_HR_Movement
 	{
 		this (importPayrollMovement.getCtx(), 0, importPayrollMovement.get_TrxName());
 		MHRConcept concept = new MHRConcept(getCtx(), importPayrollMovement.getHR_Concept_ID(), get_TrxName());
-		MHREmployee employee = MHREmployee.getActiveEmployee(
+		MHREmployee employee = Optional.ofNullable(MHREmployee.getActiveEmployee(
 				getCtx(),
 				importPayrollMovement.getC_BPartner_ID(),
-				get_TrxName());
+				get_TrxName()))
+				.orElseThrow(() -> new AdempiereException("@HR_Employee_ID@ @NotFound@"));
 		setAD_Org_ID(employee.getAD_Org_ID());
 		setUpdatedBy(importPayrollMovement.getUpdatedBy());
 		setHR_Process_ID(importPayrollMovement.getHR_Process_ID());
@@ -847,7 +848,7 @@ public class MHRMovement extends X_HR_Movement
 			else if(MHRConcept.COLUMNTYPE_Amount.equals(columnType))
 			{
 				BigDecimal amount = new BigDecimal(value.toString())
-						.setScale(conceptStandardPrecisionOptional.orElse(currencyPrecision),BigDecimal.ROUND_HALF_UP);
+						.setScale(conceptStandardPrecisionOptional.orElseGet(() -> currencyPrecision),BigDecimal.ROUND_HALF_UP);
 				setAmount(amount);
 				setQty(Env.ZERO);
 			} 
