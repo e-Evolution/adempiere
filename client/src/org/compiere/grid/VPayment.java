@@ -625,13 +625,13 @@ public class VPayment extends CDialog
 		for (int i = 0; i < a.length; i++)
 		{			
             String PaymentRule = (String)a[i];		//	used for Panel selection
-			if (X_C_Order.PAYMENTRULE_DirectDebit.equals(PaymentRule)			//	SO
+			/*if (X_C_Order.PAYMENTRULE_DirectDebit.equals(PaymentRule)			//	SO
 				&& !m_isSOTrx)
 				continue;
 			else if (X_C_Order.PAYMENTRULE_DirectDeposit.equals(PaymentRule)	//	PO 
 				&& m_isSOTrx)
 				continue;
-                                                
+            */
 			ValueNamePair pp = new ValueNamePair(PaymentRule, (String)values.get(a[i]));
 			paymentCombo.addItem(pp);
 			if (PaymentRule.toString().equals(m_PaymentRule))	//	to select
