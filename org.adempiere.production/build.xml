@@ -4,7 +4,7 @@
 <!-- ADempiere Production Ligth -->
 <!-- =============================================== -->
 
-<project name="ProductionLight" default="productionDistribute" basedir=".">
+<project name="org.adempiere.production" default="productionDistribute" basedir=".">
 
   <description>
     This buildfile is used to build the client sub project within
@@ -25,7 +25,7 @@
       <include name="*.jar"/>
     </fileset>
     <pathelement path="../tools/lib/c3p0-0.9.1.2.jar"/>
-    <pathelement path="../serverApps/src/web/WEB-INF/lib/commons-lang-2.1.jar"/>
+    <pathelement path="../org.adempiere.serverapps/src/web/WEB-INF/lib/commons-lang-2.1.jar"/>
   </path>
 
 
@@ -81,7 +81,7 @@
   <target name="productionDistribute" depends="productionCompile" unless="jar.uptodate">
     <!-- put everything from ${build.dir} into Adempiere.jar file -->
     <jar
-	  jarfile="${dist.dir}/ProductionLight.jar"
+	  jarfile="${dist.dir}/org.adempiere.production.jar"
 	  basedir="${build.dir}"
 	  duplicate="preserve"
 	  index="yes">
@@ -94,7 +94,7 @@
         <attribute name="Implementation-Vendor" value="${env.ADEMPIERE_VENDOR}"/> 
         <attribute name="Implementation-URL" value="http://www.adempiere.net"/>
         <attribute name="Main-Class" value="org.compiere.Adempiere"/>
-        <attribute name="Class-Path" value="ProductionLight.jar"/>
+        <attribute name="Class-Path" value="org.adempiere.production.jar"/>
       </manifest> 
     </jar>
   </target>
@@ -103,7 +103,7 @@
   <target name="clean">
     <!-- Delete the ${build.dir} directory trees -->
     <delete dir="${build.dir}"/>
-    <delete file="${dist.dir}/ProductionLight.jar" failonerror="false"/>
+    <delete file="${dist.dir}/org.adempiere.production.jar" failonerror="false"/>
   </target>
 
 </project>
