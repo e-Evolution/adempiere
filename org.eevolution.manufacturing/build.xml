@@ -1,4 +1,4 @@
-<project name="ManufacturingManagement" default="zkdist" basedir=".">
+<project name="org.eevolution.manufacturing" default="zkdist" basedir=".">
     <description>
         Building ManufacturingManagement.jar
         by
@@ -54,14 +54,14 @@
     <mkdir dir="${dist}/lib"/>
 
     <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
-    <jar jarfile="${dist}/lib/ManufacturingManagement.jar" basedir="${build}"/>
+    <jar jarfile="${dist}/lib/org.eevolution.manufacturing.jar" basedir="${build}"/>
 
     <!-- Create target Libero deployment -->
-    <mkdir dir="${env.ADEMPIERE_HOME}/packages/ManufacturingManagement/lib"/>
+    <mkdir dir="${env.ADEMPIERE_HOME}/packages/org.eevolution.manufacturing/lib"/>
 
     <!-- Transfer ManufacturingManagement.jar -->
-    <copy file="${dist}/lib/ManufacturingManagement.jar" todir="${env.ADEMPIERE_HOME}/packages/ManufacturingManagement/lib"/>
-    <copy file="${dist}/lib/ManufacturingManagement.jar" todir="${adempiere.trunk}/packages/"/>
+    <copy file="${dist}/lib/org.eevolution.manufacturing.jar" todir="${env.ADEMPIERE_HOME}/packages/org.eevolution.manufacturing/lib"/>
+    <copy file="${dist}/lib/org.eevolution.manufacturing.jar" todir="${adempiere.trunk}/packages/"/>
   </target>
 
   <target name="zkcompile" depends="dist"
@@ -78,14 +78,14 @@
     <mkdir dir="${dist}/lib"/>
 
     <!-- Put everything in ${zkclasses} into the MyProject-${DSTAMP}.jar file -->
-    <jar jarfile="${dist}/lib/ManufacturingManagementZk.jar" basedir="${basedir}/build/zkwebui" includes="WEB-INF/"/>
+    <jar jarfile="${dist}/lib/org.eevolution.manufacturingZk.jar" basedir="${basedir}/build/zkwebui" includes="WEB-INF/"/>
 
     <!-- Create target Liberozk deployment -->
-    <mkdir dir="${env.ADEMPIERE_HOME}/zkpackages/ManufacturingManagement/lib"/>
+    <mkdir dir="${env.ADEMPIERE_HOME}/zkpackages/org.eevolution.manufacturing/lib"/>
 
     <!-- Transfer liberozkMFG.jar -->
-    <copy file="${dist}/lib/ManufacturingManagementZk.jar" todir="${env.ADEMPIERE_HOME}/zkpackages/ManufacturingManagement/lib"/>
-    <copy file="${dist}/lib/ManufacturingManagementZk.jar" todir="${adempiere.trunk}/zkpackages/"/>
+    <copy file="${dist}/lib/org.eevolution.manufacturingZk.jar" todir="${env.ADEMPIERE_HOME}/zkpackages/org.eevolution.manufacturing/lib"/>
+    <copy file="${dist}/lib/org.eevolution.manufacturingZk.jar" todir="${adempiere.trunk}/zkpackages/"/>
   </target>
 
   <target name="clean"
