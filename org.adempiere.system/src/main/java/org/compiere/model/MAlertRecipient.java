@@ -21,95 +21,79 @@ import java.util.Properties;
 
 
 /**
- *	Expense Type Model
+ *	Alert Recipient
  *	
  *  @author Jorg Janke
- *  @version $Id: MExpenseType.java,v 1.3 2006/07/30 00:51:05 jjanke Exp $
+ *  @version $Id: MAlertRecipient.java,v 1.3 2006/07/30 00:51:03 jjanke Exp $
  */
-public class MExpenseType extends X_S_ExpenseType
+public class MAlertRecipient extends X_AD_AlertRecipient
 {
-
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5721855125106737886L;
+	private static final long serialVersionUID = -7388195934030609324L;
 
 	/**
-	 * 	Default Constructor
+	 * 	Standard Constructor
 	 *	@param ctx context
-	 *	@param S_ExpenseType_ID id
+	 *	@param AD_AlertRecipient_ID id
 	 *	@param trxName transaction
 	 */
-	public MExpenseType (Properties ctx, int S_ExpenseType_ID, String trxName)
+	public MAlertRecipient (Properties ctx, int AD_AlertRecipient_ID, String trxName)
 	{
-		super (ctx, S_ExpenseType_ID, trxName);
-	}	//	MExpenseType
+		super (ctx, AD_AlertRecipient_ID, trxName);
+	}	//	MAlertRecipient
 
 	/**
-	 * 	MExpenseType
+	 * 	Load Constructor
 	 *	@param ctx context
 	 *	@param rs result set
 	 *	@param trxName transaction
 	 */
-	public MExpenseType (Properties ctx, ResultSet rs, String trxName)
+	public MAlertRecipient (Properties ctx, ResultSet rs, String trxName)
 	{
 		super(ctx, rs, trxName);
-	}	//	MExpenseType
-	
-	/** Cached Product			*/
-	private MProduct	m_product = null;
-	
-	/**
-	 * 	Get Product
-	 *	@return product
-	 */
-	public MProduct getProduct()
-	{
-		if (m_product == null)
-		{
-			MProduct[] products = MProduct.get(getCtx(), "S_ExpenseType_ID=" + getS_ExpenseType_ID(), get_TrxName());
-			if (products.length > 0)
-				m_product = products[0];
-		}
-		return m_product;
-	}	//	getProduct
+	}	//	MAlertRecipient
+
 	
 	
 	/**
-	 * 	beforeSave
-	 *	@see org.compiere.model.PO#beforeSave(boolean)
-	 *	@param newRecord
-	 *	@return true
+	 * 	Get User
+	 *	@return	AD_User_ID or -1 if none
 	 */
-	protected boolean beforeSave (boolean newRecord)
+	public int getAD_User_ID ()
 	{
-		if (newRecord)
-		{
-			if (getValue() == null || getValue().length() == 0)
-				setValue(getName());
-			m_product = new MProduct(this);
-			return m_product.save(get_TrxName());
-		}
-		return true;
-	}	//	beforeSave
+		Integer ii = (Integer)get_Value("AD_User_ID");
+		if (ii == null) 
+			return -1;
+		return ii.intValue();
+	}	//	getAD_User_ID
+	
 	
 	/**
-	 * 	After Save
-	 *	@param newRecord new
-	 *	@param success success
-	 *	@return success
+	 * 	Get Role
+	 *	@return AD_Role_ID or -1 if none
 	 */
-	protected boolean afterSave (boolean newRecord, boolean success)
+	public int getAD_Role_ID ()
 	{
-		if (!success)
-			return success;
-				
-		MProduct prod = getProduct();
-		if (prod.setExpenseType(this))
-			prod.save(get_TrxName());
-		
-		return success;
-	}	//	afterSave
+		Integer ii = (Integer)get_Value("AD_Role_ID");
+		if (ii == null) 
+			return -1;
+		return ii.intValue();
+	}	//	getAD_Role_ID
 	
+	/**
+	 * 	String Representation
+	 *	@return info
+	 */
+	public String toString ()
+	{
+		StringBuffer sb = new StringBuffer ("MAlertRecipient[");
+		sb.append(get_ID())
+			.append(",AD_User_ID=").append(getAD_User_ID())
+			.append(",AD_Role_ID=").append(getAD_Role_ID())
+			.append ("]");
+		return sb.toString ();
+	}	//	toString
 	
-}	//	MExpenseType
+}	//	MAlertRecipient
