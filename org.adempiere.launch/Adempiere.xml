@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>true</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar></jar>
+  <outfile>Release\Adempiere.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir></chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon>Adempiere.ico</icon>
+  <classPath>
+    <mainClass>org.compiere.Adempiere</mainClass>
+    <cp>customization.jar</cp>
+    <cp>patches.jar</cp>
+    <cp>Adempiere.jar</cp>
+    <cp>AdempiereCLib.jar</cp>
+    <cp>CompiereJasperReqs.jar</cp>
+  </classPath>
+  <jre>
+    <path></path>
+    <bundledJre64Bit>false</bundledJre64Bit>
+    <minVersion>1.8.0</minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+    <runtimeBits>64/32</runtimeBits>
+    <initialHeapSize>48</initialHeapSize>
+    <maxHeapSize>512</maxHeapSize>
+  </jre>
+  <versionInfo>
+    <fileVersion>3.9.3.0</fileVersion>
+    <txtFileVersion>Release 3.9.3LTS</txtFileVersion>
+    <fileDescription>Adempiere ERP &amp; CRM 3.9.3LTS</fileDescription>
+    <copyright>Adempiere</copyright>
+    <productVersion>3.9.1.0</productVersion>
+    <txtProductVersion>Release 3.9.3LTS</txtProductVersion>
+    <productName>Adempier ERP &amp; CRM</productName>
+    <companyName>Adempiere Community</companyName>
+    <internalName>Adempiere</internalName>
+    <originalFilename>Adempiere.exe</originalFilename>
+  </versionInfo>
+</launch4jConfig>
