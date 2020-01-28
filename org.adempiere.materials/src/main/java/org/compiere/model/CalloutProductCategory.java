@@ -16,25 +16,43 @@
  *****************************************************************************/
 package org.compiere.model;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 
-
-public class MKCategory extends X_K_Category
+/**
+ *	Product Category Callouts
+ *	
+ *  @author Karsten Thiemann kthiemann@adempiere.org
+ *  
+ */
+public class CalloutProductCategory extends CalloutEngine
 {
-
 	/**
-	 * 
+	 *	Loop detection of product category tree.
+	 *
+	 *  @param ctx context
+	 *  @param WindowNo current Window No
+	 *  @param mTab Grid Tab
+	 *  @param mField Grid Field
+	 *  @param value New Value
+	 *  @return "" or error message
 	 */
-	private static final long serialVersionUID = 3452826751044794933L;
-
-	public MKCategory (Properties ctx, int K_Category_ID, String trxName)
+	public  String testForLoop (Properties ctx, int WindowNo, GridTab mTab, GridField mField, Object value, Object oldValue)
 	{
-		super (ctx, K_Category_ID, trxName);
-	}
+		if (isCalloutActive() || value == null)
+			return "";
 
-	public MKCategory (Properties ctx, ResultSet rs, String trxName)
-	{
-		super (ctx, rs, trxName);
-	}
-}
+		Integer productCategoryId = (Integer) mTab.getValue(MProductCategory.COLUMNNAME_M_Product_Category_ID);
+		if (productCategoryId == null)
+			productCategoryId = new Integer(0);
+		
+		if (productCategoryId.intValue() > 0) {
+			MProductCategory pc = new MProductCategory(ctx, productCategoryId.intValue(), null);
+			pc.setM_Product_Category_Parent_ID(((Integer) value).intValue());
+			if (pc.hasLoopInTree())
+				return "ProductCategoryLoopDetected";
+		}
+		
+		return "";
+	}	//	testForLoop
+	
+}	//	CalloutProductCategory

@@ -19,31 +19,37 @@ package org.compiere.model;
 import java.sql.ResultSet;
 import java.util.Properties;
 
-import org.compiere.util.Msg;
-
 /**
- * 	Text Search Stop Keyword Model
+ *	Serial Number Control Model
  *	
  *  @author Jorg Janke
- *  @version $Id: MIndexStop.java,v 1.3 2006/08/09 16:38:25 jjanke Exp $
+ *  @version $Id: MSerNoCtl.java,v 1.3 2006/07/30 00:51:05 jjanke Exp $
  */
-public class MIndexStop extends X_K_IndexStop
+public class MSerNoCtl extends X_M_SerNoCtl
 {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 772357618338902018L;
+	private static final long serialVersionUID = -6746210722573475011L;
 
 	/**
 	 * 	Standard Constructor
 	 *	@param ctx context
-	 *	@param K_IndexStop_ID id
+	 *	@param M_SerNoCtl_ID id
 	 *	@param trxName transaction
 	 */
-	public MIndexStop (Properties ctx, int K_IndexStop_ID, String trxName)
+	public MSerNoCtl(Properties ctx, int M_SerNoCtl_ID, String trxName)
 	{
-		super (ctx, K_IndexStop_ID, trxName);
-	}	//	MIndexStop
+		super(ctx, M_SerNoCtl_ID, trxName);
+		if (M_SerNoCtl_ID == 0)
+		{
+		//	setM_SerNoCtl_ID (0);
+			setStartNo (1);
+			setCurrentNext (1);
+			setIncrementNo (1);
+		//	setName (null);
+		}
+	}	//	MSerNoCtl
 
 	/**
 	 * 	Load Constructor
@@ -51,38 +57,30 @@ public class MIndexStop extends X_K_IndexStop
 	 *	@param rs result set
 	 *	@param trxName transaction
 	 */
-	public MIndexStop (Properties ctx, ResultSet rs, String trxName)
+	public MSerNoCtl(Properties ctx, ResultSet rs, String trxName)
 	{
-		super (ctx, rs, trxName);
-	}	//	MIndexStop
-	
-	/**
-	 * 	Set Keyword & standardize
-	 *	@param Keyword
-	 */
-	public void setKeyword (String Keyword)
-	{
-		String kw = MIndex.standardizeKeyword(Keyword);
-		if (kw == null)
-			kw = "?";
-		super.setKeyword (kw);
-	}	//	setKeyword
-	
-	/**
-	 * 	Before Save
-	 *	@param newRecord new
-	 *	@return true
-	 */
-	protected boolean beforeSave (boolean newRecord)
-	{
-		if (newRecord || is_ValueChanged("Keyword"))
-			setKeyword(getKeyword());
-		if (getKeyword().equals("?"))
-		{
-			log.saveError("FillMandatory", Msg.getElement(getCtx(), "Keyword"));
-			return false;
-		}
-		return true;
-	}	//	beforeSave
+		super(ctx, rs, trxName);
+	}	//	MSerNoCtl
 
-}	//	MIndexStop
+	/**
+	 * 	Create new Lot.
+	 * 	Increments Current Next and Commits
+	 *	@return saved Lot
+	 */
+	public String createSerNo ()
+	{
+		StringBuffer name = new StringBuffer();
+		if (getPrefix() != null)
+			name.append(getPrefix());
+		int no = getCurrentNext();
+		name.append(no);
+		if (getSuffix() != null)
+			name.append(getSuffix());
+		//
+		no += getIncrementNo();
+		setCurrentNext(no);
+		save();
+		return name.toString();
+	}	//	createSerNo
+
+}	//	MSerNoCtl
