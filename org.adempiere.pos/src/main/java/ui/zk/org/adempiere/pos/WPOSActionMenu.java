@@ -23,7 +23,6 @@ import org.adempiere.model.MBrowse;
 import org.adempiere.pos.command.Command;
 import org.adempiere.pos.command.CommandManager;
 import org.adempiere.pos.command.CommandReceiver;
-import org.adempiere.pos.search.QueryBPartner;
 import org.adempiere.pos.search.WPOSQuery;
 import org.adempiere.pos.search.WQueryBPartner;
 import org.adempiere.pos.service.POSQueryInterface;
@@ -293,9 +292,9 @@ public class WPOSActionMenu implements  POSQueryListener, EventListener{
         if (query.getRecord_ID() <= 0)
             return;
         //	For Ticket
-        if(query instanceof QueryBPartner) {
+        /*if(query instanceof QueryBPartner) {
             executeCommand(currentCommand);
-        }
+        }*/
     }
 
     @Override

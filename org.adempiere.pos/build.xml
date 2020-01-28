@@ -1,6 +1,6 @@
-<project name="ADempierePOS" default="compileall" basedir=".">
+<project name="org.adempiere.pos" default="compileall" basedir=".">
     <description>
-        Building ADempierePOS ADempierePOS.jar
+        Building org.adempiere.pos.jar
         raulmunozn@gmail.com
         @raulmunozn
         @Carlos Parada 
@@ -51,7 +51,7 @@
 	
     <pathelement location="../zkwebui/WEB-INF/classes"/>
     
-    <fileset dir="${project.trunk}/packages/ADempierePOS/lib">
+    <fileset dir="${project.trunk}/packages/org.adempiere.pos/lib">
       <include name="*.jar"/>
     </fileset>
     
