@@ -59,10 +59,41 @@
   <target name="compile" depends="makedir">
     <!-- compile the java code from ${src} into ${build.dir} -->
     <javac target="1.8" encoding="UTF-8" fork="true" destdir="${build.dir}" deprecation="on" debug="on" memoryinitialsize="512m" memorymaximumsize="512m">
-      <src path="../org.adempiere.request/src/main/java"/>
-      <src path="../org.adempiere.project/src/main/java"/>
-      <src path="../org.adempiere.crm/src/main/java"/>
+      <!-- Core Functionality -->
       <src path="${src}"/>
+      <!-- System Functionality -->
+      <src path="../org.adempiere.dictionary/src/main/java"/>
+      <src path="../org.adempiere.security/src/main/java"/>
+      <src path="../org.adempiere.system/src/main/java"/>
+      <src path="../org.adempiere.workflows/src/main/java"/>
+      <src path="../org.adempiere.printing/src/main/java"/>
+      <src path="../org.adempiere.reports/src/main/java"/>
+      <!-- Main Functionality -->
+      <src path="../org.adempiere.partners/src/main/java"/>
+      <src path="../org.adempiere.pricing/src/main/java"/>
+      <src path="../org.adempiere.costing/src/main/java"/>
+      <src path="../org.adempiere.assets/src/main/java"/>
+      <src path="../org.adempiere.materials/src/main/java"/>
+      <src path="../org.adempiere.resources/src/main/java"/>
+      <src path="../org.adempiere.taxes/src/main/java"/>
+      <src path="../org.adempiere.ordering/src/main/java"/>
+      <src path="../org.adempiere.invoicing/src/main/java"/>
+      <src path="../org.adempiere.returns/src/main/java"/>
+      <src path="../org.adempiere.sales/src/main/java"/>
+      <src path="../org.adempiere.purchasing/src/main/java"/>
+      <src path="../org.adempiere.openitems/src/main/java"/>
+      <src path="../org.adempiere.performance/src/main/java"/>
+      <src path="../org.adempiere.accounting/src/main/java"/>
+      <!-- Extension Functionality -->
+      <src path="../org.adempiere.crm/src/main/java"/>
+      <src path="../org.adempiere.requests/src/main/java"/>
+      <src path="../org.adempiere.projects/src/main/java"/>
+      <src path="../org.adempiere.services/src/main/java"/>
+      <src path="../org.eevolution.distribution/src/main/java"/>
+      <!-- Web Functionality -->
+      <src path="../org.adempiere.cms/src/main/java"/>
+      <src path="../org.adempiere.knowledge/src/main/java"/>
+      <src path="../org.adempiere.ecommerce/src/main/java"/>
       <src path="${looksSrc}"/>
       <src path="../glassfishfacet/src"/>
       <src path="../jbossfacet/src"/>
