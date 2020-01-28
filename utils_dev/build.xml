@@ -19,19 +19,19 @@
 	<target name="jar" depends="init">
 		<ant inheritAll="false" dir="tools"/>
 		<ant inheritAll="false" dir="base"/>
-		<ant inheritAll="false" dir="org.adempiere.asset"/>
-		<ant inheritAll="false" dir="extend"/>
+		<ant inheritAll="false" dir="org.adempiere.assets"/>
+		<ant inheritAll="false" dir="org.adempiere.extend"/>
 		<ant inheritAll="false" dir="client"/>
-		<ant inheritAll="false" dir="JasperReports"/>
-		<ant inheritAll="false" dir="JasperReportsWebApp"/>
+		<ant inheritAll="false" dir="org.adempiere.jasperreports"/>
+		<ant inheritAll="false" dir="org.adempiere.jasperreportswebapp"/>
 		<ant inheritAll="false" dir="org.adempiere.webservice"/>
-		<ant inheritAll="false" dir="serverRoot"/>
-		<ant inheritAll="false" dir="serverApps"/>
-		<ant inheritAll="false" dir="webStore"/>
-		<ant inheritAll="false" dir="webCM"/>
+		<ant inheritAll="false" dir="org.adempiere.serverroot"/>
+		<ant inheritAll="false" dir="org.adempiere.serverapps"/>
+		<ant inheritAll="false" dir="org.adempiere.webstore"/>
+		<ant inheritAll="false" dir="org.adempiere.webcm"/>
 		<ant inheritAll="false" dir="sqlj"/>
 		<ant inheritAll="false" dir="zkwebui"/>
-		<ant inheritAll="false" dir="org.compiere.mobile"/>
+		<ant inheritAll="false" dir="org.adempiere.mobile"/>
 		<ant inheritAll="false" dir="migration"/>
 		<ant inheritAll="false" dir="org.eevolution.cashflow"/>
 		<ant inheritAll="false" dir="org.eevolution.manufacturing"/>
@@ -42,32 +42,32 @@
         <ant inheritAll="false" dir="com.kkalice.adempiere.migrate"/>
 		<ant inheritAll="false" dir="org.adempiere.pos"/>
 		<ant inheritAll="false" dir="org.adempiere.production"/>
-		<ant inheritAll="false" dir="org.spin.finance_management"/>
-		<ant inheritAll="false" dir="org.spin.loan_management"/>
-		<ant inheritAll="false" dir="org.spin.hr_time_and_attendance"/>
+		<ant inheritAll="false" dir="org.spin.finance"/>
+		<ant inheritAll="false" dir="org.spin.loan"/>
+		<ant inheritAll="false" dir="org.spin.time_and_attendance"/>
 	</target>
 	<target name="build" depends="clean, jar">
-		<ant inheritAll="false" dir="install"/>		
+		<ant inheritAll="false" dir="org.adempiere.install"/>
 	</target>	
 	<target name="clean">
 		<echo message="=========== Cleaning Build"/>
 		<ant inheritAll="false" dir="tools" target="clean"/>
 		<ant inheritAll="false" dir="base" target="clean"/>
-		<ant inheritAll="false" dir="org.adempiere.asset" target="clean"/>
+		<ant inheritAll="false" dir="org.adempiere.assets" target="clean"/>
 		<ant inheritAll="false" dir="org.adempiere.webservice" target="clean"/>
-		<ant inheritAll="false" dir="extend" target="clean"/>
+		<ant inheritAll="false" dir="org.adempiere.extend" target="clean"/>
 		<ant inheritAll="false" dir="org.eevolution.cashflow" target="clean"/>
-		<ant inheritAll="false" dir="JasperReports" target="clean"/>
-		<ant inheritAll="false" dir="JasperReportsWebApp" target="clean"/>
+		<ant inheritAll="false" dir="org.adempiere.jasperreports" target="clean"/>
+		<ant inheritAll="false" dir="org.adempiere.jasperreportswebapp" target="clean"/>
 		<ant inheritAll="false" dir="client" target="clean"/>
-		<ant inheritAll="false" dir="serverRoot" target="clean"/>
-		<ant inheritAll="false" dir="serverApps" target="clean"/>
-		<ant inheritAll="false" dir="webStore" target="clean"/>
-		<ant inheritAll="false" dir="webCM" target="clean"/>
+		<ant inheritAll="false" dir="org.adempiere.serverroot" target="clean"/>
+		<ant inheritAll="false" dir="org.adempiere.serverapps" target="clean"/>
+		<ant inheritAll="false" dir="org.adempiere.webstore" target="clean"/>
+		<ant inheritAll="false" dir="org.adempiere.webcm" target="clean"/>
 		<ant inheritAll="false" dir="sqlj" target="clean"/>
-		<ant inheritAll="false" dir="install" target="clean"/>
+		<ant inheritAll="false" dir="org.adempiere.install" target="clean"/>
 		<ant inheritAll="false" dir="zkwebui" target="clean"/>
-		<ant inheritAll="false" dir="org.compiere.mobile" target="clean"/>
+		<ant inheritAll="false" dir="org.adempiere.mobile" target="clean"/>
 		<ant inheritAll="false" dir="migration" target="clean"/>
 		<ant inheritAll="false" dir="org.eevolution.cashflow" target="clean"/>
 		<ant inheritAll="false" dir="org.eevolution.manufacturing" target="clean"/>
@@ -78,9 +78,9 @@
         <ant inheritAll="false" dir="com.kkalice.adempiere.migrate" target="migrate.clean"/>
 		<ant inheritAll="false" dir="org.adempiere.pos" target="clean"/>
 		<ant inheritAll="false" dir="org.adempiere.production" target="clean"/>
-		<ant inheritAll="false" dir="org.spin.finance_management" target="clean"/>
-		<ant inheritAll="false" dir="org.spin.loan_management" target="clean"/>
-		<ant inheritAll="false" dir="org.spin.hr_time_and_attendance" target="clean"/>
+		<ant inheritAll="false" dir="org.spin.finance" target="clean"/>
+		<ant inheritAll="false" dir="org.spin.loan" target="clean"/>
+		<ant inheritAll="false" dir="org.spin.time_and_attendance" target="clean"/>
 	</target>
 
   <target name="clean-all" depends="clean">
@@ -89,7 +89,7 @@
 
     <target name="update-adempiere-jar" depends="init">
 		<ant inheritAll="false" dir="base" target="compile"/>
-		<ant inheritAll="false" dir="extend" target="compile"/>
+		<ant inheritAll="false" dir="org.adempiere.extend" target="compile"/>
 		<ant inheritAll="false" dir="client"/>
 	</target>
 	
@@ -103,7 +103,7 @@
 	<target name="install" depends="" description="Environment dependent">
 		<echo message="=========== Install Adempiere"/>
 		<copy todir="${env.ADEMPIERE_INSTALL}" verbose="true">
-			<fileset dir="install/build" includes="Adempiere_*"/>
+			<fileset dir="org.adempiere.install/build" includes="Adempiere_*"/>
 		</copy>
 		<!-- Delete Existing stuff, but not utils + data 	-->
 		<delete failonerror="false" includeEmptyDirs="true">
@@ -112,7 +112,7 @@
 			<fileset dir="${env.ADEMPIERE_HOME}/jboss"/>
 		</delete>
 		<!-- Unzip Install File			-->
-		<unzip src="install/build/Adempiere_${env.ADEMPIERE_VERSION_FILE}.zip" 
+		<unzip src="org.adempiere.install/build/Adempiere_${env.ADEMPIERE_VERSION_FILE}.zip"
 			dest="${env.ADEMPIERE_ROOT}" 
 			overwrite="yes"/>
 		<!-- Run Setup				-->
