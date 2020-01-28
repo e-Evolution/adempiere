@@ -29,7 +29,7 @@
     <pathelement path="../lib/patches.jar"/>
     <pathelement path="../lib/jcommon-1.0.16.jar"/>
     <pathelement path="../lib/jfreechart-1.0.13.jar"/>
-    <pathelement path="../extend/Extend.jar"/>
+    <pathelement path="../org.adempiere.extend/Extend.jar"/>
     <pathelement path="../tools/lib/j2ee.jar"/>
   	<pathelement path="../tools/lib/swinglabs-0.8.0.jar"/>  	
   	<pathelement path="../tools/lib/lablib-checkboxtree-3.3.jar"/>  	
@@ -49,7 +49,7 @@
 		targetfile="${dist.dir}/${jar.name}.jar">
       <srcfiles dir="${src}" includes="**/*.java"/>
       <srcfiles dir="..\base" includes="Base.jar"/>
-      <srcfiles dir="..\extend" includes="Extend.jar"/>
+      <srcfiles dir="../org.adempiere.extend" includes="Extend.jar"/>
     </uptodate>
   </target>
 
@@ -91,7 +91,7 @@
   <target name="clientDistribute" depends="clientCompile" unless="jar.uptodate">
 	
 	<!-- Compile JasperReports classes because it is required when packaging client jar! -->
-	<ant inheritall="false" antfile="../JasperReports/build.xml" dir="../JasperReports"/>
+	<ant inheritall="false" antfile="../org.adempiere.jasperreports/build.xml" dir="../org.adempiere.jasperreports"/>
 	
     <!-- put everything from ${build.dir} into Adempiere.jar file -->
     <jar
@@ -100,8 +100,8 @@
 	  duplicate="preserve"
 	  index="yes">
 	  <fileset dir="../base/build" />
-	  <fileset dir="../extend/build" />
-      <zipgroupfileset file="../JasperReports/CompiereJasper.jar"/>
+	  <fileset dir="../org.adempiere.extend/build" />
+      <zipgroupfileset file="../org.adempiere.jasperreports/CompiereJasper.jar"/>
 	  <manifest>
         <attribute name="Specification-Title" value="Adempiere"/>
         <attribute name="Specification-Version" value="${env.ADEMPIERE_VERSION}"/>
