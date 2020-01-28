@@ -19,19 +19,19 @@ package org.compiere.process;
 import java.math.BigDecimal;
 import java.util.logging.Level;
 
-import org.compiere.model.MOrder;
+import org.compiere.model.MBPartner;
 
 /**
- *  Copy Order Lines
- *
- *	@author Jorg Janke
- *	@version $Id: CopyFromOrder.java,v 1.2 2006/07/30 00:51:02 jjanke Exp $
+ *	UnLink Business Partner from Organization 
+ *	
+ *  @author Jorg Janke
+ *  @version $Id: BPartnerOrgUnLink.java,v 1.2 2006/07/30 00:51:02 jjanke Exp $
  */
-public class CopyFromOrder extends SvrProcess
+public class BPartnerOrgUnLink extends SvrProcess
 {
-	/**	The Order				*/
-	private int		p_C_Order_ID = 0;
-
+	/** Business Partner		*/
+	private int			p_C_BPartner_ID;
+	
 	/**
 	 *  Prepare - e.g., get Parameters.
 	 */
@@ -43,8 +43,8 @@ public class CopyFromOrder extends SvrProcess
 			String name = para[i].getParameterName();
 			if (para[i].getParameter() == null)
 				;
-			else if (name.equals("C_Order_ID"))
-				p_C_Order_ID = ((BigDecimal)para[i].getParameter()).intValue();
+			else if (name.equals("C_BPartner_ID"))
+				p_C_BPartner_ID = ((BigDecimal)para[i].getParameter()).intValue();
 			else
 				log.log(Level.SEVERE, "Unknown Parameter: " + name);
 		}
@@ -52,23 +52,25 @@ public class CopyFromOrder extends SvrProcess
 
 	/**
 	 *  Perform process.
-	 *  @return Message (clear text)
+	 *  @return Message (text with variables)
 	 *  @throws Exception if not successful
 	 */
 	protected String doIt() throws Exception
 	{
-		int To_C_Order_ID = getRecord_ID();
-		log.info("From C_Order_ID=" + p_C_Order_ID + " to " + To_C_Order_ID);
-		if (To_C_Order_ID == 0)
-			throw new IllegalArgumentException("Target C_Order_ID == 0");
-		if (p_C_Order_ID == 0)
-			throw new IllegalArgumentException("Source C_Order_ID == 0");
-		MOrder from = new MOrder (getCtx(), p_C_Order_ID, get_TrxName());
-		MOrder to = new MOrder (getCtx(), To_C_Order_ID, get_TrxName());
+		log.info("doIt - C_BPartner_ID=" + p_C_BPartner_ID); 
+		if (p_C_BPartner_ID == 0)
+			throw new IllegalArgumentException ("No Business Partner ID");
+		MBPartner bp = new MBPartner (getCtx(), p_C_BPartner_ID, get_TrxName());
+		if (bp.get_ID() == 0)
+			throw new IllegalArgumentException ("Business Partner not found - C_BPartner_ID=" + p_C_BPartner_ID);
 		//
-		int no = to.copyLinesFrom (from, false, false);		//	no Attributes
-		//
-		return "@Copied@=" + no;
+		if (bp.getAD_OrgBP_ID_Int() == 0)
+			throw new IllegalArgumentException ("Business Partner not linked to an Organization");
+		bp.setAD_OrgBP_ID(null);
+		if (!bp.save())
+			throw new IllegalArgumentException ("Business Partner not changed");
+		
+		return "OK";
 	}	//	doIt
-
-}	//	CopyFromOrder
+	
+}	//	BPartnerOrgUnLink

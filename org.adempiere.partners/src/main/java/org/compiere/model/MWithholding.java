@@ -14,61 +14,68 @@
  * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
  * or via info@compiere.org or http://www.compiere.org/license.html           *
  *****************************************************************************/
-package org.compiere.process;
+package org.compiere.model;
 
-import java.util.logging.Level;
+import java.sql.ResultSet;
+import java.util.Properties;
 
-import org.compiere.model.MOrder;
-import org.compiere.util.AdempiereSystemError;
- 
+
 /**
- *	Re-Open Order Process (from Closed to Completed)
+ *	Withholding Model
  *	
  *  @author Jorg Janke
- *  @version $Id: OrderOpen.java,v 1.2 2006/07/30 00:51:02 jjanke Exp $
+ *  @version $Id: MWithholding.java,v 1.3 2006/07/30 00:51:05 jjanke Exp $
  */
-public class OrderOpen extends SvrProcess
+public class MWithholding extends X_C_Withholding
 {
-	/**	The Order				*/
-	private int		p_C_Order_ID = 0;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7734620609620104180L;
 
 	/**
-	 *  Prepare - e.g., get Parameters.
+	 * 	Standard Constructor
+	 *	@param ctx context
+	 *	@param C_Withholding_ID id
+	 *	@param trxName transaction
 	 */
-	protected void prepare()
+	public MWithholding (Properties ctx, int C_Withholding_ID, String trxName)
 	{
-		ProcessInfoParameter[] para = getParameter();
-		for (int i = 0; i < para.length; i++)
-		{
-			String name = para[i].getParameterName();
-			if (para[i].getParameter() == null)
-				;
-			else if (name.equals("C_Order_ID"))
-				p_C_Order_ID = para[i].getParameterAsInt();
-			else
-				log.log(Level.SEVERE, "prepare - Unknown Parameter: " + name);
-		}
-	}	//	prepare
+		super (ctx, C_Withholding_ID, trxName);
+	}	//	MWithholding
 
 	/**
-	 *  Perform process.
-	 *  @return Message
-	 *  @throws Exception if not successful
+	 * 	Load Constructor
+	 *	@param ctx context
+	 *	@param rs result set
+	 *	@param trxName transaction
 	 */
-	protected String doIt() throws AdempiereSystemError
+	public MWithholding (Properties ctx, ResultSet rs, String trxName)
 	{
-		log.info("doIt - Open C_Order_ID=" + p_C_Order_ID);
-		if (p_C_Order_ID == 0)
-			return "";
-		//
-		MOrder order = new MOrder (getCtx(), p_C_Order_ID, get_TrxName());
-		String msg = order.reopenIt();
-		if ( msg.length() != 0 )
-		{
-			throw new AdempiereSystemError(msg);
-		}
-		
-		return order.save() ? "@OK@" : "@Error@";
-	}	//	doIt
+		super(ctx, rs, trxName);
+	}	//	MWithholding
 	
-}	//	OrderOpen
+	/**
+	 * 	After Save
+	 *	@param newRecord new
+	 *	@param success success
+	 *	@return success
+	 */
+	protected boolean afterSave (boolean newRecord, boolean success)
+	{
+		if (newRecord && success)
+			insert_Accounting("C_Withholding_Acct", "C_AcctSchema_Default", null);
+
+		return success;
+	}	//	afterSave
+
+	/**
+	 * 	Before Delete
+	 *	@return true
+	 */
+	protected boolean beforeDelete ()
+	{
+		return delete_Accounting("C_Withholding_Acct"); 
+	}	//	beforeDelete
+
+}	//	MWithholding
