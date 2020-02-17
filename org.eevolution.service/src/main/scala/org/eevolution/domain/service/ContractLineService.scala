@@ -31,6 +31,8 @@ trait ContractLineService extends ContractLineServiceComponent {
   final override object contractLineService extends ContractLineServiceTrait {
     override def getById(id: Integer): Option[ContractLine] = contractLineRepository.getById(id)
     override def query(whereClause: String, parameters: List[Object]): List[ContractLine] = contractLineRepository.query(whereClause, parameters)
+
+    override def getByContract(contractId: Integer): List[ContractLine] = ???
   }
 
 }
