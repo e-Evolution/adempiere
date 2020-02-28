@@ -25,14 +25,14 @@ import org.compiere.util.Env;
 
 /** Generated Model for S_ContractTax
  *  @author Adempiere (generated) 
- *  @version Release 3.9.1 - $Id$ */
+ *  @version Release 3.9.3 - $Id$ */
 public class X_S_ContractTax extends PO implements I_S_ContractTax, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20190125L;
+	private static final long serialVersionUID = 20200227L;
 
     /** Standard Constructor */
     public X_S_ContractTax (Properties ctx, int S_ContractTax_ID, String trxName)
@@ -148,26 +148,6 @@ public class X_S_ContractTax extends PO implements I_S_ContractTax, I_Persistent
 		return false;
 	}
 
-	/** Set Contract Tax ID.
-		@param S_ContractTax_ID Contract Tax ID	  */
-	public void setS_ContractTax_ID (int S_ContractTax_ID)
-	{
-		if (S_ContractTax_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_S_ContractTax_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_S_ContractTax_ID, Integer.valueOf(S_ContractTax_ID));
-	}
-
-	/** Get Contract Tax ID.
-		@return Contract Tax ID	  */
-	public int getS_ContractTax_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_S_ContractTax_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
 	public org.eevolution.domain.model.I_S_Contract getS_Contract() throws RuntimeException
     {
 		return (org.eevolution.domain.model.I_S_Contract)MTable.get(getCtx(), org.eevolution.domain.model.I_S_Contract.Table_Name)
@@ -191,6 +171,26 @@ public class X_S_ContractTax extends PO implements I_S_ContractTax, I_Persistent
 	public int getS_Contract_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_S_Contract_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	/** Set Contract Tax ID.
+		@param S_ContractTax_ID Contract Tax ID	  */
+	public void setS_ContractTax_ID (int S_ContractTax_ID)
+	{
+		if (S_ContractTax_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_S_ContractTax_ID, null);
+		else 
+			set_ValueNoCheck (COLUMNNAME_S_ContractTax_ID, Integer.valueOf(S_ContractTax_ID));
+	}
+
+	/** Get Contract Tax ID.
+		@return Contract Tax ID	  */
+	public int getS_ContractTax_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_S_ContractTax_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();

@@ -21,17 +21,17 @@ import java.sql.Timestamp;
 import org.compiere.model.*;
 import org.compiere.util.KeyNamePair;
 
-/** Generated Interface for S_ContractPartiesType
+/** Generated Interface for S_AgreementClauseCategory
  *  @author Adempiere (generated) 
  *  @version Release 3.9.3
  */
-public interface I_S_ContractPartiesType 
+public interface I_S_AgreementClauseCategory 
 {
 
-    /** TableName=S_ContractPartiesType */
-    public static final String Table_Name = "S_ContractPartiesType";
+    /** TableName=S_AgreementClauseCategory */
+    public static final String Table_Name = "S_AgreementClauseCategory";
 
-    /** AD_Table_ID=54445 */
+    /** AD_Table_ID=54709 */
     public static final int Table_ID = MTable.getTable_ID(Table_Name);
 
     KeyNamePair Model = new KeyNamePair(Table_ID, Table_Name);
@@ -118,19 +118,6 @@ public interface I_S_ContractPartiesType
 	  */
 	public boolean isActive();
 
-    /** Column name IsDefault */
-    public static final String COLUMNNAME_IsDefault = "IsDefault";
-
-	/** Set Default.
-	  * Default value
-	  */
-	public void setIsDefault (boolean IsDefault);
-
-	/** Get Default.
-	  * Default value
-	  */
-	public boolean isDefault();
-
     /** Column name Name */
     public static final String COLUMNNAME_Name = "Name";
 
@@ -144,14 +131,18 @@ public interface I_S_ContractPartiesType
 	  */
 	public String getName();
 
-    /** Column name S_ContractPartiesType_ID */
-    public static final String COLUMNNAME_S_ContractPartiesType_ID = "S_ContractPartiesType_ID";
+    /** Column name S_AgreementClauseCategory_ID */
+    public static final String COLUMNNAME_S_AgreementClauseCategory_ID = "S_AgreementClauseCategory_ID";
 
-	/** Set Contract Parties Type ID	  */
-	public void setS_ContractPartiesType_ID (int S_ContractPartiesType_ID);
+	/** Set Agreement Clause Category.
+	  * Agreement Clause Category allows grouping clauses of an Agreement by category
+	  */
+	public void setS_AgreementClauseCategory_ID (int S_AgreementClauseCategory_ID);
 
-	/** Get Contract Parties Type ID	  */
-	public int getS_ContractPartiesType_ID();
+	/** Get Agreement Clause Category.
+	  * Agreement Clause Category allows grouping clauses of an Agreement by category
+	  */
+	public int getS_AgreementClauseCategory_ID();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";

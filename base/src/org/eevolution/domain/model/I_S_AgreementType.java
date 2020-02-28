@@ -21,17 +21,17 @@ import java.sql.Timestamp;
 import org.compiere.model.*;
 import org.compiere.util.KeyNamePair;
 
-/** Generated Interface for S_ContractPartiesType
+/** Generated Interface for S_AgreementType
  *  @author Adempiere (generated) 
  *  @version Release 3.9.3
  */
-public interface I_S_ContractPartiesType 
+public interface I_S_AgreementType 
 {
 
-    /** TableName=S_ContractPartiesType */
-    public static final String Table_Name = "S_ContractPartiesType";
+    /** TableName=S_AgreementType */
+    public static final String Table_Name = "S_AgreementType";
 
-    /** AD_Table_ID=54445 */
+    /** AD_Table_ID=54708 */
     public static final int Table_ID = MTable.getTable_ID(Table_Name);
 
     KeyNamePair Model = new KeyNamePair(Table_ID, Table_Name);
@@ -92,19 +92,6 @@ public interface I_S_ContractPartiesType
 	  */
 	public String getDescription();
 
-    /** Column name Help */
-    public static final String COLUMNNAME_Help = "Help";
-
-	/** Set Comment/Help.
-	  * Comment or Hint
-	  */
-	public void setHelp (String Help);
-
-	/** Get Comment/Help.
-	  * Comment or Hint
-	  */
-	public String getHelp();
-
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";
 
@@ -117,19 +104,6 @@ public interface I_S_ContractPartiesType
 	  * The record is active in the system
 	  */
 	public boolean isActive();
-
-    /** Column name IsDefault */
-    public static final String COLUMNNAME_IsDefault = "IsDefault";
-
-	/** Set Default.
-	  * Default value
-	  */
-	public void setIsDefault (boolean IsDefault);
-
-	/** Get Default.
-	  * Default value
-	  */
-	public boolean isDefault();
 
     /** Column name Name */
     public static final String COLUMNNAME_Name = "Name";
@@ -144,14 +118,18 @@ public interface I_S_ContractPartiesType
 	  */
 	public String getName();
 
-    /** Column name S_ContractPartiesType_ID */
-    public static final String COLUMNNAME_S_ContractPartiesType_ID = "S_ContractPartiesType_ID";
+    /** Column name S_AgreementType_ID */
+    public static final String COLUMNNAME_S_AgreementType_ID = "S_AgreementType_ID";
 
-	/** Set Contract Parties Type ID	  */
-	public void setS_ContractPartiesType_ID (int S_ContractPartiesType_ID);
+	/** Set Agreement Type.
+	  * The Agreement Types are used to define the terms and conditions of a contract
+	  */
+	public void setS_AgreementType_ID (int S_AgreementType_ID);
 
-	/** Get Contract Parties Type ID	  */
-	public int getS_ContractPartiesType_ID();
+	/** Get Agreement Type.
+	  * The Agreement Types are used to define the terms and conditions of a contract
+	  */
+	public int getS_AgreementType_ID();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";

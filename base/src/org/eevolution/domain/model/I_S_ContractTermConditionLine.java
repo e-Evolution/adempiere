@@ -21,17 +21,17 @@ import java.sql.Timestamp;
 import org.compiere.model.*;
 import org.compiere.util.KeyNamePair;
 
-/** Generated Interface for S_ContractPartiesType
+/** Generated Interface for S_ContractTermConditionLine
  *  @author Adempiere (generated) 
  *  @version Release 3.9.3
  */
-public interface I_S_ContractPartiesType 
+public interface I_S_ContractTermConditionLine 
 {
 
-    /** TableName=S_ContractPartiesType */
-    public static final String Table_Name = "S_ContractPartiesType";
+    /** TableName=S_ContractTermConditionLine */
+    public static final String Table_Name = "S_ContractTermConditionLine";
 
-    /** AD_Table_ID=54445 */
+    /** AD_Table_ID=54712 */
     public static final int Table_ID = MTable.getTable_ID(Table_Name);
 
     KeyNamePair Model = new KeyNamePair(Table_ID, Table_Name);
@@ -92,19 +92,6 @@ public interface I_S_ContractPartiesType
 	  */
 	public String getDescription();
 
-    /** Column name Help */
-    public static final String COLUMNNAME_Help = "Help";
-
-	/** Set Comment/Help.
-	  * Comment or Hint
-	  */
-	public void setHelp (String Help);
-
-	/** Get Comment/Help.
-	  * Comment or Hint
-	  */
-	public String getHelp();
-
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";
 
@@ -118,40 +105,63 @@ public interface I_S_ContractPartiesType
 	  */
 	public boolean isActive();
 
-    /** Column name IsDefault */
-    public static final String COLUMNNAME_IsDefault = "IsDefault";
+    /** Column name S_AgreementClause_ID */
+    public static final String COLUMNNAME_S_AgreementClause_ID = "S_AgreementClause_ID";
 
-	/** Set Default.
-	  * Default value
+	/** Set Agreement Clause.
+	  * The Agreement Clause Library allows you to maintain a collection of clauses to define the terms and conditions of a contract.
 	  */
-	public void setIsDefault (boolean IsDefault);
+	public void setS_AgreementClause_ID (int S_AgreementClause_ID);
 
-	/** Get Default.
-	  * Default value
+	/** Get Agreement Clause.
+	  * The Agreement Clause Library allows you to maintain a collection of clauses to define the terms and conditions of a contract.
 	  */
-	public boolean isDefault();
+	public int getS_AgreementClause_ID();
 
-    /** Column name Name */
-    public static final String COLUMNNAME_Name = "Name";
+	public org.eevolution.domain.model.I_S_AgreementClause getS_AgreementClause() throws RuntimeException;
 
-	/** Set Name.
-	  * Alphanumeric identifier of the entity
+    /** Column name S_ContractTermCondition_ID */
+    public static final String COLUMNNAME_S_ContractTermCondition_ID = "S_ContractTermCondition_ID";
+
+	/** Set Contract Terms And Condition.
+	  * Terms and Conditions of a Contract
 	  */
-	public void setName (String Name);
+	public void setS_ContractTermCondition_ID (int S_ContractTermCondition_ID);
 
-	/** Get Name.
-	  * Alphanumeric identifier of the entity
+	/** Get Contract Terms And Condition.
+	  * Terms and Conditions of a Contract
 	  */
-	public String getName();
+	public int getS_ContractTermCondition_ID();
 
-    /** Column name S_ContractPartiesType_ID */
-    public static final String COLUMNNAME_S_ContractPartiesType_ID = "S_ContractPartiesType_ID";
+	public org.eevolution.domain.model.I_S_ContractTermCondition getS_ContractTermCondition() throws RuntimeException;
 
-	/** Set Contract Parties Type ID	  */
-	public void setS_ContractPartiesType_ID (int S_ContractPartiesType_ID);
+    /** Column name S_ContractTermConditionLine_ID */
+    public static final String COLUMNNAME_S_ContractTermConditionLine_ID = "S_ContractTermConditionLine_ID";
 
-	/** Get Contract Parties Type ID	  */
-	public int getS_ContractPartiesType_ID();
+	/** Set Contract Terms And Condition Lines.
+	  * Allows defining the terms and conditions lines of a Contract.
+	  */
+	public void setS_ContractTermConditionLine_ID (int S_ContractTermConditionLine_ID);
+
+	/** Get Contract Terms And Condition Lines.
+	  * Allows defining the terms and conditions lines of a Contract.
+	  */
+	public int getS_ContractTermConditionLine_ID();
+
+    /** Column name SeqNo */
+    public static final String COLUMNNAME_SeqNo = "SeqNo";
+
+	/** Set Sequence.
+	  * Method of ordering records;
+ lowest number comes first
+	  */
+	public void setSeqNo (int SeqNo);
+
+	/** Get Sequence.
+	  * Method of ordering records;
+ lowest number comes first
+	  */
+	public int getSeqNo();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";
@@ -181,17 +191,4 @@ public interface I_S_ContractPartiesType
 	  * Immutable Universally Unique Identifier
 	  */
 	public String getUUID();
-
-    /** Column name Value */
-    public static final String COLUMNNAME_Value = "Value";
-
-	/** Set Search Key.
-	  * Search key for the record in the format required - must be unique
-	  */
-	public void setValue (String Value);
-
-	/** Get Search Key.
-	  * Search key for the record in the format required - must be unique
-	  */
-	public String getValue();
 }

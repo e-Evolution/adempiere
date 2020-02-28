@@ -23,7 +23,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for S_ContractLine
  *  @author Adempiere (generated) 
- *  @version Release 3.9.1
+ *  @version Release 3.9.3
  */
 public interface I_S_ContractLine 
 {
@@ -50,6 +50,19 @@ public interface I_S_ContractLine
 	  */
 	public int getAD_Client_ID();
 
+    /** Column name AD_Org_ID */
+    public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
+
+	/** Set Organization.
+	  * Organizational entity within client
+	  */
+	public void setAD_Org_ID (int AD_Org_ID);
+
+	/** Get Organization.
+	  * Organizational entity within client
+	  */
+	public int getAD_Org_ID();
+
     /** Column name AD_OrgTrx_ID */
     public static final String COLUMNNAME_AD_OrgTrx_ID = "AD_OrgTrx_ID";
 
@@ -63,18 +76,7 @@ public interface I_S_ContractLine
 	  */
 	public int getAD_OrgTrx_ID();
 
-    /** Column name AD_Org_ID */
-    public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
-
-	/** Set Organization.
-	  * Organizational entity within client
-	  */
-	public void setAD_Org_ID (int AD_Org_ID);
-
-	/** Get Organization.
-	  * Organizational entity within client
-	  */
-	public int getAD_Org_ID();
+	public org.compiere.model.I_AD_Org getAD_OrgTrx() throws RuntimeException;
 
     /** Column name C_Activity_ID */
     public static final String COLUMNNAME_C_Activity_ID = "C_Activity_ID";
@@ -166,6 +168,21 @@ public interface I_S_ContractLine
 
 	public org.compiere.model.I_C_Currency getC_Currency() throws RuntimeException;
 
+    /** Column name C_Project_ID */
+    public static final String COLUMNNAME_C_Project_ID = "C_Project_ID";
+
+	/** Set Project.
+	  * Financial Project
+	  */
+	public void setC_Project_ID (int C_Project_ID);
+
+	/** Get Project.
+	  * Financial Project
+	  */
+	public int getC_Project_ID();
+
+	public org.compiere.model.I_C_Project getC_Project() throws RuntimeException;
+
     /** Column name C_ProjectPhase_ID */
     public static final String COLUMNNAME_C_ProjectPhase_ID = "C_ProjectPhase_ID";
 
@@ -196,20 +213,21 @@ public interface I_S_ContractLine
 
 	public org.compiere.model.I_C_ProjectTask getC_ProjectTask() throws RuntimeException;
 
-    /** Column name C_Project_ID */
-    public static final String COLUMNNAME_C_Project_ID = "C_Project_ID";
+    /** Column name Created */
+    public static final String COLUMNNAME_Created = "Created";
 
-	/** Set Project.
-	  * Financial Project
+	/** Get Created.
+	  * Date this record was created
 	  */
-	public void setC_Project_ID (int C_Project_ID);
+	public Timestamp getCreated();
 
-	/** Get Project.
-	  * Financial Project
+    /** Column name CreatedBy */
+    public static final String COLUMNNAME_CreatedBy = "CreatedBy";
+
+	/** Get Created By.
+	  * User who created this records
 	  */
-	public int getC_Project_ID();
-
-	public org.compiere.model.I_C_Project getC_Project() throws RuntimeException;
+	public int getCreatedBy();
 
     /** Column name C_ServiceLevel_ID */
     public static final String COLUMNNAME_C_ServiceLevel_ID = "C_ServiceLevel_ID";
@@ -255,22 +273,6 @@ public interface I_S_ContractLine
 	public int getC_UOM_ID();
 
 	public org.compiere.model.I_C_UOM getC_UOM() throws RuntimeException;
-
-    /** Column name Created */
-    public static final String COLUMNNAME_Created = "Created";
-
-	/** Get Created.
-	  * Date this record was created
-	  */
-	public Timestamp getCreated();
-
-    /** Column name CreatedBy */
-    public static final String COLUMNNAME_CreatedBy = "CreatedBy";
-
-	/** Get Created By.
-	  * User who created this records
-	  */
-	public int getCreatedBy();
 
     /** Column name DateDelivered */
     public static final String COLUMNNAME_DateDelivered = "DateDelivered";
@@ -681,6 +683,15 @@ public interface I_S_ContractLine
 
 	public org.compiere.model.I_M_Warehouse getM_Warehouse() throws RuntimeException;
 
+    /** Column name PickedQty */
+    public static final String COLUMNNAME_PickedQty = "PickedQty";
+
+	/** Set Picked Qty	  */
+	public void setPickedQty (BigDecimal PickedQty);
+
+	/** Get Picked Qty	  */
+	public BigDecimal getPickedQty();
+
     /** Column name PP_Period_ID */
     public static final String COLUMNNAME_PP_Period_ID = "PP_Period_ID";
 
@@ -695,15 +706,6 @@ public interface I_S_ContractLine
 	public int getPP_Period_ID();
 
 	public org.eevolution.model.I_PP_Period getPP_Period() throws RuntimeException;
-
-    /** Column name PickedQty */
-    public static final String COLUMNNAME_PickedQty = "PickedQty";
-
-	/** Set Picked Qty	  */
-	public void setPickedQty (BigDecimal PickedQty);
-
-	/** Get Picked Qty	  */
-	public BigDecimal getPickedQty();
 
     /** Column name PriceActual */
     public static final String COLUMNNAME_PriceActual = "PriceActual";
@@ -861,6 +863,21 @@ public interface I_S_ContractLine
 	  */
 	public BigDecimal getQtyReserved();
 
+    /** Column name Ref_ContractLine_ID */
+    public static final String COLUMNNAME_Ref_ContractLine_ID = "Ref_ContractLine_ID";
+
+	/** Set Referenced Contract Line.
+	  * Reference to corresponding Customer/Vendor Contract
+	  */
+	public void setRef_ContractLine_ID (int Ref_ContractLine_ID);
+
+	/** Get Referenced Contract Line.
+	  * Reference to corresponding Customer/Vendor Contract
+	  */
+	public int getRef_ContractLine_ID();
+
+	public org.eevolution.domain.model.I_S_ContractLine getRef_ContractLine() throws RuntimeException;
+
     /** Column name RRAmt */
     public static final String COLUMNNAME_RRAmt = "RRAmt";
 
@@ -902,21 +919,6 @@ public interface I_S_ContractLine
 
 	public org.compiere.model.I_R_StandardRequestType getR_StandardRequestType() throws RuntimeException;
 
-    /** Column name Ref_ContractLine_ID */
-    public static final String COLUMNNAME_Ref_ContractLine_ID = "Ref_ContractLine_ID";
-
-	/** Set Referenced Contract Line.
-	  * Reference to corresponding Customer/Vendor Contract
-	  */
-	public void setRef_ContractLine_ID (int Ref_ContractLine_ID);
-
-	/** Get Referenced Contract Line.
-	  * Reference to corresponding Customer/Vendor Contract
-	  */
-	public int getRef_ContractLine_ID();
-
-	public org.eevolution.domain.model.I_S_ContractLine getRef_ContractLine() throws RuntimeException;
-
     /** Column name RunsMax */
     public static final String COLUMNNAME_RunsMax = "RunsMax";
 
@@ -943,19 +945,6 @@ public interface I_S_ContractLine
 	  */
 	public int getRunsRemaining();
 
-    /** Column name S_ContractLine_ID */
-    public static final String COLUMNNAME_S_ContractLine_ID = "S_ContractLine_ID";
-
-	/** Set Service Contract Line.
-	  * Service Contract Line
-	  */
-	public void setS_ContractLine_ID (int S_ContractLine_ID);
-
-	/** Get Service Contract Line.
-	  * Service Contract Line
-	  */
-	public int getS_ContractLine_ID();
-
     /** Column name S_Contract_ID */
     public static final String COLUMNNAME_S_Contract_ID = "S_Contract_ID";
 
@@ -970,6 +959,19 @@ public interface I_S_ContractLine
 	public int getS_Contract_ID();
 
 	public org.eevolution.domain.model.I_S_Contract getS_Contract() throws RuntimeException;
+
+    /** Column name S_ContractLine_ID */
+    public static final String COLUMNNAME_S_ContractLine_ID = "S_ContractLine_ID";
+
+	/** Set Service Contract Line.
+	  * Service Contract Line
+	  */
+	public void setS_ContractLine_ID (int S_ContractLine_ID);
+
+	/** Get Service Contract Line.
+	  * Service Contract Line
+	  */
+	public int getS_ContractLine_ID();
 
     /** Column name S_ResourceAssignment_ID */
     public static final String COLUMNNAME_S_ResourceAssignment_ID = "S_ResourceAssignment_ID";
@@ -997,18 +999,7 @@ public interface I_S_ContractLine
 	  */
 	public int getS_ServiceType_ID();
 
-    /** Column name UUID */
-    public static final String COLUMNNAME_UUID = "UUID";
-
-	/** Set Immutable Universally Unique Identifier.
-	  * Immutable Universally Unique Identifier
-	  */
-	public void setUUID (String UUID);
-
-	/** Get Immutable Universally Unique Identifier.
-	  * Immutable Universally Unique Identifier
-	  */
-	public String getUUID();
+	public org.eevolution.domain.model.I_S_ServiceType getS_ServiceType() throws RuntimeException;
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";
@@ -1085,4 +1076,17 @@ public interface I_S_ContractLine
 	public int getUser4_ID();
 
 	public org.compiere.model.I_C_ElementValue getUser4() throws RuntimeException;
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 }

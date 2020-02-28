@@ -23,7 +23,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for S_ContractTax
  *  @author Adempiere (generated) 
- *  @version Release 3.9.1
+ *  @version Release 3.9.3
  */
 public interface I_S_ContractTax 
 {
@@ -63,21 +63,6 @@ public interface I_S_ContractTax
 	  */
 	public int getAD_Org_ID();
 
-    /** Column name C_Tax_ID */
-    public static final String COLUMNNAME_C_Tax_ID = "C_Tax_ID";
-
-	/** Set Tax.
-	  * Tax identifier
-	  */
-	public void setC_Tax_ID (int C_Tax_ID);
-
-	/** Get Tax.
-	  * Tax identifier
-	  */
-	public int getC_Tax_ID();
-
-	public org.compiere.model.I_C_Tax getC_Tax() throws RuntimeException;
-
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";
 
@@ -93,6 +78,21 @@ public interface I_S_ContractTax
 	  * User who created this records
 	  */
 	public int getCreatedBy();
+
+    /** Column name C_Tax_ID */
+    public static final String COLUMNNAME_C_Tax_ID = "C_Tax_ID";
+
+	/** Set Tax.
+	  * Tax identifier
+	  */
+	public void setC_Tax_ID (int C_Tax_ID);
+
+	/** Get Tax.
+	  * Tax identifier
+	  */
+	public int getC_Tax_ID();
+
+	public org.compiere.model.I_C_Tax getC_Tax() throws RuntimeException;
 
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";
@@ -133,15 +133,6 @@ public interface I_S_ContractTax
 	  */
 	public boolean isProcessed();
 
-    /** Column name S_ContractTax_ID */
-    public static final String COLUMNNAME_S_ContractTax_ID = "S_ContractTax_ID";
-
-	/** Set Contract Tax ID	  */
-	public void setS_ContractTax_ID (int S_ContractTax_ID);
-
-	/** Get Contract Tax ID	  */
-	public int getS_ContractTax_ID();
-
     /** Column name S_Contract_ID */
     public static final String COLUMNNAME_S_Contract_ID = "S_Contract_ID";
 
@@ -156,6 +147,15 @@ public interface I_S_ContractTax
 	public int getS_Contract_ID();
 
 	public org.eevolution.domain.model.I_S_Contract getS_Contract() throws RuntimeException;
+
+    /** Column name S_ContractTax_ID */
+    public static final String COLUMNNAME_S_ContractTax_ID = "S_ContractTax_ID";
+
+	/** Set Contract Tax ID	  */
+	public void setS_ContractTax_ID (int S_ContractTax_ID);
+
+	/** Get Contract Tax ID	  */
+	public int getS_ContractTax_ID();
 
     /** Column name TaxAmt */
     public static final String COLUMNNAME_TaxAmt = "TaxAmt";
@@ -183,19 +183,6 @@ public interface I_S_ContractTax
 	  */
 	public BigDecimal getTaxBaseAmt();
 
-    /** Column name UUID */
-    public static final String COLUMNNAME_UUID = "UUID";
-
-	/** Set Immutable Universally Unique Identifier.
-	  * Immutable Universally Unique Identifier
-	  */
-	public void setUUID (String UUID);
-
-	/** Get Immutable Universally Unique Identifier.
-	  * Immutable Universally Unique Identifier
-	  */
-	public String getUUID();
-
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";
 
@@ -211,4 +198,17 @@ public interface I_S_ContractTax
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 }

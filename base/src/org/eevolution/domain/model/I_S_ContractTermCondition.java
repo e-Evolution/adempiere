@@ -21,17 +21,17 @@ import java.sql.Timestamp;
 import org.compiere.model.*;
 import org.compiere.util.KeyNamePair;
 
-/** Generated Interface for S_ContractPartiesType
+/** Generated Interface for S_ContractTermCondition
  *  @author Adempiere (generated) 
  *  @version Release 3.9.3
  */
-public interface I_S_ContractPartiesType 
+public interface I_S_ContractTermCondition 
 {
 
-    /** TableName=S_ContractPartiesType */
-    public static final String Table_Name = "S_ContractPartiesType";
+    /** TableName=S_ContractTermCondition */
+    public static final String Table_Name = "S_ContractTermCondition";
 
-    /** AD_Table_ID=54445 */
+    /** AD_Table_ID=54711 */
     public static final int Table_ID = MTable.getTable_ID(Table_Name);
 
     KeyNamePair Model = new KeyNamePair(Table_ID, Table_Name);
@@ -79,31 +79,18 @@ public interface I_S_ContractPartiesType
 	  */
 	public int getCreatedBy();
 
-    /** Column name Description */
-    public static final String COLUMNNAME_Description = "Description";
+    /** Column name CreateFrom */
+    public static final String COLUMNNAME_CreateFrom = "CreateFrom";
 
-	/** Set Description.
-	  * Optional short description of the record
+	/** Set Create lines from.
+	  * Process which will generate a new document lines based on an existing document
 	  */
-	public void setDescription (String Description);
+	public void setCreateFrom (String CreateFrom);
 
-	/** Get Description.
-	  * Optional short description of the record
+	/** Get Create lines from.
+	  * Process which will generate a new document lines based on an existing document
 	  */
-	public String getDescription();
-
-    /** Column name Help */
-    public static final String COLUMNNAME_Help = "Help";
-
-	/** Set Comment/Help.
-	  * Comment or Hint
-	  */
-	public void setHelp (String Help);
-
-	/** Get Comment/Help.
-	  * Comment or Hint
-	  */
-	public String getHelp();
+	public String getCreateFrom();
 
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";
@@ -118,40 +105,61 @@ public interface I_S_ContractPartiesType
 	  */
 	public boolean isActive();
 
-    /** Column name IsDefault */
-    public static final String COLUMNNAME_IsDefault = "IsDefault";
+    /** Column name S_AgreementType_ID */
+    public static final String COLUMNNAME_S_AgreementType_ID = "S_AgreementType_ID";
 
-	/** Set Default.
-	  * Default value
+	/** Set Agreement Type.
+	  * The Agreement Types are used to define the terms and conditions of a contract
 	  */
-	public void setIsDefault (boolean IsDefault);
+	public void setS_AgreementType_ID (int S_AgreementType_ID);
 
-	/** Get Default.
-	  * Default value
+	/** Get Agreement Type.
+	  * The Agreement Types are used to define the terms and conditions of a contract
 	  */
-	public boolean isDefault();
+	public int getS_AgreementType_ID();
 
-    /** Column name Name */
-    public static final String COLUMNNAME_Name = "Name";
+	public org.eevolution.domain.model.I_S_AgreementType getS_AgreementType() throws RuntimeException;
 
-	/** Set Name.
-	  * Alphanumeric identifier of the entity
+    /** Column name S_Contract_ID */
+    public static final String COLUMNNAME_S_Contract_ID = "S_Contract_ID";
+
+	/** Set Service Contract.
+	  * Service Contract
 	  */
-	public void setName (String Name);
+	public void setS_Contract_ID (int S_Contract_ID);
 
-	/** Get Name.
-	  * Alphanumeric identifier of the entity
+	/** Get Service Contract.
+	  * Service Contract
 	  */
-	public String getName();
+	public int getS_Contract_ID();
 
-    /** Column name S_ContractPartiesType_ID */
-    public static final String COLUMNNAME_S_ContractPartiesType_ID = "S_ContractPartiesType_ID";
+	public org.eevolution.domain.model.I_S_Contract getS_Contract() throws RuntimeException;
 
-	/** Set Contract Parties Type ID	  */
-	public void setS_ContractPartiesType_ID (int S_ContractPartiesType_ID);
+    /** Column name S_ContractTermCondition_ID */
+    public static final String COLUMNNAME_S_ContractTermCondition_ID = "S_ContractTermCondition_ID";
 
-	/** Get Contract Parties Type ID	  */
-	public int getS_ContractPartiesType_ID();
+	/** Set Contract Terms And Condition.
+	  * Terms and Conditions of a Contract
+	  */
+	public void setS_ContractTermCondition_ID (int S_ContractTermCondition_ID);
+
+	/** Get Contract Terms And Condition.
+	  * Terms and Conditions of a Contract
+	  */
+	public int getS_ContractTermCondition_ID();
+
+    /** Column name TermsAndConditions */
+    public static final String COLUMNNAME_TermsAndConditions = "TermsAndConditions";
+
+	/** Set Terms And Conditions.
+	  * Terms and Conditions for a Contract
+	  */
+	public void setTermsAndConditions (String TermsAndConditions);
+
+	/** Get Terms And Conditions.
+	  * Terms and Conditions for a Contract
+	  */
+	public String getTermsAndConditions();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";
@@ -182,16 +190,16 @@ public interface I_S_ContractPartiesType
 	  */
 	public String getUUID();
 
-    /** Column name Value */
-    public static final String COLUMNNAME_Value = "Value";
+    /** Column name VersionNo */
+    public static final String COLUMNNAME_VersionNo = "VersionNo";
 
-	/** Set Search Key.
-	  * Search key for the record in the format required - must be unique
+	/** Set Version No.
+	  * Version Number
 	  */
-	public void setValue (String Value);
+	public void setVersionNo (String VersionNo);
 
-	/** Get Search Key.
-	  * Search key for the record in the format required - must be unique
+	/** Get Version No.
+	  * Version Number
 	  */
-	public String getValue();
+	public String getVersionNo();
 }

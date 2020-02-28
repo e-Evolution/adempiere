@@ -24,14 +24,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for S_ServiceType
  *  @author Adempiere (generated) 
- *  @version Release 3.9.1 - $Id$ */
+ *  @version Release 3.9.3 - $Id$ */
 public class X_S_ServiceType extends PO implements I_S_ServiceType, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20190125L;
+	private static final long serialVersionUID = 20200227L;
 
     /** Standard Constructor */
     public X_S_ServiceType (Properties ctx, int S_ServiceType_ID, String trxName)

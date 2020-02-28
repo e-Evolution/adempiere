@@ -27,14 +27,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for S_ContractLine
  *  @author Adempiere (generated) 
- *  @version Release 3.9.1 - $Id$ */
+ *  @version Release 3.9.3 - $Id$ */
 public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20190125L;
+	private static final long serialVersionUID = 20200227L;
 
     /** Standard Constructor */
     public X_S_ContractLine (Properties ctx, int S_ContractLine_ID, String trxName)
@@ -67,8 +67,8 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
 // 1
 			setQtyReserved (Env.ZERO);
 // 0
-			setS_ContractLine_ID (0);
 			setS_Contract_ID (0);
+			setS_ContractLine_ID (0);
         } */
     }
 
@@ -99,6 +99,11 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
         .append(get_ID()).append("]");
       return sb.toString();
     }
+
+	public org.compiere.model.I_AD_Org getAD_OrgTrx() throws RuntimeException
+    {
+		return (org.compiere.model.I_AD_Org)MTable.get(getCtx(), org.compiere.model.I_AD_Org.Table_Name)
+			.getPO(getAD_OrgTrx_ID(), get_TrxName());	}
 
 	/** Set Trx Organization.
 		@param AD_OrgTrx_ID 
@@ -291,6 +296,34 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
 		return ii.intValue();
 	}
 
+	public org.compiere.model.I_C_Project getC_Project() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_Project)MTable.get(getCtx(), org.compiere.model.I_C_Project.Table_Name)
+			.getPO(getC_Project_ID(), get_TrxName());	}
+
+	/** Set Project.
+		@param C_Project_ID 
+		Financial Project
+	  */
+	public void setC_Project_ID (int C_Project_ID)
+	{
+		if (C_Project_ID < 1) 
+			set_Value (COLUMNNAME_C_Project_ID, null);
+		else 
+			set_Value (COLUMNNAME_C_Project_ID, Integer.valueOf(C_Project_ID));
+	}
+
+	/** Get Project.
+		@return Financial Project
+	  */
+	public int getC_Project_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_Project_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
 	public org.compiere.model.I_C_ProjectPhase getC_ProjectPhase() throws RuntimeException
     {
 		return (org.compiere.model.I_C_ProjectPhase)MTable.get(getCtx(), org.compiere.model.I_C_ProjectPhase.Table_Name)
@@ -342,34 +375,6 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
 	public int getC_ProjectTask_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_C_ProjectTask_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	public org.compiere.model.I_C_Project getC_Project() throws RuntimeException
-    {
-		return (org.compiere.model.I_C_Project)MTable.get(getCtx(), org.compiere.model.I_C_Project.Table_Name)
-			.getPO(getC_Project_ID(), get_TrxName());	}
-
-	/** Set Project.
-		@param C_Project_ID 
-		Financial Project
-	  */
-	public void setC_Project_ID (int C_Project_ID)
-	{
-		if (C_Project_ID < 1) 
-			set_Value (COLUMNNAME_C_Project_ID, null);
-		else 
-			set_Value (COLUMNNAME_C_Project_ID, Integer.valueOf(C_Project_ID));
-	}
-
-	/** Get Project.
-		@return Financial Project
-	  */
-	public int getC_Project_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_C_Project_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -769,14 +774,16 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
 	public static final String FREQUENCYTYPE_Hour = "H";
 	/** Day = D */
 	public static final String FREQUENCYTYPE_Day = "D";
-	/** Month = P */
-	public static final String FREQUENCYTYPE_Month = "P";
-	/** Week = W */
-	public static final String FREQUENCYTYPE_Week = "W";
-	/** Quarter = Q */
-	public static final String FREQUENCYTYPE_Quarter = "Q";
-	/** Year = Y */
-	public static final String FREQUENCYTYPE_Year = "Y";
+	/** Biweekly = B */
+	public static final String FREQUENCYTYPE_Biweekly = "B";
+	/** Monthly = N */
+	public static final String FREQUENCYTYPE_Monthly = "N";
+	/** Quarterly = Q */
+	public static final String FREQUENCYTYPE_Quarterly = "Q";
+	/** Weekly = W */
+	public static final String FREQUENCYTYPE_Weekly = "W";
+	/** Yearly = Y */
+	public static final String FREQUENCYTYPE_Yearly = "Y";
 	/** Set Frequency Type.
 		@param FrequencyType 
 		Frequency of event
@@ -1124,6 +1131,23 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
 		return ii.intValue();
 	}
 
+	/** Set Picked Qty.
+		@param PickedQty Picked Qty	  */
+	public void setPickedQty (BigDecimal PickedQty)
+	{
+		set_Value (COLUMNNAME_PickedQty, PickedQty);
+	}
+
+	/** Get Picked Qty.
+		@return Picked Qty	  */
+	public BigDecimal getPickedQty () 
+	{
+		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_PickedQty);
+		if (bd == null)
+			 return Env.ZERO;
+		return bd;
+	}
+
 	public org.eevolution.model.I_PP_Period getPP_Period() throws RuntimeException
     {
 		return (org.eevolution.model.I_PP_Period)MTable.get(getCtx(), org.eevolution.model.I_PP_Period.Table_Name)
@@ -1150,23 +1174,6 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
-	}
-
-	/** Set Picked Qty.
-		@param PickedQty Picked Qty	  */
-	public void setPickedQty (BigDecimal PickedQty)
-	{
-		set_Value (COLUMNNAME_PickedQty, PickedQty);
-	}
-
-	/** Get Picked Qty.
-		@return Picked Qty	  */
-	public BigDecimal getPickedQty () 
-	{
-		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_PickedQty);
-		if (bd == null)
-			 return Env.ZERO;
-		return bd;
 	}
 
 	/** Set Unit Price.
@@ -1413,6 +1420,34 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
 		return bd;
 	}
 
+	public org.eevolution.domain.model.I_S_ContractLine getRef_ContractLine() throws RuntimeException
+    {
+		return (org.eevolution.domain.model.I_S_ContractLine)MTable.get(getCtx(), org.eevolution.domain.model.I_S_ContractLine.Table_Name)
+			.getPO(getRef_ContractLine_ID(), get_TrxName());	}
+
+	/** Set Referenced Contract Line.
+		@param Ref_ContractLine_ID 
+		Reference to corresponding Customer/Vendor Contract
+	  */
+	public void setRef_ContractLine_ID (int Ref_ContractLine_ID)
+	{
+		if (Ref_ContractLine_ID < 1) 
+			set_Value (COLUMNNAME_Ref_ContractLine_ID, null);
+		else 
+			set_Value (COLUMNNAME_Ref_ContractLine_ID, Integer.valueOf(Ref_ContractLine_ID));
+	}
+
+	/** Get Referenced Contract Line.
+		@return Reference to corresponding Customer/Vendor Contract
+	  */
+	public int getRef_ContractLine_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_Ref_ContractLine_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
 	/** Set Revenue Recognition Amt.
 		@param RRAmt 
 		Revenue Recognition Amount
@@ -1478,34 +1513,6 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
 		return ii.intValue();
 	}
 
-	public org.eevolution.domain.model.I_S_ContractLine getRef_ContractLine() throws RuntimeException
-    {
-		return (org.eevolution.domain.model.I_S_ContractLine)MTable.get(getCtx(), org.eevolution.domain.model.I_S_ContractLine.Table_Name)
-			.getPO(getRef_ContractLine_ID(), get_TrxName());	}
-
-	/** Set Referenced Contract Line.
-		@param Ref_ContractLine_ID 
-		Reference to corresponding Customer/Vendor Contract
-	  */
-	public void setRef_ContractLine_ID (int Ref_ContractLine_ID)
-	{
-		if (Ref_ContractLine_ID < 1) 
-			set_Value (COLUMNNAME_Ref_ContractLine_ID, null);
-		else 
-			set_Value (COLUMNNAME_Ref_ContractLine_ID, Integer.valueOf(Ref_ContractLine_ID));
-	}
-
-	/** Get Referenced Contract Line.
-		@return Reference to corresponding Customer/Vendor Contract
-	  */
-	public int getRef_ContractLine_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_Ref_ContractLine_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
 	/** Set Maximum Runs.
 		@param RunsMax 
 		Number of recurring runs
@@ -1541,29 +1548,6 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
 	public int getRunsRemaining () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_RunsRemaining);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	/** Set Service Contract Line.
-		@param S_ContractLine_ID 
-		Service Contract Line
-	  */
-	public void setS_ContractLine_ID (int S_ContractLine_ID)
-	{
-		if (S_ContractLine_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_S_ContractLine_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_S_ContractLine_ID, Integer.valueOf(S_ContractLine_ID));
-	}
-
-	/** Get Service Contract Line.
-		@return Service Contract Line
-	  */
-	public int getS_ContractLine_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_S_ContractLine_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -1605,6 +1589,29 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
         return new KeyNamePair(get_ID(), String.valueOf(getS_Contract_ID()));
     }
 
+	/** Set Service Contract Line.
+		@param S_ContractLine_ID 
+		Service Contract Line
+	  */
+	public void setS_ContractLine_ID (int S_ContractLine_ID)
+	{
+		if (S_ContractLine_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_S_ContractLine_ID, null);
+		else 
+			set_ValueNoCheck (COLUMNNAME_S_ContractLine_ID, Integer.valueOf(S_ContractLine_ID));
+	}
+
+	/** Get Service Contract Line.
+		@return Service Contract Line
+	  */
+	public int getS_ContractLine_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_S_ContractLine_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
 	/** Set Resource Assignment.
 		@param S_ResourceAssignment_ID 
 		Resource Assignment
@@ -1628,6 +1635,11 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
 		return ii.intValue();
 	}
 
+	public org.eevolution.domain.model.I_S_ServiceType getS_ServiceType() throws RuntimeException
+    {
+		return (org.eevolution.domain.model.I_S_ServiceType)MTable.get(getCtx(), org.eevolution.domain.model.I_S_ServiceType.Table_Name)
+			.getPO(getS_ServiceType_ID(), get_TrxName());	}
+
 	/** Set Service Type.
 		@param S_ServiceType_ID 
 		Define a Service Type for a Service Contract
@@ -1649,23 +1661,6 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
-	}
-
-	/** Set Immutable Universally Unique Identifier.
-		@param UUID 
-		Immutable Universally Unique Identifier
-	  */
-	public void setUUID (String UUID)
-	{
-		set_Value (COLUMNNAME_UUID, UUID);
-	}
-
-	/** Get Immutable Universally Unique Identifier.
-		@return Immutable Universally Unique Identifier
-	  */
-	public String getUUID () 
-	{
-		return (String)get_Value(COLUMNNAME_UUID);
 	}
 
 	public org.compiere.model.I_C_ElementValue getUser1() throws RuntimeException
@@ -1778,5 +1773,22 @@ public class X_S_ContractLine extends PO implements I_S_ContractLine, I_Persiste
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
+	}
+
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID)
+	{
+		set_Value (COLUMNNAME_UUID, UUID);
+	}
+
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
+	  */
+	public String getUUID () 
+	{
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 }

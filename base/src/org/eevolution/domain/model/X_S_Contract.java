@@ -27,14 +27,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for S_Contract
  *  @author Adempiere (generated) 
- *  @version Release 3.9.1 - $Id$ */
+ *  @version Release 3.9.3 - $Id$ */
 public class X_S_Contract extends PO implements I_S_Contract, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20190125L;
+	private static final long serialVersionUID = 20200227L;
 
     /** Standard Constructor */
     public X_S_Contract (Properties ctx, int S_Contract_ID, String trxName)
@@ -75,12 +75,12 @@ public class X_S_Contract extends PO implements I_S_Contract, I_Persistent
 			setIsInvoiced (false);
 			setIsPrinted (false);
 // N
-			setIsSOTrx (false);
-// @IsSOTrx@
 			setIsSelected (false);
 // N
 			setIsSelfService (false);
 // N
+			setIsSOTrx (false);
+// @IsSOTrx@
 			setIsTaxIncluded (false);
 // N
 			setIsTransferred (false);
@@ -93,8 +93,8 @@ public class X_S_Contract extends PO implements I_S_Contract, I_Persistent
 // S
 			setProcessed (false);
 // N
-			setS_Contract_ID (0);
 			setSalesRep_ID (0);
+			setS_Contract_ID (0);
 			setSendEMail (false);
 // N
 			setTotalLines (Env.ZERO);
@@ -128,6 +128,11 @@ public class X_S_Contract extends PO implements I_S_Contract, I_Persistent
         .append(get_ID()).append("]");
       return sb.toString();
     }
+
+	public org.compiere.model.I_AD_Org getAD_OrgTrx() throws RuntimeException
+    {
+		return (org.compiere.model.I_AD_Org)MTable.get(getCtx(), org.compiere.model.I_AD_Org.Table_Name)
+			.getPO(getAD_OrgTrx_ID(), get_TrxName());	}
 
 	/** Set Trx Organization.
 		@param AD_OrgTrx_ID 
@@ -488,87 +493,6 @@ public class X_S_Contract extends PO implements I_S_Contract, I_Persistent
 		return ii.intValue();
 	}
 
-	public org.compiere.model.I_C_Opportunity getC_Opportunity() throws RuntimeException
-    {
-		return (org.compiere.model.I_C_Opportunity)MTable.get(getCtx(), org.compiere.model.I_C_Opportunity.Table_Name)
-			.getPO(getC_Opportunity_ID(), get_TrxName());	}
-
-	/** Set Sales Opportunity.
-		@param C_Opportunity_ID Sales Opportunity	  */
-	public void setC_Opportunity_ID (int C_Opportunity_ID)
-	{
-		if (C_Opportunity_ID < 1) 
-			set_Value (COLUMNNAME_C_Opportunity_ID, null);
-		else 
-			set_Value (COLUMNNAME_C_Opportunity_ID, Integer.valueOf(C_Opportunity_ID));
-	}
-
-	/** Get Sales Opportunity.
-		@return Sales Opportunity	  */
-	public int getC_Opportunity_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_C_Opportunity_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	public org.compiere.model.I_C_PaymentTerm getC_PaymentTerm() throws RuntimeException
-    {
-		return (org.compiere.model.I_C_PaymentTerm)MTable.get(getCtx(), org.compiere.model.I_C_PaymentTerm.Table_Name)
-			.getPO(getC_PaymentTerm_ID(), get_TrxName());	}
-
-	/** Set Payment Term.
-		@param C_PaymentTerm_ID 
-		The terms of Payment (timing, discount)
-	  */
-	public void setC_PaymentTerm_ID (int C_PaymentTerm_ID)
-	{
-		if (C_PaymentTerm_ID < 1) 
-			set_Value (COLUMNNAME_C_PaymentTerm_ID, null);
-		else 
-			set_Value (COLUMNNAME_C_PaymentTerm_ID, Integer.valueOf(C_PaymentTerm_ID));
-	}
-
-	/** Get Payment Term.
-		@return The terms of Payment (timing, discount)
-	  */
-	public int getC_PaymentTerm_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_C_PaymentTerm_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	public org.compiere.model.I_C_Project getC_Project() throws RuntimeException
-    {
-		return (org.compiere.model.I_C_Project)MTable.get(getCtx(), org.compiere.model.I_C_Project.Table_Name)
-			.getPO(getC_Project_ID(), get_TrxName());	}
-
-	/** Set Project.
-		@param C_Project_ID 
-		Financial Project
-	  */
-	public void setC_Project_ID (int C_Project_ID)
-	{
-		if (C_Project_ID < 1) 
-			set_Value (COLUMNNAME_C_Project_ID, null);
-		else 
-			set_Value (COLUMNNAME_C_Project_ID, Integer.valueOf(C_Project_ID));
-	}
-
-	/** Get Project.
-		@return Financial Project
-	  */
-	public int getC_Project_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_C_Project_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
 	/** Set Charge amount.
 		@param ChargeAmt 
 		Charge Amount
@@ -629,6 +553,31 @@ public class X_S_Contract extends PO implements I_S_Contract, I_Persistent
 		return bd;
 	}
 
+	public org.compiere.model.I_C_Opportunity getC_Opportunity() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_Opportunity)MTable.get(getCtx(), org.compiere.model.I_C_Opportunity.Table_Name)
+			.getPO(getC_Opportunity_ID(), get_TrxName());	}
+
+	/** Set Sales Opportunity.
+		@param C_Opportunity_ID Sales Opportunity	  */
+	public void setC_Opportunity_ID (int C_Opportunity_ID)
+	{
+		if (C_Opportunity_ID < 1) 
+			set_Value (COLUMNNAME_C_Opportunity_ID, null);
+		else 
+			set_Value (COLUMNNAME_C_Opportunity_ID, Integer.valueOf(C_Opportunity_ID));
+	}
+
+	/** Get Sales Opportunity.
+		@return Sales Opportunity	  */
+	public int getC_Opportunity_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_Opportunity_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
 	/** Set Copy From.
 		@param CopyFrom 
 		Copy From Record
@@ -644,6 +593,62 @@ public class X_S_Contract extends PO implements I_S_Contract, I_Persistent
 	public String getCopyFrom () 
 	{
 		return (String)get_Value(COLUMNNAME_CopyFrom);
+	}
+
+	public org.compiere.model.I_C_PaymentTerm getC_PaymentTerm() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_PaymentTerm)MTable.get(getCtx(), org.compiere.model.I_C_PaymentTerm.Table_Name)
+			.getPO(getC_PaymentTerm_ID(), get_TrxName());	}
+
+	/** Set Payment Term.
+		@param C_PaymentTerm_ID 
+		The terms of Payment (timing, discount)
+	  */
+	public void setC_PaymentTerm_ID (int C_PaymentTerm_ID)
+	{
+		if (C_PaymentTerm_ID < 1) 
+			set_Value (COLUMNNAME_C_PaymentTerm_ID, null);
+		else 
+			set_Value (COLUMNNAME_C_PaymentTerm_ID, Integer.valueOf(C_PaymentTerm_ID));
+	}
+
+	/** Get Payment Term.
+		@return The terms of Payment (timing, discount)
+	  */
+	public int getC_PaymentTerm_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_PaymentTerm_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.compiere.model.I_C_Project getC_Project() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_Project)MTable.get(getCtx(), org.compiere.model.I_C_Project.Table_Name)
+			.getPO(getC_Project_ID(), get_TrxName());	}
+
+	/** Set Project.
+		@param C_Project_ID 
+		Financial Project
+	  */
+	public void setC_Project_ID (int C_Project_ID)
+	{
+		if (C_Project_ID < 1) 
+			set_Value (COLUMNNAME_C_Project_ID, null);
+		else 
+			set_Value (COLUMNNAME_C_Project_ID, Integer.valueOf(C_Project_ID));
+	}
+
+	/** Get Project.
+		@return Financial Project
+	  */
+	public int getC_Project_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_Project_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
 	}
 
 	/** Set Account Date.
@@ -1532,30 +1537,6 @@ public class X_S_Contract extends PO implements I_S_Contract, I_Persistent
 		return false;
 	}
 
-	/** Set Sales Transaction.
-		@param IsSOTrx 
-		This is a Sales Transaction
-	  */
-	public void setIsSOTrx (boolean IsSOTrx)
-	{
-		set_Value (COLUMNNAME_IsSOTrx, Boolean.valueOf(IsSOTrx));
-	}
-
-	/** Get Sales Transaction.
-		@return This is a Sales Transaction
-	  */
-	public boolean isSOTrx () 
-	{
-		Object oo = get_Value(COLUMNNAME_IsSOTrx);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
-	}
-
 	/** Set Selected.
 		@param IsSelected Selected	  */
 	public void setIsSelected (boolean IsSelected)
@@ -1592,6 +1573,30 @@ public class X_S_Contract extends PO implements I_S_Contract, I_Persistent
 	public boolean isSelfService () 
 	{
 		Object oo = get_Value(COLUMNNAME_IsSelfService);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
+	}
+
+	/** Set Sales Transaction.
+		@param IsSOTrx 
+		This is a Sales Transaction
+	  */
+	public void setIsSOTrx (boolean IsSOTrx)
+	{
+		set_Value (COLUMNNAME_IsSOTrx, Boolean.valueOf(IsSOTrx));
+	}
+
+	/** Get Sales Transaction.
+		@return This is a Sales Transaction
+	  */
+	public boolean isSOTrx () 
+	{
+		Object oo = get_Value(COLUMNNAME_IsSOTrx);
 		if (oo != null) 
 		{
 			 if (oo instanceof Boolean) 
@@ -1813,79 +1818,6 @@ public class X_S_Contract extends PO implements I_S_Contract, I_Persistent
 		return ii.intValue();
 	}
 
-	/** Set Order Reference.
-		@param POReference 
-		Transaction Reference Number (Sales Order, Purchase Order) of your Business Partner
-	  */
-	public void setPOReference (String POReference)
-	{
-		set_Value (COLUMNNAME_POReference, POReference);
-	}
-
-	/** Get Order Reference.
-		@return Transaction Reference Number (Sales Order, Purchase Order) of your Business Partner
-	  */
-	public String getPOReference () 
-	{
-		return (String)get_Value(COLUMNNAME_POReference);
-	}
-
-	public org.eevolution.model.I_PP_Calendar getPP_Calendar() throws RuntimeException
-    {
-		return (org.eevolution.model.I_PP_Calendar)MTable.get(getCtx(), org.eevolution.model.I_PP_Calendar.Table_Name)
-			.getPO(getPP_Calendar_ID(), get_TrxName());	}
-
-	/** Set Operational Calendar.
-		@param PP_Calendar_ID 
-		Operational Period, allows to define the periods for the Operational Calendar
-	  */
-	public void setPP_Calendar_ID (int PP_Calendar_ID)
-	{
-		if (PP_Calendar_ID < 1) 
-			set_Value (COLUMNNAME_PP_Calendar_ID, null);
-		else 
-			set_Value (COLUMNNAME_PP_Calendar_ID, Integer.valueOf(PP_Calendar_ID));
-	}
-
-	/** Get Operational Calendar.
-		@return Operational Period, allows to define the periods for the Operational Calendar
-	  */
-	public int getPP_Calendar_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_PP_Calendar_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	public org.eevolution.model.I_PP_PeriodDefinition getPP_PeriodDefinition() throws RuntimeException
-    {
-		return (org.eevolution.model.I_PP_PeriodDefinition)MTable.get(getCtx(), org.eevolution.model.I_PP_PeriodDefinition.Table_Name)
-			.getPO(getPP_PeriodDefinition_ID(), get_TrxName());	}
-
-	/** Set Current Period.
-		@param PP_PeriodDefinition_ID 
-		Period Definition, allows to define time cycles for the Operational Calendar
-	  */
-	public void setPP_PeriodDefinition_ID (int PP_PeriodDefinition_ID)
-	{
-		if (PP_PeriodDefinition_ID < 1) 
-			set_Value (COLUMNNAME_PP_PeriodDefinition_ID, null);
-		else 
-			set_Value (COLUMNNAME_PP_PeriodDefinition_ID, Integer.valueOf(PP_PeriodDefinition_ID));
-	}
-
-	/** Get Current Period.
-		@return Period Definition, allows to define time cycles for the Operational Calendar
-	  */
-	public int getPP_PeriodDefinition_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_PP_PeriodDefinition_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
 	public org.compiere.model.I_C_BPartner getPay_BPartner() throws RuntimeException
     {
 		return (org.compiere.model.I_C_BPartner)MTable.get(getCtx(), org.compiere.model.I_C_BPartner.Table_Name)
@@ -2016,6 +1948,23 @@ public class X_S_Contract extends PO implements I_S_Contract, I_Persistent
 		return bd;
 	}
 
+	/** Set Order Reference.
+		@param POReference 
+		Transaction Reference Number (Sales Order, Purchase Order) of your Business Partner
+	  */
+	public void setPOReference (String POReference)
+	{
+		set_Value (COLUMNNAME_POReference, POReference);
+	}
+
+	/** Get Order Reference.
+		@return Transaction Reference Number (Sales Order, Purchase Order) of your Business Partner
+	  */
+	public String getPOReference () 
+	{
+		return (String)get_Value(COLUMNNAME_POReference);
+	}
+
 	/** Set Posted.
 		@param Posted 
 		Posting status
@@ -2038,6 +1987,62 @@ public class X_S_Contract extends PO implements I_S_Contract, I_Persistent
 			return "Y".equals(oo);
 		}
 		return false;
+	}
+
+	public org.eevolution.model.I_PP_Calendar getPP_Calendar() throws RuntimeException
+    {
+		return (org.eevolution.model.I_PP_Calendar)MTable.get(getCtx(), org.eevolution.model.I_PP_Calendar.Table_Name)
+			.getPO(getPP_Calendar_ID(), get_TrxName());	}
+
+	/** Set Operational Calendar.
+		@param PP_Calendar_ID 
+		Operational Period, allows to define the periods for the Operational Calendar
+	  */
+	public void setPP_Calendar_ID (int PP_Calendar_ID)
+	{
+		if (PP_Calendar_ID < 1) 
+			set_Value (COLUMNNAME_PP_Calendar_ID, null);
+		else 
+			set_Value (COLUMNNAME_PP_Calendar_ID, Integer.valueOf(PP_Calendar_ID));
+	}
+
+	/** Get Operational Calendar.
+		@return Operational Period, allows to define the periods for the Operational Calendar
+	  */
+	public int getPP_Calendar_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_PP_Calendar_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.eevolution.model.I_PP_PeriodDefinition getPP_PeriodDefinition() throws RuntimeException
+    {
+		return (org.eevolution.model.I_PP_PeriodDefinition)MTable.get(getCtx(), org.eevolution.model.I_PP_PeriodDefinition.Table_Name)
+			.getPO(getPP_PeriodDefinition_ID(), get_TrxName());	}
+
+	/** Set Current Period.
+		@param PP_PeriodDefinition_ID 
+		Period Definition, allows to define time cycles for the Operational Calendar
+	  */
+	public void setPP_PeriodDefinition_ID (int PP_PeriodDefinition_ID)
+	{
+		if (PP_PeriodDefinition_ID < 1) 
+			set_Value (COLUMNNAME_PP_PeriodDefinition_ID, null);
+		else 
+			set_Value (COLUMNNAME_PP_PeriodDefinition_ID, Integer.valueOf(PP_PeriodDefinition_ID));
+	}
+
+	/** Get Current Period.
+		@return Period Definition, allows to define time cycles for the Operational Calendar
+	  */
+	public int getPP_PeriodDefinition_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_PP_PeriodDefinition_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
 	}
 
 	/** PriorityRule AD_Reference_ID=154 */
@@ -2180,29 +2185,6 @@ public class X_S_Contract extends PO implements I_S_Contract, I_Persistent
 		return ii.intValue();
 	}
 
-	/** Set Service Contract.
-		@param S_Contract_ID 
-		Service Contract
-	  */
-	public void setS_Contract_ID (int S_Contract_ID)
-	{
-		if (S_Contract_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_S_Contract_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_S_Contract_ID, Integer.valueOf(S_Contract_ID));
-	}
-
-	/** Get Service Contract.
-		@return Service Contract
-	  */
-	public int getS_Contract_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_S_Contract_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
 	public org.compiere.model.I_AD_User getSalesRep() throws RuntimeException
     {
 		return (org.compiere.model.I_AD_User)MTable.get(getCtx(), org.compiere.model.I_AD_User.Table_Name)
@@ -2226,6 +2208,29 @@ public class X_S_Contract extends PO implements I_S_Contract, I_Persistent
 	public int getSalesRep_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_SalesRep_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	/** Set Service Contract.
+		@param S_Contract_ID 
+		Service Contract
+	  */
+	public void setS_Contract_ID (int S_Contract_ID)
+	{
+		if (S_Contract_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_S_Contract_ID, null);
+		else 
+			set_ValueNoCheck (COLUMNNAME_S_Contract_ID, Integer.valueOf(S_Contract_ID));
+	}
+
+	/** Get Service Contract.
+		@return Service Contract
+	  */
+	public int getS_Contract_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_S_Contract_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -2273,23 +2278,6 @@ public class X_S_Contract extends PO implements I_S_Contract, I_Persistent
 		if (bd == null)
 			 return Env.ZERO;
 		return bd;
-	}
-
-	/** Set Immutable Universally Unique Identifier.
-		@param UUID 
-		Immutable Universally Unique Identifier
-	  */
-	public void setUUID (String UUID)
-	{
-		set_Value (COLUMNNAME_UUID, UUID);
-	}
-
-	/** Get Immutable Universally Unique Identifier.
-		@return Immutable Universally Unique Identifier
-	  */
-	public String getUUID () 
-	{
-		return (String)get_Value(COLUMNNAME_UUID);
 	}
 
 	public org.compiere.model.I_C_ElementValue getUser1() throws RuntimeException
@@ -2402,6 +2390,23 @@ public class X_S_Contract extends PO implements I_S_Contract, I_Persistent
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
+	}
+
+	/** Set Immutable Universally Unique Identifier.
+		@param UUID 
+		Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID)
+	{
+		set_Value (COLUMNNAME_UUID, UUID);
+	}
+
+	/** Get Immutable Universally Unique Identifier.
+		@return Immutable Universally Unique Identifier
+	  */
+	public String getUUID () 
+	{
+		return (String)get_Value(COLUMNNAME_UUID);
 	}
 
 	/** Set Volume.

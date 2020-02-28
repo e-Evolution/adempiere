@@ -23,7 +23,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for S_Contract
  *  @author Adempiere (generated) 
- *  @version Release 3.9.1
+ *  @version Release 3.9.3
  */
 public interface I_S_Contract 
 {
@@ -50,6 +50,19 @@ public interface I_S_Contract
 	  */
 	public int getAD_Client_ID();
 
+    /** Column name AD_Org_ID */
+    public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
+
+	/** Set Organization.
+	  * Organizational entity within client
+	  */
+	public void setAD_Org_ID (int AD_Org_ID);
+
+	/** Get Organization.
+	  * Organizational entity within client
+	  */
+	public int getAD_Org_ID();
+
     /** Column name AD_OrgTrx_ID */
     public static final String COLUMNNAME_AD_OrgTrx_ID = "AD_OrgTrx_ID";
 
@@ -63,18 +76,7 @@ public interface I_S_Contract
 	  */
 	public int getAD_OrgTrx_ID();
 
-    /** Column name AD_Org_ID */
-    public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
-
-	/** Set Organization.
-	  * Organizational entity within client
-	  */
-	public void setAD_Org_ID (int AD_Org_ID);
-
-	/** Get Organization.
-	  * Organizational entity within client
-	  */
-	public int getAD_Org_ID();
+	public org.compiere.model.I_AD_Org getAD_OrgTrx() throws RuntimeException;
 
     /** Column name AD_User_ID */
     public static final String COLUMNNAME_AD_User_ID = "AD_User_ID";
@@ -256,47 +258,6 @@ public interface I_S_Contract
 
 	public org.compiere.model.I_C_DocType getC_DocType() throws RuntimeException;
 
-    /** Column name C_Opportunity_ID */
-    public static final String COLUMNNAME_C_Opportunity_ID = "C_Opportunity_ID";
-
-	/** Set Sales Opportunity	  */
-	public void setC_Opportunity_ID (int C_Opportunity_ID);
-
-	/** Get Sales Opportunity	  */
-	public int getC_Opportunity_ID();
-
-	public org.compiere.model.I_C_Opportunity getC_Opportunity() throws RuntimeException;
-
-    /** Column name C_PaymentTerm_ID */
-    public static final String COLUMNNAME_C_PaymentTerm_ID = "C_PaymentTerm_ID";
-
-	/** Set Payment Term.
-	  * The terms of Payment (timing, discount)
-	  */
-	public void setC_PaymentTerm_ID (int C_PaymentTerm_ID);
-
-	/** Get Payment Term.
-	  * The terms of Payment (timing, discount)
-	  */
-	public int getC_PaymentTerm_ID();
-
-	public org.compiere.model.I_C_PaymentTerm getC_PaymentTerm() throws RuntimeException;
-
-    /** Column name C_Project_ID */
-    public static final String COLUMNNAME_C_Project_ID = "C_Project_ID";
-
-	/** Set Project.
-	  * Financial Project
-	  */
-	public void setC_Project_ID (int C_Project_ID);
-
-	/** Get Project.
-	  * Financial Project
-	  */
-	public int getC_Project_ID();
-
-	public org.compiere.model.I_C_Project getC_Project() throws RuntimeException;
-
     /** Column name ChargeAmt */
     public static final String COLUMNNAME_ChargeAmt = "ChargeAmt";
 
@@ -336,6 +297,17 @@ public interface I_S_Contract
 	  */
 	public BigDecimal getCommittedQty();
 
+    /** Column name C_Opportunity_ID */
+    public static final String COLUMNNAME_C_Opportunity_ID = "C_Opportunity_ID";
+
+	/** Set Sales Opportunity	  */
+	public void setC_Opportunity_ID (int C_Opportunity_ID);
+
+	/** Get Sales Opportunity	  */
+	public int getC_Opportunity_ID();
+
+	public org.compiere.model.I_C_Opportunity getC_Opportunity() throws RuntimeException;
+
     /** Column name CopyFrom */
     public static final String COLUMNNAME_CopyFrom = "CopyFrom";
 
@@ -348,6 +320,36 @@ public interface I_S_Contract
 	  * Copy From Record
 	  */
 	public String getCopyFrom();
+
+    /** Column name C_PaymentTerm_ID */
+    public static final String COLUMNNAME_C_PaymentTerm_ID = "C_PaymentTerm_ID";
+
+	/** Set Payment Term.
+	  * The terms of Payment (timing, discount)
+	  */
+	public void setC_PaymentTerm_ID (int C_PaymentTerm_ID);
+
+	/** Get Payment Term.
+	  * The terms of Payment (timing, discount)
+	  */
+	public int getC_PaymentTerm_ID();
+
+	public org.compiere.model.I_C_PaymentTerm getC_PaymentTerm() throws RuntimeException;
+
+    /** Column name C_Project_ID */
+    public static final String COLUMNNAME_C_Project_ID = "C_Project_ID";
+
+	/** Set Project.
+	  * Financial Project
+	  */
+	public void setC_Project_ID (int C_Project_ID);
+
+	/** Get Project.
+	  * Financial Project
+	  */
+	public int getC_Project_ID();
+
+	public org.compiere.model.I_C_Project getC_Project() throws RuntimeException;
 
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";
@@ -870,19 +872,6 @@ public interface I_S_Contract
 	  */
 	public boolean isPrinted();
 
-    /** Column name IsSOTrx */
-    public static final String COLUMNNAME_IsSOTrx = "IsSOTrx";
-
-	/** Set Sales Transaction.
-	  * This is a Sales Transaction
-	  */
-	public void setIsSOTrx (boolean IsSOTrx);
-
-	/** Get Sales Transaction.
-	  * This is a Sales Transaction
-	  */
-	public boolean isSOTrx();
-
     /** Column name IsSelected */
     public static final String COLUMNNAME_IsSelected = "IsSelected";
 
@@ -904,6 +893,19 @@ public interface I_S_Contract
 	  * This is a Self-Service entry or this entry can be changed via Self-Service
 	  */
 	public boolean isSelfService();
+
+    /** Column name IsSOTrx */
+    public static final String COLUMNNAME_IsSOTrx = "IsSOTrx";
+
+	/** Set Sales Transaction.
+	  * This is a Sales Transaction
+	  */
+	public void setIsSOTrx (boolean IsSOTrx);
+
+	/** Get Sales Transaction.
+	  * This is a Sales Transaction
+	  */
+	public boolean isSOTrx();
 
     /** Column name IsSummary */
     public static final String COLUMNNAME_IsSummary = "IsSummary";
@@ -1019,49 +1021,6 @@ public interface I_S_Contract
 
 	public org.compiere.model.I_M_Warehouse getM_Warehouse() throws RuntimeException;
 
-    /** Column name POReference */
-    public static final String COLUMNNAME_POReference = "POReference";
-
-	/** Set Order Reference.
-	  * Transaction Reference Number (Sales Order, Purchase Order) of your Business Partner
-	  */
-	public void setPOReference (String POReference);
-
-	/** Get Order Reference.
-	  * Transaction Reference Number (Sales Order, Purchase Order) of your Business Partner
-	  */
-	public String getPOReference();
-
-    /** Column name PP_Calendar_ID */
-    public static final String COLUMNNAME_PP_Calendar_ID = "PP_Calendar_ID";
-
-	/** Set Operational Calendar.
-	  * Operational Period, allows to define the periods for the Operational Calendar
-	  */
-	public void setPP_Calendar_ID (int PP_Calendar_ID);
-
-	/** Get Operational Calendar.
-	  * Operational Period, allows to define the periods for the Operational Calendar
-	  */
-	public int getPP_Calendar_ID();
-
-	public org.eevolution.model.I_PP_Calendar getPP_Calendar() throws RuntimeException;
-
-    /** Column name PP_PeriodDefinition_ID */
-    public static final String COLUMNNAME_PP_PeriodDefinition_ID = "PP_PeriodDefinition_ID";
-
-	/** Set Current Period.
-	  * Period Definition, allows to define time cycles for the Operational Calendar
-	  */
-	public void setPP_PeriodDefinition_ID (int PP_PeriodDefinition_ID);
-
-	/** Get Current Period.
-	  * Period Definition, allows to define time cycles for the Operational Calendar
-	  */
-	public int getPP_PeriodDefinition_ID();
-
-	public org.eevolution.model.I_PP_PeriodDefinition getPP_PeriodDefinition() throws RuntimeException;
-
     /** Column name Pay_BPartner_ID */
     public static final String COLUMNNAME_Pay_BPartner_ID = "Pay_BPartner_ID";
 
@@ -1131,6 +1090,19 @@ public interface I_S_Contract
 	  */
 	public BigDecimal getPlannedQty();
 
+    /** Column name POReference */
+    public static final String COLUMNNAME_POReference = "POReference";
+
+	/** Set Order Reference.
+	  * Transaction Reference Number (Sales Order, Purchase Order) of your Business Partner
+	  */
+	public void setPOReference (String POReference);
+
+	/** Get Order Reference.
+	  * Transaction Reference Number (Sales Order, Purchase Order) of your Business Partner
+	  */
+	public String getPOReference();
+
     /** Column name Posted */
     public static final String COLUMNNAME_Posted = "Posted";
 
@@ -1143,6 +1115,36 @@ public interface I_S_Contract
 	  * Posting status
 	  */
 	public boolean isPosted();
+
+    /** Column name PP_Calendar_ID */
+    public static final String COLUMNNAME_PP_Calendar_ID = "PP_Calendar_ID";
+
+	/** Set Operational Calendar.
+	  * Operational Period, allows to define the periods for the Operational Calendar
+	  */
+	public void setPP_Calendar_ID (int PP_Calendar_ID);
+
+	/** Get Operational Calendar.
+	  * Operational Period, allows to define the periods for the Operational Calendar
+	  */
+	public int getPP_Calendar_ID();
+
+	public org.eevolution.model.I_PP_Calendar getPP_Calendar() throws RuntimeException;
+
+    /** Column name PP_PeriodDefinition_ID */
+    public static final String COLUMNNAME_PP_PeriodDefinition_ID = "PP_PeriodDefinition_ID";
+
+	/** Set Current Period.
+	  * Period Definition, allows to define time cycles for the Operational Calendar
+	  */
+	public void setPP_PeriodDefinition_ID (int PP_PeriodDefinition_ID);
+
+	/** Get Current Period.
+	  * Period Definition, allows to define time cycles for the Operational Calendar
+	  */
+	public int getPP_PeriodDefinition_ID();
+
+	public org.eevolution.model.I_PP_PeriodDefinition getPP_PeriodDefinition() throws RuntimeException;
 
     /** Column name PriorityRule */
     public static final String COLUMNNAME_PriorityRule = "PriorityRule";
@@ -1220,19 +1222,6 @@ public interface I_S_Contract
 
 	public org.eevolution.domain.model.I_S_Contract getRef_Contract() throws RuntimeException;
 
-    /** Column name S_Contract_ID */
-    public static final String COLUMNNAME_S_Contract_ID = "S_Contract_ID";
-
-	/** Set Service Contract.
-	  * Service Contract
-	  */
-	public void setS_Contract_ID (int S_Contract_ID);
-
-	/** Get Service Contract.
-	  * Service Contract
-	  */
-	public int getS_Contract_ID();
-
     /** Column name SalesRep_ID */
     public static final String COLUMNNAME_SalesRep_ID = "SalesRep_ID";
 
@@ -1247,6 +1236,19 @@ public interface I_S_Contract
 	public int getSalesRep_ID();
 
 	public org.compiere.model.I_AD_User getSalesRep() throws RuntimeException;
+
+    /** Column name S_Contract_ID */
+    public static final String COLUMNNAME_S_Contract_ID = "S_Contract_ID";
+
+	/** Set Service Contract.
+	  * Service Contract
+	  */
+	public void setS_Contract_ID (int S_Contract_ID);
+
+	/** Get Service Contract.
+	  * Service Contract
+	  */
+	public int getS_Contract_ID();
 
     /** Column name SendEMail */
     public static final String COLUMNNAME_SendEMail = "SendEMail";
@@ -1273,19 +1275,6 @@ public interface I_S_Contract
 	  * Total of all document lines
 	  */
 	public BigDecimal getTotalLines();
-
-    /** Column name UUID */
-    public static final String COLUMNNAME_UUID = "UUID";
-
-	/** Set Immutable Universally Unique Identifier.
-	  * Immutable Universally Unique Identifier
-	  */
-	public void setUUID (String UUID);
-
-	/** Get Immutable Universally Unique Identifier.
-	  * Immutable Universally Unique Identifier
-	  */
-	public String getUUID();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";
@@ -1362,6 +1351,19 @@ public interface I_S_Contract
 	public int getUser4_ID();
 
 	public org.compiere.model.I_C_ElementValue getUser4() throws RuntimeException;
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 
     /** Column name Volume */
     public static final String COLUMNNAME_Volume = "Volume";

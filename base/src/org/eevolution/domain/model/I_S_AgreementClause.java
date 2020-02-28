@@ -21,17 +21,17 @@ import java.sql.Timestamp;
 import org.compiere.model.*;
 import org.compiere.util.KeyNamePair;
 
-/** Generated Interface for S_ContractPartiesType
+/** Generated Interface for S_AgreementClause
  *  @author Adempiere (generated) 
  *  @version Release 3.9.3
  */
-public interface I_S_ContractPartiesType 
+public interface I_S_AgreementClause 
 {
 
-    /** TableName=S_ContractPartiesType */
-    public static final String Table_Name = "S_ContractPartiesType";
+    /** TableName=S_AgreementClause */
+    public static final String Table_Name = "S_AgreementClause";
 
-    /** AD_Table_ID=54445 */
+    /** AD_Table_ID=54710 */
     public static final int Table_ID = MTable.getTable_ID(Table_Name);
 
     KeyNamePair Model = new KeyNamePair(Table_ID, Table_Name);
@@ -92,19 +92,6 @@ public interface I_S_ContractPartiesType
 	  */
 	public String getDescription();
 
-    /** Column name Help */
-    public static final String COLUMNNAME_Help = "Help";
-
-	/** Set Comment/Help.
-	  * Comment or Hint
-	  */
-	public void setHelp (String Help);
-
-	/** Get Comment/Help.
-	  * Comment or Hint
-	  */
-	public String getHelp();
-
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";
 
@@ -118,18 +105,18 @@ public interface I_S_ContractPartiesType
 	  */
 	public boolean isActive();
 
-    /** Column name IsDefault */
-    public static final String COLUMNNAME_IsDefault = "IsDefault";
+    /** Column name IsMandatory */
+    public static final String COLUMNNAME_IsMandatory = "IsMandatory";
 
-	/** Set Default.
-	  * Default value
+	/** Set Mandatory.
+	  * Data entry is required in this column
 	  */
-	public void setIsDefault (boolean IsDefault);
+	public void setIsMandatory (boolean IsMandatory);
 
-	/** Get Default.
-	  * Default value
+	/** Get Mandatory.
+	  * Data entry is required in this column
 	  */
-	public boolean isDefault();
+	public boolean isMandatory();
 
     /** Column name Name */
     public static final String COLUMNNAME_Name = "Name";
@@ -144,14 +131,63 @@ public interface I_S_ContractPartiesType
 	  */
 	public String getName();
 
-    /** Column name S_ContractPartiesType_ID */
-    public static final String COLUMNNAME_S_ContractPartiesType_ID = "S_ContractPartiesType_ID";
+    /** Column name S_AgreementClauseCategory_ID */
+    public static final String COLUMNNAME_S_AgreementClauseCategory_ID = "S_AgreementClauseCategory_ID";
 
-	/** Set Contract Parties Type ID	  */
-	public void setS_ContractPartiesType_ID (int S_ContractPartiesType_ID);
+	/** Set Agreement Clause Category.
+	  * Agreement Clause Category allows grouping clauses of an Agreement by category
+	  */
+	public void setS_AgreementClauseCategory_ID (int S_AgreementClauseCategory_ID);
 
-	/** Get Contract Parties Type ID	  */
-	public int getS_ContractPartiesType_ID();
+	/** Get Agreement Clause Category.
+	  * Agreement Clause Category allows grouping clauses of an Agreement by category
+	  */
+	public int getS_AgreementClauseCategory_ID();
+
+	public org.eevolution.domain.model.I_S_AgreementClauseCategory getS_AgreementClauseCategory() throws RuntimeException;
+
+    /** Column name S_AgreementClause_ID */
+    public static final String COLUMNNAME_S_AgreementClause_ID = "S_AgreementClause_ID";
+
+	/** Set Agreement Clause.
+	  * The Agreement Clause Library allows you to maintain a collection of clauses to define the terms and conditions of a contract.
+	  */
+	public void setS_AgreementClause_ID (int S_AgreementClause_ID);
+
+	/** Get Agreement Clause.
+	  * The Agreement Clause Library allows you to maintain a collection of clauses to define the terms and conditions of a contract.
+	  */
+	public int getS_AgreementClause_ID();
+
+    /** Column name S_AgreementType_ID */
+    public static final String COLUMNNAME_S_AgreementType_ID = "S_AgreementType_ID";
+
+	/** Set Agreement Type.
+	  * The Agreement Types are used to define the terms and conditions of a contract
+	  */
+	public void setS_AgreementType_ID (int S_AgreementType_ID);
+
+	/** Get Agreement Type.
+	  * The Agreement Types are used to define the terms and conditions of a contract
+	  */
+	public int getS_AgreementType_ID();
+
+	public org.eevolution.domain.model.I_S_AgreementType getS_AgreementType() throws RuntimeException;
+
+    /** Column name SeqNo */
+    public static final String COLUMNNAME_SeqNo = "SeqNo";
+
+	/** Set Sequence.
+	  * Method of ordering records;
+ lowest number comes first
+	  */
+	public void setSeqNo (int SeqNo);
+
+	/** Get Sequence.
+	  * Method of ordering records;
+ lowest number comes first
+	  */
+	public int getSeqNo();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";

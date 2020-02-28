@@ -22,10 +22,10 @@ import java.util.Properties;
 import org.compiere.model.*;
 import org.compiere.util.KeyNamePair;
 
-/** Generated Model for S_ContractPartiesType
+/** Generated Model for S_AgreementClauseCategory
  *  @author Adempiere (generated) 
  *  @version Release 3.9.3 - $Id$ */
-public class X_S_ContractPartiesType extends PO implements I_S_ContractPartiesType, I_Persistent 
+public class X_S_AgreementClauseCategory extends PO implements I_S_AgreementClauseCategory, I_Persistent 
 {
 
 	/**
@@ -34,18 +34,18 @@ public class X_S_ContractPartiesType extends PO implements I_S_ContractPartiesTy
 	private static final long serialVersionUID = 20200227L;
 
     /** Standard Constructor */
-    public X_S_ContractPartiesType (Properties ctx, int S_ContractPartiesType_ID, String trxName)
+    public X_S_AgreementClauseCategory (Properties ctx, int S_AgreementClauseCategory_ID, String trxName)
     {
-      super (ctx, S_ContractPartiesType_ID, trxName);
-      /** if (S_ContractPartiesType_ID == 0)
+      super (ctx, S_AgreementClauseCategory_ID, trxName);
+      /** if (S_AgreementClauseCategory_ID == 0)
         {
 			setName (null);
-			setS_ContractPartiesType_ID (0);
+			setS_AgreementClauseCategory_ID (0);
         } */
     }
 
     /** Load Constructor */
-    public X_S_ContractPartiesType (Properties ctx, ResultSet rs, String trxName)
+    public X_S_AgreementClauseCategory (Properties ctx, ResultSet rs, String trxName)
     {
       super (ctx, rs, trxName);
     }
@@ -67,7 +67,7 @@ public class X_S_ContractPartiesType extends PO implements I_S_ContractPartiesTy
 
     public String toString()
     {
-      StringBuffer sb = new StringBuffer ("X_S_ContractPartiesType[")
+      StringBuffer sb = new StringBuffer ("X_S_AgreementClauseCategory[")
         .append(get_ID()).append("]");
       return sb.toString();
     }
@@ -106,30 +106,6 @@ public class X_S_ContractPartiesType extends PO implements I_S_ContractPartiesTy
 		return (String)get_Value(COLUMNNAME_Help);
 	}
 
-	/** Set Default.
-		@param IsDefault 
-		Default value
-	  */
-	public void setIsDefault (boolean IsDefault)
-	{
-		set_Value (COLUMNNAME_IsDefault, Boolean.valueOf(IsDefault));
-	}
-
-	/** Get Default.
-		@return Default value
-	  */
-	public boolean isDefault () 
-	{
-		Object oo = get_Value(COLUMNNAME_IsDefault);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
-	}
-
 	/** Set Name.
 		@param Name 
 		Alphanumeric identifier of the entity
@@ -147,21 +123,24 @@ public class X_S_ContractPartiesType extends PO implements I_S_ContractPartiesTy
 		return (String)get_Value(COLUMNNAME_Name);
 	}
 
-	/** Set Contract Parties Type ID.
-		@param S_ContractPartiesType_ID Contract Parties Type ID	  */
-	public void setS_ContractPartiesType_ID (int S_ContractPartiesType_ID)
+	/** Set Agreement Clause Category.
+		@param S_AgreementClauseCategory_ID 
+		Agreement Clause Category allows grouping clauses of an Agreement by category
+	  */
+	public void setS_AgreementClauseCategory_ID (int S_AgreementClauseCategory_ID)
 	{
-		if (S_ContractPartiesType_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_S_ContractPartiesType_ID, null);
+		if (S_AgreementClauseCategory_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_S_AgreementClauseCategory_ID, null);
 		else 
-			set_ValueNoCheck (COLUMNNAME_S_ContractPartiesType_ID, Integer.valueOf(S_ContractPartiesType_ID));
+			set_ValueNoCheck (COLUMNNAME_S_AgreementClauseCategory_ID, Integer.valueOf(S_AgreementClauseCategory_ID));
 	}
 
-	/** Get Contract Parties Type ID.
-		@return Contract Parties Type ID	  */
-	public int getS_ContractPartiesType_ID () 
+	/** Get Agreement Clause Category.
+		@return Agreement Clause Category allows grouping clauses of an Agreement by category
+	  */
+	public int getS_AgreementClauseCategory_ID () 
 	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_S_ContractPartiesType_ID);
+		Integer ii = (Integer)get_Value(COLUMNNAME_S_AgreementClauseCategory_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
