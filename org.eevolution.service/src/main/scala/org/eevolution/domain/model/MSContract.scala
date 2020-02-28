@@ -20,13 +20,15 @@ package org.eevolution.domain.model
 
 import java.io.File
 import java.sql.{ResultSet, Timestamp}
-import java.util.Properties
+import java.util.{Comparator, Properties}
 
 import org.compiere.model.ModelValidator._
 import org.compiere.model._
 import org.compiere.process.{DocAction, DocumentEngine}
 import org.compiere.util.DB
-import org.eevolution.domain.model.X_S_Contract
+
+
+
 
 /**
   * Contract Entity
@@ -46,6 +48,10 @@ class MSContract(ctx: Properties, id: Int, rs: ResultSet, trxName: String)
   def this(ctx: Properties, rs: ResultSet, trxName: String) {
     this(ctx, 999999999, rs, trxName)
     load(rs)
+  }
+
+  def compare[A](obj1: A, obj2: A)(implicit comparator: Comparator[A]) = {
+    comparator.compare(obj1, obj2)
   }
 
 
