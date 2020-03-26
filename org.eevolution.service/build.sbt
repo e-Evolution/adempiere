@@ -4,8 +4,23 @@ name := "ServiceManagement"
 
 version := "1.0"
 
-scalaVersion := "2.12.6"
+scalaVersion := "2.13.1"
 crossPaths := false
+
+libraryDependencies ++= Seq(
+  "javax.servlet" % "javax.servlet-api" % "3.0.1" % "provided",
+  "com.typesafe" % "config" % "1.2.0",
+  "com.lihaoyi" %% "os-lib" % "0.6.3",
+  "io.circe" %% "circe-core" %  "0.12.3",
+  "io.circe" %% "circe-generic" % "0.12.3",
+  "io.circe" %% "circe-parser" %  "0.12.3",
+  "dev.zio" %% "zio" % "1.0.0-RC18",
+  "io.getquill" %% "quill-jdbc" % "3.5.0",
+  "org.postgresql" % "postgresql" % "42.2.8",
+  "org.scala-lang" % "scala-reflect" % "2.13.1",
+  "org.scalactic" %% "scalactic" % "3.1.0",
+  "org.scalatest" %% "scalatest" % "3.1.0" % "test"
+)
 
 scalacOptions ++= Seq("-feature", "-unchecked", "-deprecation", "-encoding" , "utf8")
 javacOptions ++= Seq("-encoding", "UTF-8")
