@@ -83,7 +83,7 @@ public class GenerateModel
 		//String directory = "/Users/e-Evolution/Develop/ADempiere/390/base/src/org/eevolution/model";
 		//String directory = "/Users/e-Evolution/Develop/ADempiere/develop/base/src/org/spin/model";
         //String directory = "/Users/e-Evolution/Develop/ADempiere/develop/base/src/org/adempiere/model";
-		String directory = "/Users/e-Evolution/Develop/ADempiere/develop/base/src/org/eevolution/model";
+		String directory = "/Users/e-Evolution/Develop/ADempiere/develop/base/src/org/eevolution/domain/model";
 		if (args.length > 0)
 			directory = args[0];
 		if (directory == null || directory.length() == 0)
@@ -95,7 +95,8 @@ public class GenerateModel
 		
 		//	second parameter
 		//String packageName = "compiere.model";
-       	String packageName = "org.eevolution.model";
+       	//String packageName = "org.eevolution.model";
+		String packageName = "org.eevolution.domain.model";
         //String packageName = "org.compiere.model";
         //String packageName = "org.adempiere.model";
 		//String packageName = "org.spin.model";
@@ -112,12 +113,13 @@ public class GenerateModel
 		//String entityType = "'U','A'";	//	User, Application
         //String entityType = "'D'";	//	User, Application
 		//String entityType = "'EE08'";	//	User, Application
-		String entityType = "'EE01','EE02','EE03','EE04','EE06','EE08','EE09'";	//	User, Application
+		//String entityType = "'EE01','EE02','EE03','EE04','EE06','EE08','EE09'";	//	User, Application
         //String entityType = "'EE07'";	//	User, Application
 		//String entityType = "'EE02'";	//	User, Application
 		//String entityType = "'EE08'";	//	User, Application
         //String entityType = "'EE05'";	//	User, Application
 		//String entityType = "'EE08'";	//	User, Application
+		String entityType = "'EE11'";	//	User, Application
 		//String entityType = "'FMS'";	//	User, Application
 		if (args.length > 2)
 			entityType = args[2]; 

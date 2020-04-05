@@ -29,7 +29,7 @@ import org.compiere.util.CLogMgt;
  *  @version $Id: PP_Optimal.java,v 1.3 2006/07/30 00:51:03 jjanke Exp $
  */
 public class PP_Optimal extends PaymentProcessor
-	implements Serializable
+	implements Serializable , PaymentProcessorComponent
 {
 	/**
 	 * 
@@ -182,6 +182,11 @@ public class PP_Optimal extends PaymentProcessor
 		return "Optimal " + _CLIENT_VERSION;
 	}   //  getVersion
 
+	@Override
+	public boolean processCreditCard() throws IllegalArgumentException {
+		return processCC();
+	}
+
 	/**
 	 * 	Process CC
 	 *	@return true if OK
@@ -270,6 +275,11 @@ public class PP_Optimal extends PaymentProcessor
 		}
 		return m_ok;
 	}	//	processCC
+
+	@Override
+	public boolean paymentProcessedSuccessfully() {
+		return isProcessedOK ();
+	}
 
 	/**
 	 * 	Is Processed OK

@@ -28,7 +28,7 @@ import org.compiere.util.CLogMgt;
  *  @version $Id: PP_PayPal.java,v 1.2 2006/07/30 00:51:02 jjanke Exp $
  */
 public class PP_PayPal extends PaymentProcessor
-	implements Serializable
+	implements Serializable , PaymentProcessorComponent
 {
 	/**
 	 * 
@@ -39,7 +39,12 @@ public class PP_PayPal extends PaymentProcessor
 	/** PayPal Caller Service	*/
 //	private CallerServices 	m_caller; 
 
-	
+
+	@Override
+	public boolean processCreditCard() throws IllegalArgumentException {
+		return processCC();
+	}
+
 	/**
 	 * 	Process CC
 	 *	@return true if processed
@@ -50,6 +55,11 @@ public class PP_PayPal extends PaymentProcessor
 	{
 		return m_ok;
 	}	//	processCC
+
+	@Override
+	public boolean paymentProcessedSuccessfully() {
+		return isProcessedOK();
+	}
 
 	/**
 	 * 	Is Processed OK

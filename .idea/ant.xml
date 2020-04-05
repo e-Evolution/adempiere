@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AntConfiguration">
-    <buildFile url="file://$PROJECT_DIR$/utils_dev/build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/utils_dev/build.xml">
+      <customJdkName value="1.8 adoptopenjdk-8.jdk" />
+    </buildFile>
     <buildFile url="file://$PROJECT_DIR$/org.eevolution.manufacturing/build.xml" />
     <buildFile url="file://$PROJECT_DIR$/org.eevolution.warehouse/build.xml" />
     <buildFile url="file://$PROJECT_DIR$/org.eevolution.hr_and_payroll/build.xml" />

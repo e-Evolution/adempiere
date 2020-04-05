@@ -247,7 +247,7 @@ public class ASPUtil {
 		}
 		//	Filter
 		return fields.stream()
-			.filter(field -> field.isQueryCriteria())
+			.filter(field -> field.isActive() && field.isQueryCriteria())
 			.sorted(Comparator.comparing(MBrowseField::getSeqNoGrid))
 			.collect(Collectors.toList());
 	}
@@ -264,7 +264,7 @@ public class ASPUtil {
 		}
 		//	Filter
 		return fields.stream()
-			.filter(field -> field.isIdentifier())
+			.filter(field -> field.isActive() && field.isIdentifier())
 			.sorted(Comparator.comparing(MBrowseField::getSeqNo))
 			.collect(Collectors.toList());
 	}
@@ -281,7 +281,7 @@ public class ASPUtil {
 		}
 		//	Filter
 		return fields.stream()
-			.filter(field -> field.isOrderBy() && field.isDisplayed())
+			.filter(field -> field.isActive() && field.isOrderBy() && field.isDisplayed())
 			.sorted(Comparator.comparing(MBrowseField::getSeqNo))
 			.collect(Collectors.toList());
 	}
@@ -298,7 +298,7 @@ public class ASPUtil {
 		}
 		//	Filter
 		return fields.stream()
-			.filter(field -> field.isDisplayed() || field.isIdentifier())
+			.filter(field -> field.isActive() && field.isDisplayed() || field.isIdentifier())
 			.sorted(Comparator.comparing(MBrowseField::getSeqNo))
 			.collect(Collectors.toList());
 	}
@@ -315,7 +315,7 @@ public class ASPUtil {
 		}
 		//	Filter
 		return fields.stream()
-			.filter(field -> field.isKey())
+			.filter(field -> field.isActive() && field.isKey())
 			.sorted(Comparator.comparing(MBrowseField::getSeqNo))
 			.findFirst()
 			.get();
@@ -1586,6 +1586,8 @@ public class ASPUtil {
 		if(overwrite) {
 			//	Sequence
 			processParameter.setSeqNo(customProcessParameter.getSeqNo());
+			//	Active
+			processParameter.setIsActive(customProcessParameter.isActive());
 		} else {
 			//	Sequence
 			if(customProcessParameter.getSeqNo() > 0) {
@@ -1700,8 +1702,10 @@ public class ASPUtil {
 			browseField.setSeqNo(customBrowseField.getSeqNo());
 			browseField.setSeqNoGrid(customBrowseField.getSeqNoGrid());
 			browseField.setIsActive(customBrowseField.isActive());
+			browseField.setIsDisplayed(customBrowseField.isDisplayed());
 			browseField.setIsQueryCriteria(customBrowseField.isQueryCriteria());
 			browseField.setIsOrderBy(customBrowseField.isOrderBy());
+			browseField.setSortNo(customBrowseField.getSortNo());
 		} else {
 			//	Sequence
 			if(customBrowseField.getSeqNo() > 0) {
