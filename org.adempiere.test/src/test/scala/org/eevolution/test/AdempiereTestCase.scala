@@ -41,6 +41,7 @@ trait AdempiereTestCase extends AdempiereStartup with Suite with BeforeAndAfterA
       trx.close
     }
   }
+
   import org.eevolution.dsl._
   def Organization : Organization = MOrg.get(Env.getCtx , Env.getAD_Org_ID(Env.getCtx))
   def Warehouse : Warehouse = MWarehouse.get(Env.getCtx, Env.getContextAsInt(Env.getCtx(), "#M_Warehouse_ID"))

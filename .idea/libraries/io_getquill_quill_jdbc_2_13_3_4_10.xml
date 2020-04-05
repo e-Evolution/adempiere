@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="io.getquill:quill-jdbc_2.13:3.4.10" type="repository">
+    <properties maven-id="io.getquill:quill-jdbc_2.13:3.4.10" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/io/getquill/quill-jdbc_2.13/3.4.10/quill-jdbc_2.13-3.4.10.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/getquill/quill-sql_2.13/3.4.10/quill-sql_2.13-3.4.10.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/getquill/quill-core_2.13/3.4.10/quill-core_2.13-3.4.10.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/typesafe/config/1.3.4/config-1.3.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/typesafe/scala-logging/scala-logging_2.13/3.9.2/scala-logging_2.13-3.9.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-reflect/2.13.1/scala-reflect-2.13.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-collection-compat_2.13/2.1.2/scala-collection-compat_2.13-2.1.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/pprint_2.13/0.5.5/pprint_2.13-0.5.5.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/fansi_2.13/0.2.7/fansi_2.13-0.2.7.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/lihaoyi/sourcecode_2.13/0.1.7/sourcecode_2.13-0.1.7.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/zaxxer/HikariCP/3.4.1/HikariCP-3.4.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

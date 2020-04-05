@@ -196,7 +196,6 @@
       <sourceFolder url="file://$MODULE_DIR$/org.adempiere.asset/src/main/java/base" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/org.adempiere.webservice/WEB-INF/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/com.kkalice.adempiere.migrate/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/org.adempiere.test/src/test/scala" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/org.adempiere.test/src/main/scala" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/org.eevolution.warehouse/src/main/java/ui/zk" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/org.adempiere.production/src/main/java/base" isTestSource="false" />
@@ -220,9 +219,11 @@
       <sourceFolder url="file://$MODULE_DIR$/org.spin.loan_management/src/main/java/ui/swing" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/org.spin.loan_management/src/main/java/ui/zk" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/org.spin.finance_management/src/main/java/base" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/org.eevolution.service/src/main/scala" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/org.eevolution.service/src/main/java" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="1.8 adoptopenjdk-8.jdk" jdkType="JavaSDK" />
     <orderEntry type="module-library" exported="">
       <library name="jstl.jar">
         <CLASSES>
@@ -1157,8 +1158,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="SBT: javax.servlet:javax.servlet-api:3.0.1:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe:config:1.2.0:jar" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -1566,7 +1565,10 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="org.scalatest:scalatest_2.12:3.0.5" level="project" />
-    <orderEntry type="library" name="scala-sdk-2.12.10" level="project" />
+    <orderEntry type="library" name="LMX" level="project" />
+    <orderEntry type="library" name="not-yet-commons-ssl-0.3.9" level="project" />
+    <orderEntry type="library" name="dev.zio:zio_2.13:1.0.0-RC18-2" level="project" />
+    <orderEntry type="library" name="io.getquill:quill-jdbc_2.13:3.4.10" level="project" />
+    <orderEntry type="library" name="scala-sdk-2.13.1" level="project" />
   </component>
 </module>
