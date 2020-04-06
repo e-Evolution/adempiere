@@ -886,6 +886,21 @@ public interface I_C_Invoice
 
 	public org.compiere.model.I_AD_User getSalesRep() throws RuntimeException;
 
+    /** Column name S_Contract_ID */
+    public static final String COLUMNNAME_S_Contract_ID = "S_Contract_ID";
+
+	/** Set Contract.
+	  * Contract
+	  */
+	public void setS_Contract_ID (int S_Contract_ID);
+
+	/** Get Contract.
+	  * Contract
+	  */
+	public int getS_Contract_ID();
+
+	public org.eevolution.context.contract.infrastructure.persistence.model.I_S_Contract getS_Contract() throws RuntimeException;
+
     /** Column name SendEMail */
     public static final String COLUMNNAME_SendEMail = "SendEMail";
 

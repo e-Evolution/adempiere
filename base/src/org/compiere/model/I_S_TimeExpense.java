@@ -22,7 +22,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for S_TimeExpense
  *  @author Adempiere (generated) 
- *  @version Release 3.9.2
+ *  @version Release 3.9.3
  */
 public interface I_S_TimeExpense 
 {
@@ -49,6 +49,19 @@ public interface I_S_TimeExpense
 	  */
 	public int getAD_Client_ID();
 
+    /** Column name AD_Org_ID */
+    public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
+
+	/** Set Organization.
+	  * Organizational entity within client
+	  */
+	public void setAD_Org_ID (int AD_Org_ID);
+
+	/** Get Organization.
+	  * Organizational entity within client
+	  */
+	public int getAD_Org_ID();
+
     /** Column name AD_OrgTrx_ID */
     public static final String COLUMNNAME_AD_OrgTrx_ID = "AD_OrgTrx_ID";
 
@@ -62,18 +75,7 @@ public interface I_S_TimeExpense
 	  */
 	public int getAD_OrgTrx_ID();
 
-    /** Column name AD_Org_ID */
-    public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
-
-	/** Set Organization.
-	  * Organizational entity within client
-	  */
-	public void setAD_Org_ID (int AD_Org_ID);
-
-	/** Get Organization.
-	  * Organizational entity within client
-	  */
-	public int getAD_Org_ID();
+	public org.compiere.model.I_AD_Org getAD_OrgTrx() throws RuntimeException;
 
     /** Column name ApprovalAmt */
     public static final String COLUMNNAME_ApprovalAmt = "ApprovalAmt";
@@ -383,17 +385,17 @@ public interface I_S_TimeExpense
     /** Column name S_Contract_ID */
     public static final String COLUMNNAME_S_Contract_ID = "S_Contract_ID";
 
-	/** Set Service Contract.
-	  * Service Contract
+	/** Set Contract.
+	  * Contract
 	  */
 	public void setS_Contract_ID (int S_Contract_ID);
 
-	/** Get Service Contract.
-	  * Service Contract
+	/** Get Contract.
+	  * Contract
 	  */
 	public int getS_Contract_ID();
 
-	public org.eevolution.domain.model.I_S_Contract getS_Contract() throws RuntimeException;
+	public org.eevolution.context.contract.infrastructure.persistence.model.I_S_Contract getS_Contract() throws RuntimeException;
 
     /** Column name S_TimeExpense_ID */
     public static final String COLUMNNAME_S_TimeExpense_ID = "S_TimeExpense_ID";
@@ -407,19 +409,6 @@ public interface I_S_TimeExpense
 	  * Time and Expense Report
 	  */
 	public int getS_TimeExpense_ID();
-
-    /** Column name UUID */
-    public static final String COLUMNNAME_UUID = "UUID";
-
-	/** Set Immutable Universally Unique Identifier.
-	  * Immutable Universally Unique Identifier
-	  */
-	public void setUUID (String UUID);
-
-	/** Get Immutable Universally Unique Identifier.
-	  * Immutable Universally Unique Identifier
-	  */
-	public String getUUID();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";
@@ -496,4 +485,17 @@ public interface I_S_TimeExpense
 	public int getUser4_ID();
 
 	public org.compiere.model.I_C_ElementValue getUser4() throws RuntimeException;
+
+    /** Column name UUID */
+    public static final String COLUMNNAME_UUID = "UUID";
+
+	/** Set Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public void setUUID (String UUID);
+
+	/** Get Immutable Universally Unique Identifier.
+	  * Immutable Universally Unique Identifier
+	  */
+	public String getUUID();
 }

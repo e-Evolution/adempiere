@@ -6,7 +6,8 @@ import java.util.Properties
 import org.adempiere.model.GridTabWrapper
 import org.compiere.model._
 import org.compiere.util.{CLogger, DisplayType, Env, Msg}
-import org.eevolution.domain.model.{I_S_Contract, I_S_ContractLine, X_S_Contract}
+import org.eevolution.context.contract.infrastructure.persistence.model.{I_S_Contract, I_S_ContractLine, X_S_Contract}
+
 
 class CalloutContract extends CalloutEngine {
 

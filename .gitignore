@@ -53,3 +53,4 @@ migration/postgresql.properties
 /.metadata/
 /.recommenders/
 /RemoteSystemsTempFiles/
+/.bloop/

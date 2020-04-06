@@ -3,7 +3,6 @@ package org.eevolution.context.contract.infrastructure.persistence.model
 import java.sql.ResultSet
 import java.util.{Comparator, Properties}
 
-import org.eevolution.domain.model.X_S_AgreementClauseCategory
 
 class MSAgreementClauseCategory (ctx: Properties, id: Int, rs: ResultSet, trxName: String)
   extends X_S_AgreementClauseCategory(ctx: Properties, id: Int, trxName: String){

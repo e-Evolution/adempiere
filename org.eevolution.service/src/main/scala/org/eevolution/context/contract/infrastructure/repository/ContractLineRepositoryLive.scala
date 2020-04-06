@@ -23,7 +23,8 @@ import org.compiere.util.Env
 import org.eevolution.context.contract.api.Context.Context
 import org.eevolution.context.contract.api.repository.ContractLineRepository.Service
 import org.eevolution.context.contract.domain.ubiquitouslanguage.{ContractLine, Id}
-import org.eevolution.domain.model.I_S_ContractLine
+import org.eevolution.context.contract.infrastructure.persistence.model.I_S_ContractLine
+
 import zio.ZIO
 
 import scala.collection.immutable.List

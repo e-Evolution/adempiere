@@ -20,7 +20,7 @@ package org.eevolution.context.contract.domain.process
 
 import org.compiere.model.{I_C_ProjectTask, I_M_Product, I_S_TimeExpenseLine}
 import org.eevolution.context.contract.domain.ubiquitouslanguage.Invoice
-import org.eevolution.domain.model.I_S_Contract
+import org.eevolution.context.contract.infrastructure.persistence.model.I_S_Contract
 import org.eevolution.process.GenerateInvoicesFromTimeExpenseReportAbstract
 
 import scala.collection.mutable

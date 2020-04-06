@@ -4,7 +4,7 @@ import java.sql.ResultSet
 import java.util.{Comparator, Properties}
 
 import org.compiere.model.Query
-import org.eevolution.domain.model.{I_S_ContractTermConditionLine, X_S_ContractTermCondition}
+
 
 class MSContractTermCondition(ctx: Properties, id: Int, rs: ResultSet, trxName: String)
   extends X_S_ContractTermCondition(ctx: Properties, id: Int, trxName: String) {

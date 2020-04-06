@@ -23,7 +23,7 @@ import org.compiere.util.Env
 import org.eevolution.context.contract.api.Context.Context
 import org.eevolution.context.contract.api.repository.ServiceTypeRepository.Service
 import org.eevolution.context.contract.domain.ubiquitouslanguage.{Id, Product, ServiceType}
-import org.eevolution.domain.model.I_S_ServiceType
+import org.eevolution.context.contract.infrastructure.persistence.model.I_S_ServiceType
 import zio.ZIO
 
 import scala.jdk.CollectionConverters._

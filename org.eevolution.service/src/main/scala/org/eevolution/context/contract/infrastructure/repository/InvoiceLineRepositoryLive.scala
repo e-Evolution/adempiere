@@ -43,8 +43,8 @@ case class InvoiceLineRepositoryLive(contextService: Context) extends Service {
     invoiceLine <- ZIO.fromTry(
       Try {
         invoiceLine.setS_ContractLine_ID(timeExpenseLine.getS_ContractLine_ID)
-        invoiceLine.setPP_PeriodDefinition_ID(timeExpenseLine.getPP_PeriodDefinition_ID)
-        invoiceLine.setPP_Period_ID(timeExpenseLine.getPP_Period_ID)
+        //invoiceLine.setPP_PeriodDefinition_ID(timeExpenseLine.getPP_PeriodDefinition_ID)
+        //invoiceLine.setPP_Period_ID(timeExpenseLine.getPP_Period_ID)
         invoiceLine.setM_Product_ID(timeExpenseLine.getM_Product_ID)
         invoiceLine.setQtyEntered(timeExpenseLine.getQtyInvoiced)
         invoiceLine.setPriceEntered(timeExpenseLine.getPriceInvoiced)

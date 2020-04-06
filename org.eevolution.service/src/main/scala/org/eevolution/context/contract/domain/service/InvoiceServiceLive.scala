@@ -27,6 +27,7 @@ import org.eevolution.context.contract.api.Context.Context
 import org.eevolution.context.contract.api.repository.InvoiceRepository
 import org.eevolution.context.contract.api.service.InvoiceService.Service
 import org.eevolution.context.contract.domain.ubiquitouslanguage._
+import org.eevolution.context.contract.infrastructure.persistence.model.{I_S_Contract, X_S_Contract}
 import zio.ZIO
 
 import scala.util.Try

@@ -26,7 +26,6 @@ import org.compiere.model.ModelValidator._
 import org.compiere.model._
 import org.compiere.process.{DocAction, DocumentEngine}
 import org.compiere.util.{DB, Env}
-import org.eevolution.domain.model.{I_S_ContractLine, X_S_Contract, X_S_ContractLine}
 import org.eevolution.model.{I_PP_Period, MPPPeriod, MPPPeriodDefinition, X_PP_Period}
 
 
@@ -177,7 +176,7 @@ class MSContract(ctx: Properties, id: Int, rs: ResultSet, trxName: String)
     return DocAction.STATUS_Completed
   }
 
-  def  creteTimeSheetReportExpense {
+  def  creteTimeSheetReportExpense = {
     var lineNo = 10
     val periodDefinition = new MPPPeriodDefinition(getCtx , getPP_PeriodDefinition_ID , get_TrxName())
     getLines.forEach(contractLine =>
