@@ -1,6 +1,6 @@
 package org.eevolution.context.contract.domain
 
-import java.time.Instant
+import java.time.{LocalDate, LocalDateTime}
 
 import org.compiere.model._
 import org.eevolution.context.contract.domain
@@ -34,20 +34,28 @@ package object ubiquitouslanguage {
   type Partner = MBPartner
   type DocumentType = MDocType
   type AccountingPeriod = MPeriod
-  type Domain = PO
 
+  type Quantity = BigDecimal
+  type Amount = BigDecimal
   type Id = Int
   type TableDirect = Int
   type Table = Int
   type Search = Int
   type List = String
   type Number = BigDecimal
-  type Integer = Int
   type YesNo = Boolean
   type Button = String
   type Yes = true
   type No = false
-  type DateTime = Instant
-  type Date = Instant
+  type DateTime = LocalDateTime
+  type Date = LocalDate
   type Text = String
+  type Domain = PO
+
+
+  sealed trait Maybe
+
+  sealed trait Required extends Maybe
+
+  sealed trait Once extends Maybe
 }

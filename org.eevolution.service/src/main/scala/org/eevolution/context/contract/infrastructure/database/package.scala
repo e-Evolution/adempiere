@@ -16,16 +16,25 @@
 
 package org.eevolution.context.contract.infrastructure
 
+import com.zaxxer.hikari.{HikariConfig, HikariDataSource}
 import io.getquill.context.jdbc.{Decoders, Encoders}
 import io.getquill.{Literal, PostgresJdbcContext}
+import org.compiere.db.CConnection
 
 /**
   * Package for Database Access
   */
 package object database {
-  lazy val context = new PostgresJdbcContext(Literal, "ctx") with Encoders with Decoders
+  val pgDataSource = new org.postgresql.ds.PGSimpleDataSource()
+  val connection = CConnection.get()
+  pgDataSource.setUser(connection.getDbUid)
+  pgDataSource.setPassword(connection.getDbPwd)
+  pgDataSource.setPortNumber(connection.getDbPort)
+  pgDataSource.setServerName(connection.getDbHost)
+  val config = new HikariConfig()
+  config.setDataSource(pgDataSource)
+
+  lazy val context = new PostgresJdbcContext(Literal, new HikariDataSource(config))
+  //with Encoders with Decoders
 }
-
-
-
 
