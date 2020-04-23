@@ -15,11 +15,11 @@
   **/
 
 
-package org.eevolution.context.contract.domain.model
+package org.eevolution.context.kernel.domain.model
 
-import java.time.{Instant, LocalDateTime}
+import java.time.LocalDateTime
 
-import org.eevolution.context.contract.domain.ubiquitouslanguage.{DateTime, Id, Table, TableDirect, YesNo}
+import org.eevolution.context.kernel.domain.ubiquitouslanguage.{DateTime, _}
 
 /**
   * Tenant Entity
@@ -34,18 +34,16 @@ import org.eevolution.context.contract.domain.ubiquitouslanguage.{DateTime, Id, 
   * @param value                          Value
   * @param name                           Name
   * @param description                    Description
-  * @param smtpHost                       Sm Tp Host
   * @param requestEmail                   Request Email
   * @param requestUser                    Request User
   * @param requestUserPW                  Request User Pw
   * @param requestFolder                  Request Folder
   * @param language                       Language
   * @param isMultilingualDocument         Is Multilingual Document
-  * @param isSMTPAuthorization            Is Sm Tp Authorization
   * @param isUseBetaFunctions             Is Use Beta Functions
   * @param ldapQuery                      LDAP Query
   * @param modelValidationClasses         modelValidationClasses
-  * @param isAutoArchive                  Is Auto Archive
+  * @param autoArchive                    Is Auto Archive
   * @param mmPolicy                       MM Policy
   * @param emailTest                      Email Test
   * @param isServerEmail                  Is Server Email
@@ -62,45 +60,42 @@ import org.eevolution.context.contract.domain.ubiquitouslanguage.{DateTime, Id, 
   * @param replicationStrategyId          Replication Strategy ID
   * @param emailConfigId                  Email Config ID
   */
-case class Tenant(tenantId: Int,
-                  organizationId: Int = 0,
-                  isActive: Boolean = true,
-                  created: DateTime = LocalDateTime.now,
-                  createdBy: Int,
-                  updated: DateTime = LocalDateTime.now,
-                  updatedBy: Int,
-                  value: String,
-                  name: String,
-                  description: Option[String],
-                  smtpHost: Option[String],
-                  requestEmail: Option[String],
-                  requestUser: Option[String],
-                  requestUserPW: Option[String],
-                  requestFolder: Option[String],
-                  language: Option[String],
-                  isMultilingualDocument: Boolean = false,
-                  isSMTPAuthorization: Boolean = false,
-                  isUseBetaFunctions: Boolean = false,
-                  ldapQuery: Option[String],
-                  modelValidationClasses: Option[String],
-                  isAutoArchive: Boolean = false,
-                  mmPolicy: String = "F",
-                  emailTest: Option[String],
-                  isServerEmail: Boolean = false,
-                  documentDir: Option[String],
-                  isPostImmediate: Boolean = false,
-                  isCostImmediate: Boolean = false,
-                  isStoreAttachmentsOnFileSystem: Boolean = false,
-                  windowsAttachmentPath: Option[String],
-                  unixAttachmentPath: Option[String],
-                  isStoreArchiveOnFileSystem: Boolean = false,
-                  windowsArchivePath: Option[String],
-                  unixArchivePath: Option[String],
-                  isUseASP: Boolean = false,
-                  replicationStrategyId: Option[Int],
-                  emailConfigId: Option[Int],
-                  uuid: String
-                 ) extends DomainModel
+case class Tenant(tenantId: Id
+                  , organizationId: TableDirect = 0
+                  , isActive: YesNo = true
+                  , created: DateTime = LocalDateTime.now
+                  , createdBy: Table
+                  , updated: DateTime = LocalDateTime.now
+                  , updatedBy: Table
+                  , value: String
+                  , name: String
+                  , description: String
+                  , requestEmail: String
+                  , requestUser: String
+                  , requestUserPW: String
+                  , requestFolder: String
+                  , language: String
+                  , isMultilingualDocument: YesNo = false
+                  , isUseBetaFunctions: YesNo = false
+                  , ldapQuery: String
+                  , modelValidationClasses: String
+                  , autoArchive: Int
+                  , mmPolicy: String = "F"
+                  , emailTest: YesNo
+                  , isServerEmail: YesNo = false
+                  , documentDir: String
+                  , isPostImmediate: YesNo = false
+                  , isCostImmediate: YesNo = false
+                  , isStoreAttachmentsOnFileSystem: YesNo = false
+                  , windowsAttachmentPath: String
+                  , unixAttachmentPath: String
+                  , isStoreArchiveOnFileSystem: YesNo = false
+                  , windowsArchivePath: String
+                  , unixArchivePath: String
+                  , isUseASP: YesNo = false
+                  , replicationStrategyId: TableDirect
+                  , emailConfigId: TableDirect
+                  , uuid: String) extends DomainModel
 
   with ActiveEnabled
   with Identifiable
@@ -127,18 +122,16 @@ object Tenant {
              value: String,
              name: String,
              description: String,
-             smtpHost: String,
              requestEmail: String,
              requestUser: String,
              requestUserPW: String,
              requestFolder: String,
              language: String,
              isMultilingualDocument: YesNo,
-             isSMTPAuthorization: YesNo,
              isUseBetaFunctions: YesNo,
              ldapQuery: String,
              modelValidationClasses: String,
-             isAutoArchive: YesNo,
+             autoArchive: Int,
              mmPolicy: String,
              emailTest: YesNo,
              isServerEmail: YesNo,
@@ -153,10 +146,6 @@ object Tenant {
              unixArchivePath: String,
              isUseASP: YesNo,
              replicationStrategyId: TableDirect,
-             emailConfigId: Int,
-             uuid: String) = Tenant(tenantId, organizationId, isActive, created, createdBy, updated, updatedBy, value,
-    name, None, None, None, None, None, None, None, isMultilingualDocument, isSMTPAuthorization,
-    isUseBetaFunctions, None, None, isAutoArchive, mmPolicy, None, isServerEmail, None,
-    isPostImmediate, isCostImmediate, isStoreAttachmentsOnFileSystem, None, None,
-    storeArchiveOnFileSystem, None, None, isUseASP, None, None, uuid)
+             emailConfigId: TableDirect,
+             uuid: String) = Tenant(tenantId, organizationId, isActive, created, createdBy, updated, updatedBy, value, name, description, requestEmail, requestUser, requestUserPW, requestFolder, language, isMultilingualDocument, isUseBetaFunctions, ldapQuery, modelValidationClasses, autoArchive, mmPolicy, emailTest, isServerEmail, documentDir, isPostImmediate, isCostImmediate, isStoreAttachmentsOnFileSystem, windowsAttachmentPath, unixAttachmentPath, storeArchiveOnFileSystem, windowsArchivePath, unixArchivePath, isUseASP, replicationStrategyId, emailConfigId, uuid)
 }

@@ -14,11 +14,11 @@
   * Created by victor.perez@e-evolution.com , www.e-evolution.com
   **/
 
-package org.eevolution.context.contract.domain.model
+package org.eevolution.context.kernel.domain.model
 
-import java.time.{Instant, LocalDateTime}
+import java.time.LocalDateTime
 
-import org.eevolution.context.contract.domain.ubiquitouslanguage.{DateTime, Id, Table, TableDirect, YesNo}
+import org.eevolution.context.kernel.domain.ubiquitouslanguage._
 
 /**
   * Organization Entity
@@ -35,22 +35,23 @@ import org.eevolution.context.contract.domain.ubiquitouslanguage.{DateTime, Id, 
   * @param description           Description
   * @param isSummary             Is Summary
   * @param replicationStrategyId Replication Strategy ID
+  * @param parentOrganizationId  ParentOrganization ID
   * @param uuid                  UUID
   */
-case class Organization(organizationId: Id,
-                        tenantId: TableDirect,
-                        isActive: YesNo = true,
-                        created: DateTime = LocalDateTime.now(),
-                        createdBy: Table,
-                        updated: DateTime = LocalDateTime.now(),
-                        updatedBy: Table,
-                        value: String,
-                        name: String,
-                        description: Option[String],
-                        isSummary: YesNo = true,
-                        replicationStrategyId: Option[TableDirect],
-                        uuid: String
-                       ) extends DomainModel
+case class Organization(organizationId: Id
+                        , tenantId: TableDirect
+                        , isActive: YesNo = true
+                        , created: DateTime = LocalDateTime.now
+                        , createdBy: Table
+                        , updated: DateTime = LocalDateTime.now
+                        , updatedBy: Table
+                        , value: String
+                        , name: String
+                        , description: String
+                        , isSummary: YesNo = true
+                        , replicationStrategyId: TableDirect
+                        , parentOrganizationId: Table
+                        , uuid: String) extends DomainModel
 
   with ActiveEnabled
   with Identifiable
@@ -67,18 +68,19 @@ case class Organization(organizationId: Id,
 
 object Organization {
   //implicit lazy val jsonFormat = Jsonx.formatCaseClass[Organization]
-  def create(organizationId: Int,
-             tenantId: Int,
-             isActive: Boolean,
+  def create(organizationId: Id,
+             tenantId: TableDirect,
+             isActive: YesNo,
              created: DateTime,
-             createdBy: Int,
+             createdBy: Table,
              updated: DateTime,
-             updatedBy: Int,
+             updatedBy: Table,
              value: String,
              name: String,
              description: String,
-             isSummary: Boolean,
-             replicationStrategyId: Int,
+             isSummary: YesNo,
+             replicationStrategyId: TableDirect,
+             parentOrganizationId: Table,
              uuid: String) = Organization(organizationId, tenantId, isActive, created, createdBy, updated,
-    updatedBy, value, name, None, isSummary, None, uuid)
+    updatedBy, value, name, description, isSummary, replicationStrategyId, parentOrganizationId, uuid)
 }

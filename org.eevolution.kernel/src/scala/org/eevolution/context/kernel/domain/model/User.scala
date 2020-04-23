@@ -14,12 +14,11 @@
   * Created by victor.perez@e-evolution.com , www.e-evolution.com
   **/
 
-package org.eevolution.context.contract.domain.model
+package org.eevolution.context.kernel.domain.model
 
-import java.time.{Instant, LocalDateTime}
+import java.time.LocalDateTime
 
-import org.eevolution.context.contract.domain.ubiquitouslanguage.{DateTime, Id, Table, TableDirect, YesNo}
-
+import org.eevolution.context.kernel.domain.ubiquitouslanguage._
 
 /**
   * User Entity
@@ -31,23 +30,25 @@ import org.eevolution.context.contract.domain.ubiquitouslanguage.{DateTime, Id, 
   * @param createdBy   Created By
   * @param updated     Updated
   * @param updatedBy   Updated By
-  * @param value       Value
   * @param name        Name
   * @param description Description
   * @param uuid        UUID
   */
-case class User(userId: Id,
-                tenantId: TableDirect,
-                organizationId: TableDirect,
-                isActive: YesNo = true,
-                created: DateTime = LocalDateTime.now(),
-                createdBy: Table,
-                updated: DateTime = LocalDateTime.now(),
-                updatedBy: Table,
-                value: String,
-                name: String,
-                description: Option[String],
-                uuid: String) extends DomainModel
+case class User(userId: Id
+                , partnerId: Id
+                , tenantId: TableDirect
+                , organizationId: TableDirect
+                , isActive: YesNo = true
+                , created: DateTime = LocalDateTime.now
+                , createdBy: Table
+                , updated: DateTime = LocalDateTime.now
+                , updatedBy: Table
+                , name: String
+                , description: String
+                , email: String
+                , password: String
+                , salt: String
+                , uuid: String) extends DomainModel
 
   with ActiveEnabled
   with Identifiable
@@ -65,6 +66,7 @@ case class User(userId: Id,
 object User {
   //implicit lazy val jsonFormat = Jsonx.formatCaseClass[Currency]
   def create(userId: Id,
+             partnerId: TableDirect,
              tenantId: TableDirect,
              organizationId: TableDirect,
              isActive: YesNo,
@@ -72,8 +74,10 @@ object User {
              createdBy: Table,
              updated: DateTime,
              updatedBy: Id,
-             value: String,
              name: String,
              description: String,
-             uuid: String) = User(userId, tenantId, organizationId, isActive, created, createdBy, updated, updatedBy, value, name, Some(description), uuid)
+             email: String,
+             password: String,
+             salt: String,
+             uuid: String) = User(userId, partnerId, tenantId, organizationId, isActive, created, createdBy, updated, updatedBy, name, description, email, password, salt, uuid)
 }

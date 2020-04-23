@@ -221,6 +221,7 @@
       <sourceFolder url="file://$MODULE_DIR$/org.spin.finance_management/src/main/java/base" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/org.eevolution.service/src/main/scala" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/org.eevolution.service/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/org.eevolution.kernel/src/scala" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="jdk" jdkName="1.8 adoptopenjdk-8.jdk" jdkType="JavaSDK" />

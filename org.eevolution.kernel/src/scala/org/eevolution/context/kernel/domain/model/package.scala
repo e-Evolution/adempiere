@@ -1,14 +1,25 @@
-package org.eevolution.context.contract.domain
+/**
+ * Copyright (C) 2003-2020, e-Evolution Consultants S.A. , http://www.e-evolution.com
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Email: victor.perez@e-evolution.com, http://www.e-evolution.com , http://github.com/e-Evolution
+ * Created by victor.perez@e-evolution.com , www.e-evolution.com
+ **/
 
+package org.eevolution.context.kernel.domain
 
-import java.time.Instant
 import java.util.UUID
 
-import org.eevolution.context.contract.api.Context.Context
-import org.eevolution.context.contract.domain.ubiquitouslanguage.DateTime
-import zio.ZIO
-
-
+import org.eevolution.context.kernel.domain.ubiquitouslanguage.{DateTime, Table}
+import zio.Task
 
 /**
  * Package with API for Domain Model
@@ -81,16 +92,16 @@ package object model {
 
     type Traceable
 
-    val updatedBy: Int
-    val createdBy: Int
+    val updatedBy: Table
+    val createdBy: Table
     val created: DateTime
     val updated: DateTime
 
-    def getCreatedBy: Int = createdBy
+    def getCreatedBy: Table = createdBy
 
     def getCreated: DateTime = created
 
-    def getUpdatedBy: Int = updatedBy
+    def getUpdatedBy: Table = updatedBy
 
     def getUpdated: DateTime = updated
 
@@ -107,13 +118,13 @@ package object model {
 
     type Repository
 
-    def getById(id: idType): ZIO[Context, Throwable, DomainModel]
+    def getById(id: idType): Task[DomainModel]
 
-    def getByUUID(uuid: UUID): ZIO[Context, Throwable, DomainModel]
+    def getByUUID(uuid: UUID): Task[DomainModel]
 
-    def getAllByPage(page: Int, pageSize: Int): ZIO[Context, Throwable, DomainModel]
+    def getAllByPage(page: Int, pageSize: Int): Task[DomainModel]
 
-    def getAll: ZIO[Context, Throwable, List[DomainModel]]
+    def getAll: Task[List[DomainModel]]
   }
 
 
@@ -283,7 +294,7 @@ package object model {
     }
 
     /**
-     * Check if is Numeric
+     * Cehck if is Numeric
      *
      * @param reference Reference
      * @return
@@ -321,4 +332,3 @@ package object model {
   }
 
 }
-
