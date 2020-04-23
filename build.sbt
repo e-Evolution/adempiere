@@ -23,24 +23,15 @@ lazy val commonSettings = Seq(
 )
 
 scalaVersion := "2.13.1"
-//resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
+resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
 
 fork := true
 val adempiereProperties = "-DPropertyFile=/Users/e-Evolution/AdempierePG.properties"
-//val adempiereProperties = "-DPropertyFile=/Users/e-Evolution/AdempiereQuimasaProduccion.properties"
 //scalacOptions ++= Seq("-feature", "-unchecked", "-deprecation", "-encoding" , "utf8")
 javaOptions in Test := Seq (adempiereProperties)
 
 libraryDependencies ++= Seq(
   "javax.servlet" % "javax.servlet-api" % "3.0.1" % "provided",
-  "com.typesafe" % "config" % "1.2.0",
-  "com.lihaoyi" %% "os-lib" % "0.6.3",
-  "io.circe" %% "circe-core" %  "0.12.3",
-  "io.circe" %% "circe-generic" % "0.12.3",
-  "io.circe" %% "circe-parser" %  "0.12.3",
-  "dev.zio" %% "zio" % "1.0.0-RC18",
-  "io.getquill" %% "quill-jdbc" % "3.5.0",
-  "org.postgresql" % "postgresql" % "42.2.8",
   "org.scala-lang" % "scala-reflect" % "2.13.1",
   "org.scalactic" %% "scalactic" % "3.1.0",
   "org.scalatest" %% "scalatest" % "3.1.0" % "test"
@@ -54,10 +45,10 @@ javaOptions in Jetty ++= Seq(
   "-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"
 )
 
-/*JarName in assembly := "AdempiereTestSuite.jar"
+assemblyJarName in assembly := "AdempiereTestSuite.jar"
 test in assembly := {}
+
 assemblyOption in assembly := (assemblyOption in assembly).value.copy(includeScala = true, includeDependency =false)
-*/
 
 val sourceDirectoryTest = "org.adempiere.test"
 val sourceAdempiere = "/Users/e-Evolution/Develop/ADempiere/develop"
@@ -65,12 +56,8 @@ val sourceAdempiere = "/Users/e-Evolution/Develop/ADempiere/develop"
 //javaSource in Compile := baseDirectory.value  / sourceDirectoryTest / "src" / "main" / "java"
 //javaSource in Test := baseDirectory.value  / sourceDirectoryTest / "src" / "test" / "java"
 
-//scalaSource in Compile := baseDirectory.value / sourceDirectoryTest / "src" / "main" / "scala"
-scalaSource in Compile := baseDirectory.value / "org.eevolution.service" / "src" / "main" / "scala"
-scalaSource in Test := baseDirectory.value /  "org.eevolution.service" / "src" / "test" / "scala"
-
-
-
+scalaSource in Compile := baseDirectory.value / sourceDirectoryTest / "src" / "main" / "scala"
+scalaSource in Test := baseDirectory.value / sourceDirectoryTest / "src" / "test" / "scala"
 
 unmanagedClasspath in Compile += file(sourceAdempiere + "/bin")
 unmanagedClasspath in Compile += file(sourceAdempiere + "/zkwebui/WEB-INF/classes")
@@ -83,9 +70,6 @@ unmanagedJars in Compile ++= (file(sourceAdempiere + "/JasperReportsTools/lib") 
 unmanagedJars in Compile ++= (file(sourceAdempiere + "/lib") * "*.jar").classpath
 unmanagedJars in Compile ++= (file(sourceAdempiere + "/packages") * "*.jar").classpath
 unmanagedJars in Compile ++= (file(sourceAdempiere + "/zkpackages") * "*.jar").classpath
-unmanagedJars in Compile ++= (file("/Users/e-Evolution/Develop/ADempiere/org.eevolution.LCO/target") * "*.jar").classpath
-unmanagedJars in Compile ++= (file("/Users/e-Evolution/Develop/ADempiere/org.eevolution.LEC/dist/lib") * "*.jar").classpath
-unmanagedJars in Compile ++= (file("/Users/e-Evolution/Develop/ADempiere/customizationQuimasa/target/scala-2.13") * "*.jar").classpath
 
 testOptions in Test += Tests.Argument("-oD")
 
@@ -106,20 +90,13 @@ sourceDirectory in webappPrepare := (sourceDirectory in Compile).value / "zkwebu
 
 webappPostProcess := {
   webappDir: File =>
-    IO.copyDirectory(baseDirectory.value / "target/scala-2.13/classes", webappDir / "WEB-INF" / "classes")
     IO.copyDirectory(baseDirectory.value / "bin", webappDir / "WEB-INF" / "classes")
     IO.copyDirectory(baseDirectory.value / "org.eevolution.manufacturing/src/main/java/ui/zk",webappDir / "WEB-INF" / "classes")
     IO.copyDirectory(baseDirectory.value / "org.eevolution.hr_and_payroll/src/main/java/ui/zk",webappDir / "WEB-INF" / "classes")
     IO.copyDirectory(baseDirectory.value / "zkwebui", webappDir)
     //IO.copyDirectory(baseDirectory.value / "serverRoot" / "src" / "web", webappDir)
-    IO.copyDirectory(file("/Users/e-Evolution/Develop/ADempiere/org.eevolution.LCO/target/classes"), webappDir / "WEB-INF" / "classes")
-    IO.copyDirectory(file("/Users/e-Evolution/Develop/ADempiere/org.eevolution.LEC/dist/lib"), webappDir / "WEB-INF" / "lib")
-    IO.copyDirectory(file("/Users/e-Evolution/Develop/ADempiere/customizationQuimasa/target/scala-2.13/classes"), webappDir / "WEB-INF" / "classes")
-    IO.copyDirectory(file("/Users/e-Evolution/Develop/ADempiere/org.eevolution.LMX/target"), webappDir / "WEB-INF" / "lib")
     IO.copyDirectory(baseDirectory.value / "lib", webappDir / "WEB-INF" / "lib")
     IO.copyDirectory(baseDirectory.value / "packages", webappDir / "WEB-INF" / "lib")
     IO.copyDirectory(baseDirectory.value / "zkpackages", webappDir / "WEB-INF" / "lib")
     IO.copyDirectory(baseDirectory.value / "zkwebui/WEB-INF/classes", webappDir / "WEB-INF" / "classes")
 }
-
-//mainClass in (Compile, run) := Some("org.eevolution.service.MovePackageModularization") //Some("org.eevolution.service.CreatePackageModularization")
