@@ -37,6 +37,7 @@ import org.adempiere.webui.component.Panel;
 import org.adempiere.webui.component.Row;
 import org.adempiere.webui.component.Rows;
 import org.adempiere.webui.component.WListbox;
+import org.adempiere.webui.editor.WLocatorEditor;
 import org.adempiere.webui.editor.WTableDirEditor;
 import org.adempiere.webui.event.WTableModelEvent;
 import org.adempiere.webui.event.WTableModelListener;
@@ -49,6 +50,7 @@ import org.adempiere.webui.window.FDialog;
 import org.compiere.minigrid.IMiniTable;
 import org.compiere.model.I_C_Order;
 import org.compiere.model.MDocType;
+import org.compiere.model.MLocatorLookup;
 import org.compiere.model.MLookup;
 import org.compiere.model.MLookupFactory;
 import org.compiere.model.MProduct;
@@ -58,7 +60,6 @@ import org.compiere.model.PrintInfo;
 import org.compiere.print.MPrintFormat;
 import org.compiere.print.ReportCtl;
 import org.compiere.print.ReportEngine;
-import org.compiere.process.DocAction;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
@@ -150,6 +151,10 @@ public class WOutBoundOrder extends OutBoundOrder
 	/**	Shipper					*/
 	private Label 			shipperLabel = new Label();
 	private WTableDirEditor shipperPick = null;
+	/** Locator 				*/
+	protected Label locatorLabel = new Label();
+	protected WLocatorEditor locatorField = new WLocatorEditor();
+
 	private DateFormat 		dateFormat 		 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	/** Panels				*/
@@ -192,8 +197,8 @@ public class WOutBoundOrder extends OutBoundOrder
 	private Label 			invoiceInfo = new Label();
 	private Label			invoiceLabel = new Label();
 	/**	Document Action	*/
-	private Label			docActionLabel = new Label();
-	private WTableDirEditor docActionPick;
+	//private Label			docActionLabel = new Label();
+	//private WTableDirEditor docActionPick;
 	/**	Confirm Panel		*/
 	private ConfirmPanel 	confirmPanel;
 	
@@ -237,7 +242,7 @@ public class WOutBoundOrder extends OutBoundOrder
 		//	Delivery Via Rule
 		deliveryViaRuleLabel.setText(Msg.translate(Env.getCtx(), "DeliveryViaRule"));
 		//	Document Action
-		docActionLabel.setText(Msg.translate(Env.getCtx(), "DocAction"));
+		//docActionLabel.setText(Msg.translate(Env.getCtx(), "DocAction"));
 		//	Date
 		labelDocumentDate.setText(Msg.translate(Env.getCtx(), "DateDoc"));
 		labelShipmentDate.setText(Msg.translate(Env.getCtx(), "ShipDate"));
@@ -308,8 +313,8 @@ public class WOutBoundOrder extends OutBoundOrder
 		row.appendChild(searchButton);
 		searchButton.addActionListener(this);
 		//	Document Action
-		row.appendChild(docActionLabel.rightAlign());
-		row.appendChild(docActionPick.getComponent());
+		//row.appendChild(docActionLabel.rightAlign());
+		//row.appendChild(docActionPick.getComponent());
 		//	
 		northAdded = new North();
 		northAdded.setCollapsible(true);
@@ -333,6 +338,9 @@ public class WOutBoundOrder extends OutBoundOrder
 		row = rows.newRow();
 		row.appendChild(selectAllButton);
 		selectAllButton.setImage("/images/SelectAll24.png");
+
+		row.appendChild(locatorLabel.rightAlign());
+		row.appendChild(locatorField.getComponent());
 		row.appendChild(new Space());
 		row.appendChild(confirmPanel);
 		
@@ -511,12 +519,21 @@ public class WOutBoundOrder extends OutBoundOrder
 		shipperPick = new WTableDirEditor("M_Shipper_ID", false, false, true, lookupSP);
 		shipperPick.addValueChangeListener(this);
 		//	
-		MLookup docActionL = MLookupFactory.get(Env.getCtx(), form.getWindowNo(), 58192 /* WM_InOutBound.DocAction */,
-				DisplayType.List, Env.getLanguage(Env.getCtx()), "DocAction", 135 /* _Document Action */,
-				false, "AD_Ref_List.Value IN ('CO','PR')");
+		//MLookup docActionL = MLookupFactory.get(Env.getCtx(), form.getWindowNo(), 58192 /* WM_InOutBound.DocAction */,
+		//		DisplayType.List, Env.getLanguage(Env.getCtx()), "DocAction", 135 /* _Document Action */,
+		//		false, "AD_Ref_List.Value IN ('CO','PR')");
+		locatorLabel.setValue(Msg.translate(Env.getCtx(), "M_Locator_ID"));
+		locatorLabel.setMandatory(true);
+		MLocatorLookup locator = new MLocatorLookup(Env.getCtx(), form.getWindowNo());
+		//locator.setOnly_Warehouse_ID(warehouseId);
+		locatorField = new WLocatorEditor ("M_Locator_ID", true, false, true, locator, form.getWindowNo());
+		locatorField.setMandatory(true);
+		//locatorField.setValue(Env.getContextAsInt(Env.getCtx(), form.getWindowNo() , "M_Locator_ID"));
+		locatorField.addValueChangeListener(this);
+
 		//	Document Action
-		docActionPick = new WTableDirEditor("DocAction", true, false, true,docActionL);
-		docActionPick.setValue(DocAction.ACTION_Complete);
+		//docActionPick = new WTableDirEditor("DocAction", true, false, true,docActionL);
+		//docActionPick.setValue(DocAction.ACTION_Complete);
 		//	
 		documentDateField.setValue(Env.getContextAsDate(Env.getCtx(), "#Date"));
 		//	Set Date
@@ -564,7 +581,7 @@ public class WOutBoundOrder extends OutBoundOrder
 		documentDateField.setValue(Env.getContextAsDate(Env.getCtx(), "#Date"));
 		shipmentDateField.setValue(Env.getContextAsDate(Env.getCtx(), "#Date"));
 		shipperPick.setValue(null);
-		docActionPick.setValue(DocAction.ACTION_Complete);
+		//docActionPick.setValue(DocAction.ACTION_Complete);
 	}
 
 	/**
@@ -616,8 +633,8 @@ public class WOutBoundOrder extends OutBoundOrder
 		//	Operation Type
 		value = operationTypePick.getValue();
 		movementType = (String)value;
-		value = docActionPick.getValue();
-		documentAction = (String) value;
+		//value = docActionPick.getValue();
+		//documentAction = (String) value;
 		//	Document Type Target
 		value = docTypeTargetPick.getValue();
 		docTypeTargetId = Integer.parseInt(String.valueOf(value != null? value: "0"));
@@ -655,8 +672,15 @@ public class WOutBoundOrder extends OutBoundOrder
 	 * @return
 	 */
 	private boolean validateDataForSave() {
-		String error = validateData();
 		StringBuffer errorMessage = new StringBuffer();
+
+		if (locatorField.getValue() == null )
+			errorMessage.append(" @WM_InOutBound_ID@ @M_Locator_ID@ @NotFound@");
+		else
+			locatorId = (Integer)locatorField.getValue();
+
+		String error = validateData();
+
 		if(!Util.isEmpty(error)) {
 			errorMessage.append(error);
 		}
@@ -978,7 +1002,6 @@ public class WOutBoundOrder extends OutBoundOrder
 				//	Calculate Volume
 				volume = qty.multiply(unitVolume).setScale(volumePrecision, BigDecimal.ROUND_HALF_UP);
 				orderLineTable.setValueAt(volume, row, OL_VOLUME);
-				
 				//  Load Stock Product
 				stockModel = new ListModelTable();
 				stockTable.setData(stockModel, getStockColumnNames());
@@ -987,6 +1010,26 @@ public class WOutBoundOrder extends OutBoundOrder
 			} else if(col == SELECT) {
 				boolean select = (Boolean) orderLineTable.getValueAt(row, col);
 				if(select) {
+					// Calculate Qty to Delivery
+					BigDecimal qtyToDelivery = (BigDecimal)orderLineTable.getValueAt(row, OL_QTY_ORDERED);
+					BigDecimal qtyOnHand = (BigDecimal)orderLineTable.getValueAt(row, OL_QTY_ON_HAND);
+					BigDecimal qtyPickedTotal = BigDecimal.ZERO;
+					int rows = orderLineTable.getRowCount();
+					for (int r = 0; r < rows; r++) {
+						Boolean selection = (Boolean) orderLineTable.getValueAt(r, SELECT);
+						//Current Order Line
+						int orderLineId = ((KeyNamePair)orderLineTable.getValueAt(row, ORDER_LINE)).getKey();
+						if (row != r && selection && orderLineId == ((KeyNamePair)orderLineTable.getValueAt(r, ORDER_LINE)).getKey()) {
+							BigDecimal qtyPicked = (BigDecimal) orderLineTable.getValueAt(r, OL_QTY);
+							qtyPickedTotal = qtyPickedTotal.add(qtyPicked);
+						}
+					}
+					qtyToDelivery = qtyToDelivery.subtract(qtyPickedTotal);
+					if (qtyOnHand.compareTo(qtyToDelivery) <= 0 )
+						orderLineTable.setValueAt(qtyOnHand, row, OL_QTY);
+					else
+						orderLineTable.setValueAt(qtyToDelivery, row, OL_QTY);
+
 					maxSeqNo += 10;
 					orderLineTable.setValueAt(maxSeqNo, row, OL_SEQNO);
 				}
@@ -1073,7 +1116,7 @@ public class WOutBoundOrder extends OutBoundOrder
 			if(!isSelected)
 				qtySet = qtySet.negate();
 			//	
-			qtySet = qtySet.add(qtySetOld);
+			//qtySet = qtySet.add(qtySetOld);
 			stockModel.setValueAt(qtyOnHand, pos, SW_QTY_ON_HAND);
 			stockModel.setValueAt(qtyInTransitOld, pos, SW_QTY_IN_TRANSIT);
 			stockModel.setValueAt(qtySet, pos, SW_QTY_SET);
