@@ -1,42 +1,128 @@
 /**
- * Copyright (C) 2003-2018, e-Evolution Consultants S.A. , http://www.e-evolution.com
- * This program is free software, you can redistribute it and/or modify it
- * under the terms version 2 of the GNU General Public License as published
- * or (at your option) any later version.
- * by the Free Software Foundation. This program is distributed in the hope
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License along
- * with this program, if not, write to the Free Software Foundation, Inc.,
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.
- * For the text or an alternative of this public license, you may reach us
- * or via info@adempiere.net or http://www.adempiere.net/license.html
- * Email: victor.perez@e-evolution.com, http://www.e-evolution.com , http://github.com/e-Evolution
- * Created by victor.perez@e-evolution.com , www.e-evolution.com
- */
+ * Copyright (C) 2003-2017, e-Evolution Consultants S.A. , http://www.e-evolution.com
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Email: emeris.hernandez@e-evolution.com, http://www.e-evolution.com , http://github.com/e-Evolution
+ * Created by emeris.hernandez@e-evolution.com , www.e-evolution.com
+ **/
 
 package org.eevolution.context.contract.infrastructure.repository
 
-import org.compiere.model.Query
-import org.compiere.util.Env
-import org.eevolution.context.contract.api.Context.Context
-import org.eevolution.context.contract.api.repository.ContractRepository.Service
-import org.eevolution.context.contract.domain.ubiquitouslanguage.{Contract, Id}
-import org.eevolution.context.contract.infrastructure.persistence.model.I_S_Contract
-import zio.ZIO
+import org.eevolution.context.contract.domain.model._
+import org.eevolution.context.contract.api.repository._
+import org.eevolution.context.kernel.domain.ubiquitouslanguage._
+import org.eevolution.context.kernel.infrastructure.database.context._
+import zio.RIO
 
 import scala.util.Try
 
-/**
- * Contact Repository Implementation the infrastructure for Contract Entity
- */
-case class ContractRepositoryLive(contextService: Context) extends Service {
-  override def getById(id: Id): ZIO[Context, Throwable, Contract] = ZIO.fromTry(Try {
-        val where = s"${I_S_Contract.COLUMNNAME_S_Contract_ID}=?"
-        new Query(Env.getCtx, I_S_Contract.Table_Name, where, null)
-          .setClient_ID()
-          .setParameters(id)
-          .first()
-      })
+case class ContractRepositoryLive() extends ContractRepository.Service with ContractMapping {
+	override def getByBPartnerId(bPartnerId: Search): RIO[Any,List[Contract]] =
+		for {
+			contractList <- RIO.fromTry {
+				Try {
+					val contractList = run(query[Contract].filter(_.bPartnerId == lift(bPartnerId)))
+					contractList
+			}
+		}
+	} yield contractList
+
+	override def getByContractId(contractId: Id): RIO[Any, Option[Contract]] =
+		for {
+			contract <- RIO.fromTry {
+				Try {
+					val contract = run(query[Contract].filter(_.contractId == lift(contractId))).headOption
+					contract
+				}
+			}
+		} yield contract
+
+	override def getByDateContract(dateContract: DateTime = java.time.LocalDateTime.now): RIO[Any,List[Contract]] =
+		for {
+			contractList <- RIO.fromTry {
+				Try {
+					val contractList = run(query[Contract].filter(_.dateContract == lift(dateContract)))
+					contractList
+			}
+		}
+	} yield contractList
+
+	override def getByDateStart(dateStart: Option[DateTime]): RIO[Any,List[Contract]] =
+		for {
+			contractList <- RIO.fromTry {
+				Try {
+					val contractList = run(query[Contract].filter(_.dateStart == lift(dateStart)))
+					contractList
+			}
+		}
+	} yield contractList
+
+	override def getByDocumentNo(documentNo: String): RIO[Any,List[Contract]] =
+		for {
+			contractList <- RIO.fromTry {
+				Try {
+					val contractList = run(query[Contract].filter(_.documentNo == lift(documentNo)))
+					contractList
+			}
+		}
+	} yield contractList
+
+	override def getByDocTypeId(docTypeId: TableDirect): RIO[Any,List[Contract]] =
+		for {
+			contractList <- RIO.fromTry {
+				Try {
+					val contractList = run(query[Contract].filter(_.docTypeId == lift(docTypeId)))
+					contractList
+			}
+		}
+	} yield contractList
+
+	override def getByDateFinish(dateFinish: Option[DateTime]): RIO[Any,List[Contract]] =
+		for {
+			contractList <- RIO.fromTry {
+				Try {
+					val contractList = run(query[Contract].filter(_.dateFinish == lift(dateFinish)))
+					contractList
+			}
+		}
+	} yield contractList
+
+	override def getByUserId(userId: Option[TableDirect]): RIO[Any,List[Contract]] =
+		for {
+			contractList <- RIO.fromTry {
+				Try {
+					val contractList = run(query[Contract].filter(_.userId == lift(userId)))
+					contractList
+			}
+		}
+	} yield contractList
+
+	override def getAll: RIO[Any,List[Contract]] =
+		for {
+			contractList <- RIO.fromTry {
+				Try {
+					val contractList = run(query[Contract])
+					contractList
+			}
+		}
+	} yield contractList
+
+	override def getAll(clientId: TableDirect): RIO[Any,List[Contract]] =
+		for {
+			contractList <- RIO.fromTry {
+				Try {
+					val contractList = run(query[Contract].filter(_.clientId == lift(clientId)))
+					contractList
+			}
+		}
+	} yield contractList
+
 }

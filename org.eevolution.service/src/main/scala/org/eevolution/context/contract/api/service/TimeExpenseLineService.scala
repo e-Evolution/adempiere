@@ -1,60 +1,60 @@
 /**
- * Copyright (C) 2003-2018, e-Evolution Consultants S.A. , http://www.e-evolution.com
- * This program is free software, you can redistribute it and/or modify it
- * under the terms version 2 of the GNU General Public License as published
- * or (at your option) any later version.
- * by the Free Software Foundation. This program is distributed in the hope
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License along
- * with this program, if not, write to the Free Software Foundation, Inc.,
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.
- * For the text or an alternative of this public license, you may reach us
- * or via info@adempiere.net or http://www.adempiere.net/license.html
- * Email: victor.perez@e-evolution.com, http://www.e-evolution.com , http://github.com/e-Evolution
- * Created by victor.perez@e-evolution.com , www.e-evolution.com
- */
+ * Copyright (C) 2003-2017, e-Evolution Consultants S.A. , http://www.e-evolution.com
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Email: emeris.hernandez@e-evolution.com, http://www.e-evolution.com , http://github.com/e-Evolution
+ * Created by emeris.hernandez@e-evolution.com , www.e-evolution.com
+ **/
 
 package org.eevolution.context.contract.api.service
 
+import org.eevolution.context.kernel.domain.ubiquitouslanguage._
+import org.eevolution.context.contract.domain.model._
+import org.eevolution.context.contract.api.repository._
+import org.eevolution.context.contract.domain.service._
+import zio.{Has, RIO, ZLayer}
 
-import org.eevolution.context.contract.api.Context
-import org.eevolution.context.contract.api.Context.Context
-import org.eevolution.context.contract.api.repository.TimeExpenseLineRepository
-import org.eevolution.context.contract.api.service.TimeExpenseLineService.Service
-import org.eevolution.context.contract.domain.ubiquitouslanguage.{ContractLine, Id, InvoiceLine, TimeExpenseLine}
-import zio.{Has, ZIO, ZLayer}
-
-/**
- * Time Expense Line Domain Service contract to implement the business logic for Time Expense Line Entity
- */
 object TimeExpenseLineService {
 
-  type TimeExpenseLineService = Has[Service]
-  trait Service {
-    def save(timeExpenseLine: TimeExpenseLine): ZIO[Context, Throwable, TimeExpenseLine]
+	type TimeExpenseLineService = Has[Service]
 
-    def update(timeExpenseLine: TimeExpenseLine, invoiceLine: InvoiceLine): ZIO[Context, Throwable, TimeExpenseLine]
+	trait Service {
+		def getByDescription(description: Option[String]): RIO[Any,List[TimeExpenseLine]]
 
-    def getById(id: Id): ZIO[Context, Throwable, TimeExpenseLine]
+		def getByTimeExpenseLineId(timeExpenseLineId: Id): RIO[Any, Option[TimeExpenseLine]]
 
-    def query(whereClause: String, parameters: List[TimeExpenseLine]): ZIO[Context, Throwable, List[TimeExpenseLine]]
+		def getByLine(line: Number): RIO[Any,List[TimeExpenseLine]]
 
-    def createFromContractLine(contractLine: ContractLine): ZIO[Context, Throwable, TimeExpenseLine]
-  }
+		def getAll: RIO[Any,List[TimeExpenseLine]]
 
-  def live : ZLayer[Has[Context.Service] with Has[TimeExpenseLineRepository.Service],Nothing , Has[Service]] = ZLayer.fromServices[Context.Service , TimeExpenseLineRepository.Service , Service] { (contextService , timeExpenseLineRepository)  => TimeExpenseLineServiceLive(contextService , timeExpenseLineRepository) }
-}
+		def getAll(clientId: TableDirect): RIO[Any,List[TimeExpenseLine]]
 
-case class TimeExpenseLineServiceLive(contextService: Context.Service, timeExpenseLineRepository: TimeExpenseLineRepository.Service) extends Service {
-  override def save(timeExpenseLine: TimeExpenseLine): ZIO[Context, Throwable, TimeExpenseLine] = ???
+	}
 
-  override def update(timeExpenseLine: TimeExpenseLine, invoiceLine: InvoiceLine): ZIO[Context, Throwable, TimeExpenseLine] = ???
+	def live: ZLayer[TimeExpenseLineRepository.TimeExpenseLineRepository, Nothing, Has[Service]]
+	= ZLayer.fromService[TimeExpenseLineRepository.Service, Service] { timeExpenseLineRepository => TimeExpenseLineServiceLive(timeExpenseLineRepository) }
 
-  override def getById(id: Id): ZIO[Context, Throwable, TimeExpenseLine] = ???
+	def getByDescription(description: Option[String]): RIO[TimeExpenseLineService,List[TimeExpenseLine]]
+	= RIO.accessM(_.get.getByDescription(description))
 
-  override def query(whereClause: String, parameters: List[TimeExpenseLine]): ZIO[Context, Throwable, List[TimeExpenseLine]] = ???
+	def getByTimeExpenseLineId(timeExpenseLineId: Id): RIO[TimeExpenseLineService, Option[TimeExpenseLine]]
+	= RIO.accessM(_.get.getByTimeExpenseLineId(timeExpenseLineId))
 
-  override def createFromContractLine(contractLine: ContractLine): ZIO[Context, Throwable, TimeExpenseLine] = ???
+	def getByLine(line: Number): RIO[TimeExpenseLineService,List[TimeExpenseLine]]
+	= RIO.accessM(_.get.getByLine(line))
+
+	def getAll: RIO[TimeExpenseLineService,List[TimeExpenseLine]]
+	= RIO.accessM(_.get.getAll)
+
+	def getAll(clientId: TableDirect): RIO[TimeExpenseLineService,List[TimeExpenseLine]]
+	= RIO.accessM(_.get.getAll(clientId))
+
 }

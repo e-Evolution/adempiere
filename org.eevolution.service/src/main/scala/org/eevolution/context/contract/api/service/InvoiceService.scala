@@ -22,7 +22,7 @@ import java.time.LocalDateTime
 
 import org.eevolution.context.contract.api.Context
 import org.eevolution.context.contract.api.Context.Context
-import org.eevolution.context.contract.api.repository.{ContractLineRepository, InvoiceRepository}
+import org.eevolution.context.contract.api.repository.InvoiceRepository
 import org.eevolution.context.contract.api.service.InvoiceLineService.{InvoiceLineService, Service}
 import org.eevolution.context.contract.api.service.InvoiceService.InvoiceService
 import org.eevolution.context.contract.domain.ubiquitouslanguage.{ContractLine, Id, Invoice, InvoiceLine, Partner, TimeExpenseLine}

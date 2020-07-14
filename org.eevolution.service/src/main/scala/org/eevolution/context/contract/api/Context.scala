@@ -4,9 +4,9 @@ import java.util.Properties
 
 import org.compiere.util.Trx
 import org.eevolution.context.contract.api.Context.{Context, Service}
-import org.eevolution.context.contract.api.service.UserService.UserService
-import org.eevolution.context.contract.api.service.{OrganizationService, TenantService, UserService}
-import org.eevolution.context.contract.domain.ubiquitouslanguage.{Organization, Tenant, User}
+import org.eevolution.context.kernel.api.service.UserService.UserService
+import org.eevolution.context.kernel.api.service.{OrganizationService, TenantService, UserService}
+import org.eevolution.context.kernel.domain.ubiquitouslanguage.{Organization, Tenant, User}
 import zio.{Has, ZIO, ZLayer}
 
 /**

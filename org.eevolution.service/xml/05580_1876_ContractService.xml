@@ -2397,11 +2397,11 @@ There are two reasons for de-activating and not deleting records:
         <Data AD_Column_ID="226" Column="AD_Reference_ID">13</Data>
         <Data AD_Column_ID="552" Column="UpdatedBy">100</Data>
         <Data AD_Column_ID="84306" Column="UUID" isNewNull="true"/>
-        <Data AD_Column_ID="124" Column="IsMandatory">false</Data>
+        <Data AD_Column_ID="124" Column="IsMandatory">true</Data>
         <Data AD_Column_ID="125" Column="IsTranslated">false</Data>
         <Data AD_Column_ID="117" Column="DefaultValue" isNewNull="true"/>
         <Data AD_Column_ID="1179" Column="VFormat" isNewNull="true"/>
-        <Data AD_Column_ID="120" Column="IsParent">false</Data>
+        <Data AD_Column_ID="120" Column="IsParent">true</Data>
         <Data AD_Column_ID="126" Column="IsIdentifier">false</Data>
         <Data AD_Column_ID="6244" Column="IsSelectionColumn">false</Data>
         <Data AD_Column_ID="6483" Column="IsSyncDatabase">N</Data>
@@ -11393,7 +11393,7 @@ There are two reasons for de-activating and not deleting records:
         <Data AD_Column_ID="119" Column="IsKey">false</Data>
         <Data AD_Column_ID="6245" Column="ReadOnlyLogic" isNewNull="true"/>
         <Data AD_Column_ID="56352" Column="FormatPattern" isNewNull="true"/>
-        <Data AD_Column_ID="50218" Column="MandatoryLogic" isNewNull="true"/>
+        <Data AD_Column_ID="50218" Column="MandatoryLogic">true</Data>
         <Data AD_Column_ID="110" Column="Version">0</Data>
         <Data AD_Column_ID="13448" Column="ColumnSQL" isNewNull="true"/>
         <Data AD_Column_ID="116" Column="ColumnName">DateContract</Data>
@@ -13161,7 +13161,7 @@ There are two reasons for de-activating and not deleting records:
         <Data AD_Column_ID="551" Column="Updated">2018-08-13 19:50:57.686</Data>
         <Data AD_Column_ID="3389" Column="ValueMax" isNewNull="true"/>
         <Data AD_Column_ID="111" Column="Name">Contract</Data>
-        <Data AD_Column_ID="124" Column="IsMandatory">false</Data>
+        <Data AD_Column_ID="124" Column="IsMandatory">true</Data>
         <Data AD_Column_ID="125" Column="IsTranslated">false</Data>
         <Data AD_Column_ID="117" Column="DefaultValue" isNewNull="true"/>
         <Data AD_Column_ID="1179" Column="VFormat" isNewNull="true"/>
@@ -16218,11 +16218,11 @@ There are two reasons for de-activating and not deleting records:
         <Data AD_Column_ID="551" Column="Updated">2018-08-13 20:35:05.88</Data>
         <Data AD_Column_ID="3389" Column="ValueMax" isNewNull="true"/>
         <Data AD_Column_ID="111" Column="Name">Contract</Data>
-        <Data AD_Column_ID="124" Column="IsMandatory">false</Data>
+        <Data AD_Column_ID="124" Column="IsMandatory">true</Data>
         <Data AD_Column_ID="125" Column="IsTranslated">false</Data>
         <Data AD_Column_ID="117" Column="DefaultValue" isNewNull="true"/>
         <Data AD_Column_ID="1179" Column="VFormat" isNewNull="true"/>
-        <Data AD_Column_ID="120" Column="IsParent">false</Data>
+        <Data AD_Column_ID="120" Column="IsParent">true</Data>
         <Data AD_Column_ID="126" Column="IsIdentifier">false</Data>
         <Data AD_Column_ID="6244" Column="IsSelectionColumn">false</Data>
         <Data AD_Column_ID="6483" Column="IsSyncDatabase">N</Data>

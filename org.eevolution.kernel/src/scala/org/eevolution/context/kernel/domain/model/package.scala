@@ -226,7 +226,7 @@ package object model {
      * @param yesNoAsBoolean Yes No As Boolean
      * @return
      */
-    def geClass(reference: Int, yesNoAsBoolean: Boolean): String = {
+    def getClass(reference: Int, yesNoAsBoolean: Boolean): String = {
       if (isText(reference) || reference == List) "String"
       else if (isId(reference) || reference == Integer) "String"
       else if (isNumeric(reference)) "BigDecimal"
@@ -235,6 +235,83 @@ package object model {
       else if (reference == Button) "String"
       else if (isLob(reference)) "Byte"
       else "AnyRef"
+    }
+
+    /**
+     * Get Type for Reference
+     * @param attributeName
+     * @param reference
+     * @param referenceValueId
+     * @param maybeDefault
+     * @param isMandatory
+     * @return
+     */
+    def getType(attributeName: String, reference: Int, referenceValueId: Option[Int], maybeDefault: Option[String], isMandatory: Boolean = false): String = {
+      val typeBuffer = new StringBuilder
+      if (!isMandatory) {
+        typeBuffer.append("Option[")
+      }
+
+      if (reference == ID)
+        typeBuffer.append("Id")
+      if (reference == Number || reference == Integer)
+        typeBuffer.append("Number")
+      if (reference == Amount)
+        typeBuffer.append("Amount")
+      if (reference == CostPrice)
+        typeBuffer.append("CostPrice")
+      if (reference == Quantity)
+        typeBuffer.append("Quantity")
+      if (reference == TableDir)
+        typeBuffer.append("TableDirect")
+      if (reference == PAttribute)
+        typeBuffer.append("AttributeSetInstance")
+      if (reference == Assignment)
+        typeBuffer.append("ResourceAssignment")
+      if (reference == Table)
+        typeBuffer.append("Table")
+      if (reference == Account)
+        typeBuffer.append("TableDirect")
+      if (reference == Search)
+        typeBuffer.append("Search")
+      if (reference == Date || reference == DateTime)
+        typeBuffer.append("DateTime")
+      if (reference == YesNo)
+        typeBuffer.append("YesNo")
+      if (reference == Button)
+        typeBuffer.append("String")
+      if (reference == List)
+        typeBuffer.append("ListType")
+      if (isText(reference))
+        typeBuffer.append("String")
+      if (!isMandatory)
+        typeBuffer.append("]")
+
+      maybeDefault match {
+        case Some(default) if isNumeric(reference) && !isMandatory && (default == "0.0" || default == "0" || default == "1") =>
+          typeBuffer.append(" = Some(BigDecimal(0))")
+        case Some(default) if isNumeric(reference) && default == "0.0" || default == "0" =>
+          typeBuffer.append(" = BigDecimal(0)")
+        case Some(default) if isNumeric(reference) && default == "1.0" || default == "1" =>
+          typeBuffer.append(" = BigDecimal(1)")
+        case Some(default) if isDate(reference) && default == "@#Date@" && !isMandatory =>
+          typeBuffer.append(" = Option(java.time.LocalDateTime.now)")
+        case Some(default) if default == "@#Date@" => typeBuffer.append(" = java.time.LocalDateTime.now")
+        case Some(_) if reference == DateTime && (Option(attributeName).getOrElse("") == "Updated"
+          || Option(attributeName).getOrElse("") == "Created") =>
+          typeBuffer.append(" = java.time.LocalDateTime.now")
+        case Some(default) if reference == List && default.length > 0 && isMandatory => typeBuffer.append(" = ").append("\"").append(default).append("\"")
+        case Some(default) if reference == Button && default.length > 0 && isMandatory => typeBuffer.append(" = \"").append(default).append("\"")
+        case Some(default) if reference == YesNo && default == "Y" && isMandatory => typeBuffer.append(" = true")
+        case Some(default) if reference == YesNo && default == "N" && isMandatory => typeBuffer.append(" = false")
+        case Some(default) if reference == List && default.length > 0 && !isMandatory => typeBuffer.append(" = Option(").append("\"").append(default).append("\")")
+        case Some(default) if reference == Button && default.length > 0 && !isMandatory => typeBuffer.append(" = Option(\"").append(default).append("\")")
+        case Some(default) if reference == YesNo && default == "Y" && !isMandatory => typeBuffer.append(" = Option(true)")
+        case Some(default) if reference == YesNo && default == "N" && !isMandatory => typeBuffer.append(" = Option(false)")
+        case Some(_) => typeBuffer.append("")
+        case None => typeBuffer.append("")
+      }
+      typeBuffer.toString()
     }
 
     /**

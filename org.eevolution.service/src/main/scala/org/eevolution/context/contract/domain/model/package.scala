@@ -6,6 +6,7 @@ import java.util.UUID
 
 import org.eevolution.context.contract.api.Context.Context
 import org.eevolution.context.contract.domain.ubiquitouslanguage.DateTime
+import org.eevolution.context.kernel.domain.model.{Organization, Tenant}
 import zio.ZIO
 
 

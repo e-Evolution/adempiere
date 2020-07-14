@@ -15,8 +15,9 @@ package object ubiquitouslanguage {
   type TableDirect = Int
   type Table = Int
   type Search = Int
-  type List = String
+  type ListType = String
   type Number = BigDecimal
+  type CostPrice = BigDecimal
   type YesNo = Boolean
   type Button = String
   type Yes = true
@@ -25,6 +26,8 @@ package object ubiquitouslanguage {
   type Date = LocalDate
   type Text = String
   type Domain = PO
+  type AttributeSetInstance = Int
+  type ResourceAssignment = Int
 
 
   sealed trait Maybe

@@ -1,44 +1,66 @@
 /**
- * Copyright (C) 2003-2018, e-Evolution Consultants S.A. , http://www.e-evolution.com
- * This program is free software, you can redistribute it and/or modify it
- * under the terms version 2 of the GNU General Public License as published
- * or (at your option) any later version.
- * by the Free Software Foundation. This program is distributed in the hope
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- * You should have received a copy of the GNU General Public License along
- * with this program, if not, write to the Free Software Foundation, Inc.,
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.
- * For the text or an alternative of this public license, you may reach us
- * or via info@adempiere.net or http://www.adempiere.net/license.html
- * Email: victor.perez@e-evolution.com, http://www.e-evolution.com , http://github.com/e-Evolution
- * Created by victor.perez@e-evolution.com , www.e-evolution.com
- */
+ * Copyright (C) 2003-2017, e-Evolution Consultants S.A. , http://www.e-evolution.com
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Email: emeris.hernandez@e-evolution.com, http://www.e-evolution.com , http://github.com/e-Evolution
+ * Created by emeris.hernandez@e-evolution.com , www.e-evolution.com
+ **/
 
 package org.eevolution.context.contract.api.repository
 
+import org.eevolution.context.contract.domain.model._
+import org.eevolution.context.kernel.domain.ubiquitouslanguage._
+import zio.{Has, RIO, ZLayer}
 
-import org.eevolution.context.contract.api.Context.Context
-import org.eevolution.context.contract.api.repository.TimeExpenseRepository.Service
-import org.eevolution.context.contract.domain.ubiquitouslanguage.{Id, TimeExpense}
-import zio.{Has, ZIO, ZLayer}
+object TimeExpenseRepository {
 
+	type TimeExpenseRepository = Has[TimeExpenseRepository.Service]
 
-/**
- * Time Expense Repository contract to implement the infrastructure application for Time Expense Entity
- */
-object TimeExpenseRepository extends {
+	trait Service {
+		def getByBPartnerId(bPartnerId: Table): RIO[Any,List[TimeExpense]]
 
-  type TimeExpenseRepository = Has[Service]
-  trait Service {
-    def getById(id: Id): ZIO[Context, Throwable, TimeExpense]
-  }
+		def getByDescription(description: Option[String]): RIO[Any,List[TimeExpense]]
 
-  def live: ZLayer[Has[Context], Nothing, Has[Service]] = ZLayer.fromService[Context, Service] { contextService => TimeExpenseRepositoryLive(contextService)}
+		def getByDocumentNo(documentNo: String): RIO[Any,List[TimeExpense]]
 
-}
+		def getByTimeExpenseId(timeExpenseId: Id): RIO[Any, Option[TimeExpense]]
 
-case class TimeExpenseRepositoryLive(contextService: Context) extends Service {
-  override def getById(id: Id): ZIO[Context, Throwable, TimeExpense] = ???
+		def getByDateReport(dateReport: DateTime = java.time.LocalDateTime.now): RIO[Any,List[TimeExpense]]
+
+		def getAll: RIO[Any,List[TimeExpense]]
+
+		def getAll(clientId: TableDirect): RIO[Any,List[TimeExpense]]
+
+	}
+
+	def live(service: Service): ZLayer[Any, Throwable, Has[Service]] = ZLayer.succeed(service)
+
+	def getByBPartnerId(bPartnerId: Table): RIO[TimeExpenseRepository,List[TimeExpense]]
+	= RIO.accessM(_.get.getByBPartnerId(bPartnerId))
+
+	def getByDescription(description: Option[String]): RIO[TimeExpenseRepository,List[TimeExpense]]
+	= RIO.accessM(_.get.getByDescription(description))
+
+	def getByDocumentNo(documentNo: String): RIO[TimeExpenseRepository,List[TimeExpense]]
+	= RIO.accessM(_.get.getByDocumentNo(documentNo))
+
+	def getByTimeExpenseId(timeExpenseId: Id): RIO[TimeExpenseRepository, Option[TimeExpense]]
+	= RIO.accessM(_.get.getByTimeExpenseId(timeExpenseId))
+
+	def getByDateReport(dateReport: DateTime = java.time.LocalDateTime.now): RIO[TimeExpenseRepository,List[TimeExpense]]
+	= RIO.accessM(_.get.getByDateReport(dateReport))
+
+	def getAll: RIO[TimeExpenseRepository,List[TimeExpense]]
+	= RIO.accessM(_.get.getAll)
+
+	def getAll(clientId: TableDirect): RIO[TimeExpenseRepository,List[TimeExpense]]
+	= RIO.accessM(_.get.getAll(clientId))
 }
