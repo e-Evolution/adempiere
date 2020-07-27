@@ -2170,7 +2170,7 @@ public abstract class PO
 				log.warning("beforeSave failed - " + toString());
 				if (localTrx != null)
 				{
-					localTrx.rollback();
+					localTrx.rollback(true);
 					localTrx.close();
 					m_trxName = null;
 				}
@@ -2214,7 +2214,7 @@ public abstract class PO
 				log.saveError("Error", errorMsg);
 				if (localTrx != null)
 				{
-					localTrx.rollback();
+					localTrx.rollback(true);
 					m_trxName = null;
 				}
 				else
@@ -2230,14 +2230,14 @@ public abstract class PO
 				if (b)
 				{
 					if (localTrx != null)
-						return localTrx.commit();
+						return localTrx.commit(true);
 					else
 						return b;
 				}
 				else
 				{
 					if (localTrx != null)
-						localTrx.rollback();
+						localTrx.rollback(true);
 					else
 						trx.rollback(savepoint);
 					return b;
@@ -2249,14 +2249,14 @@ public abstract class PO
 				if (b)
 				{
 					if (localTrx != null)
-						return localTrx.commit();
+						return localTrx.commit(true);
 					else
 						return b;
 				}
 				else
 				{
 					if (localTrx != null)
-						localTrx.rollback();
+						localTrx.rollback(true);
 					else
 						trx.rollback(savepoint);
 					return b;
@@ -2280,25 +2280,20 @@ public abstract class PO
 			}
 			return false;
 		}
-		finally
-		{
-			if (localTrx != null)
-			{
-				localTrx.close();
-				m_trxName = null;
-			}
-			else
-			{
-				if (savepoint != null)
-				{
-					try {
+		finally {
+			try {
+				if (localTrx != null) {
+					localTrx.close();
+					m_trxName = null;
+				} else {
+					if (savepoint != null) {
 						trx.releaseSavepoint(savepoint);
-					} catch (SQLException e) {
-						e.printStackTrace();
 					}
+					savepoint = null;
+					trx = null;
 				}
-				savepoint = null;
-				trx = null;
+			} catch (SQLException e) {
+				log.saveError("Error", e);
 			}
 		}
 	}	//	save
@@ -2513,7 +2508,7 @@ public abstract class PO
 			}
 		}
 		//	Change Log
-		MSession session = MSession.get (p_ctx, false);
+		MSession session = MSession.get (p_ctx, false, !p_info.getTableName().equals(I_AD_Session.Table_Name));
 		if (session == null)
 			log.fine("No Session found");
 		// log migration
@@ -2620,6 +2615,7 @@ public abstract class PO
 				&& !p_info.isEncrypted(i)		//	not encrypted
 				&& !p_info.isVirtualColumn(i)	//	no virtual column
 				&& !"Password".equals(columnName)
+				&& !p_info.getTableName().equals(I_AD_Session.Table_Name)
 				)
 			{
 				Object oldV = m_oldValues[i];
@@ -2788,7 +2784,7 @@ public abstract class PO
 		lobReset();
 
 		//	Change Log
-		MSession session = MSession.get (p_ctx, false);
+		MSession session = MSession.get (p_ctx, false, !p_info.getTableName().equals(I_AD_Session.Table_Name));
 		if (session == null)
 			log.fine("No Session found");
 		// log migration
@@ -2876,6 +2872,7 @@ public abstract class PO
 				&& !p_info.isEncrypted(i)		//	not encrypted
 				&& !p_info.isVirtualColumn(i)	//	no virtual column
 				&& !"Password".equals(columnName)
+				&& !p_info.getTableName().equals(I_AD_Session.Table_Name)
 				&& (insertLog.equalsIgnoreCase("Y")
 						|| (insertLog.equalsIgnoreCase("K") && p_info.getColumn(i).IsKey))
 				)
@@ -3142,7 +3139,7 @@ public abstract class PO
 			if (success)
 			{
 
-				MSession session = MSession.get (p_ctx, false);
+				MSession session = MSession.get (p_ctx, false, !p_info.getTableName().equals(I_AD_Session.Table_Name));
 				if (session == null)
 					log.fine("No Session found");
 				else if ( Ini.isPropertyBool(Ini.P_LOGMIGRATIONSCRIPT) )
@@ -3163,6 +3160,7 @@ public abstract class PO
 								&& !p_info.isEncrypted(i)		//	not encrypted
 								&& !p_info.isVirtualColumn(i)	//	no virtual column
 								&& !"Password".equals(p_info.getColumnName(i))
+								&& !p_info.getTableName().equals(I_AD_Session.Table_Name)
 								)
 							{
 								// change log on delete
