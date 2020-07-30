@@ -153,7 +153,7 @@ object TaxAggregate {
       val taxDocumentLines = new ListBuffer[TaxDocumentLine]
       for {
         //Get Children Taxes
-        taxes <- TaxService.getByTaxId(tax.taxId) //TaxService.getByParentTaxId(Option(tax.taxId))
+        taxes <- TaxService.getByParentTaxId(Option(tax.taxId))
         //Filling the calculation Results Buffer
         _ <- RIO.foreach(taxes) { tax =>
           calculator(Option(tax.taxId)

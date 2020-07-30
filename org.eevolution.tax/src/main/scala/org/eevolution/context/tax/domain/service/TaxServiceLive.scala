@@ -24,11 +24,29 @@ import zio.RIO
 
 case class TaxServiceLive(taxRepository: TaxRepository.Service) extends TaxService.Service {
 
+	def getByCountryId(countryId: Option[Table]): RIO[Any,List[Tax]] = taxRepository.getByCountryId(countryId)
+
+	def getByIsDefault(isDefault: YesNo): RIO[Any,List[Tax]] = taxRepository.getByIsDefault(isDefault)
+
 	def getByDescription(description: Option[String]): RIO[Any,List[Tax]] = taxRepository.getByDescription(description)
 
 	def getByName(name: String): RIO[Any, Option[Tax]] = taxRepository.getByName(name)
 
+	def getByParentTaxId(parentTaxId: Option[Table]): RIO[Any,List[Tax]] = taxRepository.getByParentTaxId(parentTaxId)
+
+	def getByRegionId(regionId: Option[Table]): RIO[Any,List[Tax]] = taxRepository.getByRegionId(regionId)
+
+	def getByIsSummary(isSummary: YesNo): RIO[Any,List[Tax]] = taxRepository.getByIsSummary(isSummary)
+
 	def getByTaxId(taxId: Id): RIO[Any, Option[Tax]] = taxRepository.getByTaxId(taxId)
+
+	def getByTaxCategoryId(taxCategoryId: TableDirect): RIO[Any,List[Tax]] = taxRepository.getByTaxCategoryId(taxCategoryId)
+
+	def getByTaxIndicator(taxIndicator: Option[String]): RIO[Any,List[Tax]] = taxRepository.getByTaxIndicator(taxIndicator)
+
+	def getByToCountryId(toCountryId: Option[Table]): RIO[Any,List[Tax]] = taxRepository.getByToCountryId(toCountryId)
+
+	def getByToRegionId(toRegionId: Option[Table]): RIO[Any,List[Tax]] = taxRepository.getByToRegionId(toRegionId)
 
 		def getAll: RIO[Any,List[Tax]] = taxRepository.getAll
 

@@ -25,6 +25,26 @@ import zio.RIO
 import scala.util.Try
 
 case class TaxRepositoryLive() extends TaxRepository.Service with TaxMapping {
+	override def getByCountryId(countryId: Option[Table]): RIO[Any,List[Tax]] =
+		for {
+			taxList <- RIO.fromTry {
+				Try {
+					val taxList = run(query[Tax].filter(_.countryId == lift(countryId)))
+					taxList
+			}
+		}
+	} yield taxList
+
+	override def getByIsDefault(isDefault: YesNo): RIO[Any,List[Tax]] =
+		for {
+			taxList <- RIO.fromTry {
+				Try {
+					val taxList = run(query[Tax].filter(_.isDefault == lift(isDefault)))
+					taxList
+			}
+		}
+	} yield taxList
+
 	override def getByDescription(description: Option[String]): RIO[Any,List[Tax]] =
 		for {
 			taxList <- RIO.fromTry {
@@ -45,6 +65,36 @@ case class TaxRepositoryLive() extends TaxRepository.Service with TaxMapping {
 			}
 		} yield tax
 
+	override def getByParentTaxId(parentTaxId: Option[Table]): RIO[Any,List[Tax]] =
+		for {
+			taxList <- RIO.fromTry {
+				Try {
+					val taxList = run(query[Tax].filter(_.parentTaxId == lift(parentTaxId)))
+					taxList
+			}
+		}
+	} yield taxList
+
+	override def getByRegionId(regionId: Option[Table]): RIO[Any,List[Tax]] =
+		for {
+			taxList <- RIO.fromTry {
+				Try {
+					val taxList = run(query[Tax].filter(_.regionId == lift(regionId)))
+					taxList
+			}
+		}
+	} yield taxList
+
+	override def getByIsSummary(isSummary: YesNo): RIO[Any,List[Tax]] =
+		for {
+			taxList <- RIO.fromTry {
+				Try {
+					val taxList = run(query[Tax].filter(_.isSummary == lift(isSummary)))
+					taxList
+			}
+		}
+	} yield taxList
+
 	override def getByTaxId(taxId: Id): RIO[Any, Option[Tax]] =
 		for {
 			tax <- RIO.fromTry {
@@ -54,6 +104,46 @@ case class TaxRepositoryLive() extends TaxRepository.Service with TaxMapping {
 				}
 			}
 		} yield tax
+
+	override def getByTaxCategoryId(taxCategoryId: TableDirect): RIO[Any,List[Tax]] =
+		for {
+			taxList <- RIO.fromTry {
+				Try {
+					val taxList = run(query[Tax].filter(_.taxCategoryId == lift(taxCategoryId)))
+					taxList
+			}
+		}
+	} yield taxList
+
+	override def getByTaxIndicator(taxIndicator: Option[String]): RIO[Any,List[Tax]] =
+		for {
+			taxList <- RIO.fromTry {
+				Try {
+					val taxList = run(query[Tax].filter(_.taxIndicator == lift(taxIndicator)))
+					taxList
+			}
+		}
+	} yield taxList
+
+	override def getByToCountryId(toCountryId: Option[Table]): RIO[Any,List[Tax]] =
+		for {
+			taxList <- RIO.fromTry {
+				Try {
+					val taxList = run(query[Tax].filter(_.toCountryId == lift(toCountryId)))
+					taxList
+			}
+		}
+	} yield taxList
+
+	override def getByToRegionId(toRegionId: Option[Table]): RIO[Any,List[Tax]] =
+		for {
+			taxList <- RIO.fromTry {
+				Try {
+					val taxList = run(query[Tax].filter(_.toRegionId == lift(toRegionId)))
+					taxList
+			}
+		}
+	} yield taxList
 
 	override def getAll: RIO[Any,List[Tax]] =
 		for {

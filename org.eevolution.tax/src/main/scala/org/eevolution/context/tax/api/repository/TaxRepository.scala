@@ -25,11 +25,29 @@ object TaxRepository {
 	type TaxRepository = Has[TaxRepository.Service]
 
 	trait Service {
+		def getByCountryId(countryId: Option[Table]): RIO[Any,List[Tax]]
+
+		def getByIsDefault(isDefault: YesNo): RIO[Any,List[Tax]]
+
 		def getByDescription(description: Option[String]): RIO[Any,List[Tax]]
 
 		def getByName(name: String): RIO[Any, Option[Tax]]
 
+		def getByParentTaxId(parentTaxId: Option[Table]): RIO[Any,List[Tax]]
+
+		def getByRegionId(regionId: Option[Table]): RIO[Any,List[Tax]]
+
+		def getByIsSummary(isSummary: YesNo): RIO[Any,List[Tax]]
+
 		def getByTaxId(taxId: Id): RIO[Any, Option[Tax]]
+
+		def getByTaxCategoryId(taxCategoryId: TableDirect): RIO[Any,List[Tax]]
+
+		def getByTaxIndicator(taxIndicator: Option[String]): RIO[Any,List[Tax]]
+
+		def getByToCountryId(toCountryId: Option[Table]): RIO[Any,List[Tax]]
+
+		def getByToRegionId(toRegionId: Option[Table]): RIO[Any,List[Tax]]
 
 		def getAll: RIO[Any,List[Tax]]
 
@@ -39,14 +57,41 @@ object TaxRepository {
 
 	def live(service: Service): ZLayer[Any, Throwable, Has[Service]] = ZLayer.succeed(service)
 
+	def getByCountryId(countryId: Option[Table]): RIO[TaxRepository,List[Tax]]
+	= RIO.accessM(_.get.getByCountryId(countryId))
+
+	def getByIsDefault(isDefault: YesNo): RIO[TaxRepository,List[Tax]]
+	= RIO.accessM(_.get.getByIsDefault(isDefault))
+
 	def getByDescription(description: Option[String]): RIO[TaxRepository,List[Tax]]
 	= RIO.accessM(_.get.getByDescription(description))
 
 	def getByName(name: String): RIO[TaxRepository, Option[Tax]]
 	= RIO.accessM(_.get.getByName(name))
 
+	def getByParentTaxId(parentTaxId: Option[Table]): RIO[TaxRepository,List[Tax]]
+	= RIO.accessM(_.get.getByParentTaxId(parentTaxId))
+
+	def getByRegionId(regionId: Option[Table]): RIO[TaxRepository,List[Tax]]
+	= RIO.accessM(_.get.getByRegionId(regionId))
+
+	def getByIsSummary(isSummary: YesNo): RIO[TaxRepository,List[Tax]]
+	= RIO.accessM(_.get.getByIsSummary(isSummary))
+
 	def getByTaxId(taxId: Id): RIO[TaxRepository, Option[Tax]]
 	= RIO.accessM(_.get.getByTaxId(taxId))
+
+	def getByTaxCategoryId(taxCategoryId: TableDirect): RIO[TaxRepository,List[Tax]]
+	= RIO.accessM(_.get.getByTaxCategoryId(taxCategoryId))
+
+	def getByTaxIndicator(taxIndicator: Option[String]): RIO[TaxRepository,List[Tax]]
+	= RIO.accessM(_.get.getByTaxIndicator(taxIndicator))
+
+	def getByToCountryId(toCountryId: Option[Table]): RIO[TaxRepository,List[Tax]]
+	= RIO.accessM(_.get.getByToCountryId(toCountryId))
+
+	def getByToRegionId(toRegionId: Option[Table]): RIO[TaxRepository,List[Tax]]
+	= RIO.accessM(_.get.getByToRegionId(toRegionId))
 
 	def getAll: RIO[TaxRepository,List[Tax]]
 	= RIO.accessM(_.get.getAll)
