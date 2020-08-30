@@ -494,7 +494,6 @@ public final class MPaySelectionCheck extends X_C_PaySelectionCheck
 						paySelectionLine.setC_BP_BankAccount_ID(partnerBankAccount.getC_BP_BankAccount_ID());
 						paySelectionLine.saveEx();
 					});
-
 		}
 		else if (X_C_Order.PAYMENTRULE_DirectDeposit.equals(paymentRule))
 		{
