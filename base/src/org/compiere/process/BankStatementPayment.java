@@ -185,7 +185,7 @@ public class BankStatementPayment extends SvrProcess
 		//
 		if (C_Invoice_ID != 0)
 		{
-			MInvoice invoice = new MInvoice (getCtx(), C_Invoice_ID, null);
+			MInvoice invoice = new MInvoice (getCtx(), C_Invoice_ID, get_TrxName());
 			payment.setC_DocType_ID(invoice.isSOTrx());		//	Receipt
 			payment.setC_Invoice_ID(invoice.getC_Invoice_ID());
 			payment.setC_BPartner_ID (invoice.getC_BPartner_ID());
