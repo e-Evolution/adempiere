@@ -50,6 +50,8 @@ import org.compiere.model.*;
  */
 public class Login
 {
+	protected Integer authenticatedUserId = null;
+
 	/**
 	 *  Test Init - Set Environment for tests
 	 *	@param isClient client session
@@ -100,14 +102,11 @@ public class Login
 		//if (jVersion.startsWith("1.5.0"))
 		//	return true;
         //vpj-cd e-evolution support to java 6
-        //if (jVersion.startsWith("1.6.0"))
-		//	return true;
-        //Add ADEMPIERE-86 Add JAVA 7.0 support in ADempiere
-        if (jVersion.startsWith("1.7.0"))
-			return true;
-        //Add ADEMPIERE-86 Add JAVA 8.0 support in ADempiere
         if (jVersion.startsWith("1.8.0"))
             return true;
+		//Add ADEMPIERE-86 Add JAVA 11.0 support in ADempiere
+		if (jVersion.startsWith("11"))
+			return true;
         //end
 		//  Warning
 		boolean ok = false;
@@ -120,8 +119,7 @@ public class Login
 		msg.append(System.getProperty("java.vm.name")).append(" - ").append(jVersion);
 		if (ok)
 			msg.append("(untested)");
-		//msg.append(" <> 1.5.0, 1.6.0, 1.7.0 1.8.0");
-        msg.append(" <> 1.7.0 , 1.8.0");
+        msg.append(" <> 1.8.0, 11");
 		//
 		if (isClient)
 			JOptionPane.showMessageDialog(null, msg.toString(),
@@ -333,12 +331,15 @@ public class Login
 	 */
 	private KeyNamePair[] getRoles (String app_user, String app_pwd, boolean force) {
 		long start = System.currentTimeMillis();
-		//	
-		int userId = getAuthenticatedUserId(app_user, app_pwd);
+
+		if (getAuthenticatedUserId() == null )
+			authenticatedUserId = getAuthenticatedUserId(app_user, app_pwd);
+
 		//	Fail authentication
-		if(userId == -1) {
+		if(getAuthenticatedUserId() == -1) {
 			return null;
 		}
+
 		KeyNamePair[] retValue = null;
 		ArrayList<KeyNamePair> list = new ArrayList<KeyNamePair>();
 		//	Validate if exist column
@@ -364,7 +365,7 @@ public class Login
 		ResultSet rs = null;
 		try {
 			pstmt = DB.prepareStatement(sql.toString(), null);
-			pstmt.setInt(1, userId);
+			pstmt.setInt(1, authenticatedUserId);
 			//	execute a query
 			rs = pstmt.executeQuery();
 			//	
@@ -1225,5 +1226,8 @@ public class Login
 	{
 		return null;
 	}	//	getPrincipal
-	
+
+	public Integer getAuthenticatedUserId() {
+		return authenticatedUserId;
+	}
 }	//	Login

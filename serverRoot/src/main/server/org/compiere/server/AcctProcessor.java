@@ -17,6 +17,7 @@
 package org.compiere.server;
 
 import java.sql.Timestamp;
+import java.util.Optional;
 
 import org.compiere.acct.SessionPoster;
 import org.compiere.model.MAcctProcessor;
@@ -24,6 +25,7 @@ import org.compiere.model.MAcctProcessorLog;
 import org.compiere.model.MAcctSchema;
 import org.compiere.model.MAcctSchemaProvider;
 import org.compiere.util.TimeUtil;
+import org.compiere.util.Trx;
 
 /**
  * Accounting Processor
@@ -36,7 +38,7 @@ public class AcctProcessor extends AdempiereServer {
     private MAcctProcessor model = null;
     private MAcctSchemaProvider provider = new MAcctSchemaProvider();
     private SessionPoster sessionPoster = new SessionPoster();
-    private StringBuilder summary;
+    private StringBuilder summary = new StringBuilder("Just initialized ");
 
     /**
      * Accounting Processor
@@ -90,7 +92,7 @@ public class AcctProcessor extends AdempiereServer {
      */
     public String getServerInfo() {
     
-        return "#" + p_runCount + " - Last=" + summary.toString();
+        return "#" + p_runCount + " - Last=" + Optional.ofNullable(summary).orElse(new StringBuilder("")).toString();
     
     }
 
@@ -116,7 +118,11 @@ public class AcctProcessor extends AdempiereServer {
                 new MAcctProcessorLog(getModel(), summary.toString());
         pLog.setReference("#" + p_runCount + " - " 
                 + TimeUtil.formatElapsed(new Timestamp(p_startWork)));
-        pLog.saveEx();
+        Trx.run(trxName -> {
+            pLog.set_TrxName(trxName);
+            pLog.saveEx();
+        });
+
     
     }
 
