@@ -37,6 +37,7 @@ import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.Language;
+import org.compiere.wf.MWorkflow;
 
 /**
  *	Generate Invoices
@@ -458,12 +459,13 @@ public class InvoiceGenerate extends SvrProcess
 	{
 		if (invoice != null)
 		{
-			if (!invoice.processIt(p_docAction))
+			MWorkflow.processing(invoice).withDocumentAction(p_docAction);
+			/*if (!invoice.processIt(p_docAction))
 			{
 				log.warning("completeInvoice - failed: " + invoice);
 				addLog("completeInvoice - failed: " + invoice); // Elaine 2008/11/25
 			}
-			invoice.saveEx();
+			invoice.saveEx();*/
 
 			addLog(invoice.getC_Invoice_ID(), invoice.getDateInvoiced(), null, invoice.getDocumentNo());
 			m_created++;
