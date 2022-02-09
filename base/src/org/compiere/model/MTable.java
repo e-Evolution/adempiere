@@ -163,20 +163,14 @@ public class MTable extends X_AD_Table
 	 *	@param tableName case insensitive table name
 	 *	@return Table
 	 */
-    public static MTable get (Properties ctx, String tableName)
-	{
+    public static MTable get (Properties ctx, String tableName) {
 		if (tableName == null)
 			return null;
 		int tableId = getTable_ID(tableName);
 		if(tableId <= 0) {
 			return null;
 		}
-		MTable retValue = MTable.get(ctx, tableId);
-		if (retValue != null) {
-			Integer key = new Integer (retValue.getAD_Table_ID());
-			s_cache.put (key, retValue);
-		}
-		return retValue;
+		return MTable.get(ctx, tableId);
 	}	//	get
 	
 	/**
@@ -447,7 +441,7 @@ public class MTable extends X_AD_Table
 			return columns;
 		}
 		//	Default find
-		columns = new Query(getCtx(), I_AD_Column.Table_Name, "AD_Table_ID = ?", get_TrxName())
+		columns = new Query(getCtx(), I_AD_Column.Table_Name, "AD_Table_ID = ?", null)
 				.setParameters(getAD_Table_ID())
 				.setOrderBy(I_AD_Column.COLUMNNAME_ColumnName)
 				.list();
