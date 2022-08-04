@@ -26,7 +26,7 @@ import java.util.Optional;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.adempiere.core.api.I_HR_Process;
+import org.adempiere.core.domains.I_HR_Process;
 import org.compiere.minigrid.IDColumn;
 import org.compiere.minigrid.IMiniTable;
 import org.compiere.model.MLookup;

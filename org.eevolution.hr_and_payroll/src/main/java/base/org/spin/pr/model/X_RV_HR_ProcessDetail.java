@@ -22,7 +22,7 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.Properties;
 
-import org.adempiere.core.api.I_RV_HR_ProcessDetail;
+import org.adempiere.core.domains.I_RV_HR_ProcessDetail;
 import org.compiere.model.*;
 import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;

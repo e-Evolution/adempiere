@@ -22,8 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.adempiere.core.api.I_HR_Employee;
-import org.adempiere.core.api.I_HR_Process;
+import org.adempiere.core.domains.I_HR_Employee;
+import org.adempiere.core.domains.I_HR_Process;
 import org.compiere.model.I_C_BP_Relation;
 import org.compiere.model.I_C_BPartner_Location;
 import org.compiere.model.MBPartner;

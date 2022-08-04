@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.adempiere.core.api.I_I_HR_Movement;
+import org.adempiere.core.domains.I_I_HR_Movement;
 import org.compiere.model.MBPartner;
 import org.compiere.model.Query;
 import org.compiere.util.Msg;

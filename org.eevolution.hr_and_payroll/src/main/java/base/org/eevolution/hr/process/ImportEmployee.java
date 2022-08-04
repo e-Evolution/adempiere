@@ -19,7 +19,7 @@
  */
 package org.eevolution.hr.process;
 
-import org.adempiere.core.api.I_I_HR_Employee;
+import org.adempiere.core.domains.I_I_HR_Employee;
 import org.compiere.model.MActivity;
 import org.compiere.model.MBPartner;
 import org.compiere.model.MCampaign;

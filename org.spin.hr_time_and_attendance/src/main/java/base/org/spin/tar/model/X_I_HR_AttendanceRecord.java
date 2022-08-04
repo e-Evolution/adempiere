@@ -21,7 +21,7 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.Properties;
 
-import org.adempiere.core.api.I_I_HR_AttendanceRecord;
+import org.adempiere.core.domains.I_I_HR_AttendanceRecord;
 import org.compiere.model.*;
 import org.compiere.util.KeyNamePair;
 
@@ -133,9 +133,9 @@ public class X_I_HR_AttendanceRecord extends PO implements I_I_HR_AttendanceReco
 		return (String)get_Value(COLUMNNAME_DeviceCode);
 	}
 
-	public org.adempiere.core.api.I_HR_AttendanceBatch getHR_AttendanceBatch() throws RuntimeException
+	public org.adempiere.core.domains.I_HR_AttendanceBatch getHR_AttendanceBatch() throws RuntimeException
     {
-		return (org.adempiere.core.api.I_HR_AttendanceBatch)MTable.get(getCtx(), org.adempiere.core.api.I_HR_AttendanceBatch.Table_Name)
+		return (org.adempiere.core.domains.I_HR_AttendanceBatch)MTable.get(getCtx(), org.adempiere.core.domains.I_HR_AttendanceBatch.Table_Name)
 			.getPO(getHR_AttendanceBatch_ID(), get_TrxName());	}
 
 	/** Set Attendance Batch.
@@ -158,9 +158,9 @@ public class X_I_HR_AttendanceRecord extends PO implements I_I_HR_AttendanceReco
 		return ii.intValue();
 	}
 
-	public org.adempiere.core.api.I_HR_AttendanceRecord getHR_AttendanceRecord() throws RuntimeException
+	public org.adempiere.core.domains.I_HR_AttendanceRecord getHR_AttendanceRecord() throws RuntimeException
     {
-		return (org.adempiere.core.api.I_HR_AttendanceRecord)MTable.get(getCtx(), org.adempiere.core.api.I_HR_AttendanceRecord.Table_Name)
+		return (org.adempiere.core.domains.I_HR_AttendanceRecord)MTable.get(getCtx(), org.adempiere.core.domains.I_HR_AttendanceRecord.Table_Name)
 			.getPO(getHR_AttendanceRecord_ID(), get_TrxName());	}
 
 	/** Set Attendance Record.

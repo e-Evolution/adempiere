@@ -18,20 +18,23 @@
 /** Generated Model - DO NOT CHANGE */
 package org.eevolution.hr.model;
 
+import org.adempiere.core.domains.I_HR_Employee;
+import org.compiere.model.I_Persistent;
+import org.compiere.model.MTable;
+import org.compiere.model.PO;
+import org.compiere.model.POInfo;
+import org.compiere.util.Env;
+import org.compiere.util.KeyNamePair;
+
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.Properties;
 
-import org.adempiere.core.api.I_HR_Employee;
-import org.compiere.model.*;
-import org.compiere.util.Env;
-import org.compiere.util.KeyNamePair;
-
 /** Generated Model for HR_Employee
  *  @author Adempiere (generated) 
  *  @version Release 3.9.3 - $Id$ */
-public class X_HR_Employee extends PO implements I_HR_Employee, I_Persistent 
+public class X_HR_Employee extends PO implements I_HR_Employee, I_Persistent
 {
 
 	/**

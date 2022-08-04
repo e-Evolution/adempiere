@@ -22,7 +22,7 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.Properties;
 
-import org.adempiere.core.api.I_HR_JobOpeningHistory;
+import org.adempiere.core.domains.I_HR_JobOpeningHistory;
 import org.compiere.model.*;
 
 /** Generated Model for HR_JobOpeningHistory

@@ -22,7 +22,7 @@ import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.util.Properties;
 
-import org.adempiere.core.api.I_HR_ListLine;
+import org.adempiere.core.domains.I_HR_ListLine;
 import org.compiere.model.*;
 import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;

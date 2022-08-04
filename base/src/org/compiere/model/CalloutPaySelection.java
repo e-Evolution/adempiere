@@ -17,6 +17,17 @@
  *****************************************************************************/
 package org.compiere.model;
 
+import org.adempiere.core.domains.I_HR_Concept;
+import org.adempiere.core.domains.I_HR_Movement;
+import org.adempiere.core.domains.I_HR_Payroll;
+import org.adempiere.core.services.PayrollConceptServiceApi;
+import org.adempiere.core.services.PayrollMovementServiceApi;
+import org.adempiere.core.services.PayrollServiceApi;
+import org.adempiere.exceptions.AdempiereException;
+import org.compiere.util.DB;
+import org.compiere.util.Env;
+import org.compiere.util.RefactoryUtil;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -25,14 +36,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Properties;
+import java.util.ServiceLoader;
 import java.util.logging.Level;
-
-import org.adempiere.core.api.I_HR_Concept;
-import org.adempiere.core.api.I_HR_Movement;
-import org.adempiere.core.api.I_HR_Payroll;
-import org.compiere.util.DB;
-import org.compiere.util.Env;
-import org.compiere.util.RefactoryUtil;
 
 
 /**
@@ -50,6 +55,14 @@ import org.compiere.util.RefactoryUtil;
  */
 public class CalloutPaySelection extends CalloutEngine
 {
+
+	PayrollServiceApi payrollServiceApi = ServiceLoader.load(PayrollServiceApi.class)
+			.findFirst().orElseThrow(() -> new AdempiereException("Implementation not found"));
+	PayrollMovementServiceApi payrollMovementServiceApi = ServiceLoader.load(PayrollMovementServiceApi.class)
+			.findFirst().orElseThrow(() -> new AdempiereException("Implementation not found"));
+	PayrollConceptServiceApi payrollConceptApi = ServiceLoader.load(PayrollConceptServiceApi.class).findFirst()
+			.orElseThrow(() ->  new AdempiereException("Implementation not found"));
+
 	/**
 	 *	Payment Selection Line - Payment Amount.
 	 *		- called from C_PaySelectionLine.PayAmt
@@ -409,13 +422,13 @@ public class CalloutPaySelection extends CalloutEngine
 		if (HR_Movement_ID == 0)
 			return "";
 		//	Get amount from movement
-		I_HR_Movement movement = RefactoryUtil.getPayrollMovement(ctx, HR_Movement_ID, null);
-		I_HR_Concept concept =  RefactoryUtil.getPayrollConcept(ctx, movement.getHR_Concept_ID(), null);
+		I_HR_Movement movement = payrollMovementServiceApi.getPayrollMovement(ctx, HR_Movement_ID, null);
+		I_HR_Concept concept =  payrollConceptApi.getPayrollConcept(ctx, movement.getHR_Concept_ID(), null);
 		if(!concept.getColumnType().equals(RefactoryUtil.HR_Concept_COLUMNTYPE_Amount)) {
 			return "@HR_Concept_ID@ <> @Amount@";
 		}
 		//	Valid payroll
-		I_HR_Payroll payroll = RefactoryUtil.getPayrollDefinition(ctx, movement.getHR_Payroll_ID(), null);
+		I_HR_Payroll payroll = payrollServiceApi.getPayrollDefinition(ctx, movement.getHR_Payroll_ID(), null);
 		if(payroll.getC_Charge_ID() == 0) {
 			return "@C_Charge_ID@ @NotFound@";
 		}

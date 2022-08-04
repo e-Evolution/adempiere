@@ -16,30 +16,9 @@
  *****************************************************************************/
 package org.compiere.print;
 
-import java.awt.print.PrinterJob;
-import java.io.File;
-import java.io.IOException;
-import java.io.Writer;
-import java.net.URI;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.Optional;
-import java.util.Properties;
-import java.util.logging.Level;
-
-import javax.print.attribute.PrintRequestAttributeSet;
-import javax.print.attribute.standard.Copies;
-import javax.print.attribute.standard.JobName;
-import javax.print.attribute.standard.JobPriority;
-import javax.print.event.PrintServiceAttributeEvent;
-import javax.print.event.PrintServiceAttributeListener;
-
+import org.adempiere.core.domains.I_HR_PaySelectionCheck;
 import org.adempiere.pdf.ITextDocument;
+import org.compiere.model.I_C_PaySelectionCheck;
 import org.compiere.model.MClient;
 import org.compiere.model.MDunningRunEntry;
 import org.compiere.model.MInOut;
@@ -60,7 +39,7 @@ import org.compiere.util.Env;
 import org.compiere.util.Ini;
 import org.compiere.util.Language;
 import org.compiere.util.RefactoryUtil;
-import org.eevolution.model.X_PP_Order;  // to be changed by MPPOrder
+import org.eevolution.model.X_PP_Order;
 import org.spin.util.ExportFormatCSV;
 import org.spin.util.ExportFormatHTML;
 import org.spin.util.ExportFormatPDF;
@@ -70,6 +49,28 @@ import org.spin.util.ExportFormatXLSX;
 import org.spin.util.ExportFormatXML;
 import org.spin.util.ILayoutView;
 import org.spin.util.PrinterUtil;
+
+import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.standard.Copies;
+import javax.print.attribute.standard.JobName;
+import javax.print.attribute.standard.JobPriority;
+import javax.print.event.PrintServiceAttributeEvent;
+import javax.print.event.PrintServiceAttributeListener;
+import java.awt.print.PrinterJob;
+import java.io.File;
+import java.io.IOException;
+import java.io.Writer;
+import java.net.URI;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.Optional;
+import java.util.Properties;
+import java.util.logging.Level;
 
 /**
  *	Report Engine.
@@ -966,7 +967,7 @@ queued-job-count = 0  (class javax.print.attribute.standard.QueuedJobCount)
 		MOrder.Table_ID, MInOut.Table_ID, MInvoice.Table_ID, MProject.Table_ID,
 		MRfQResponse.Table_ID,
 		MPaySelectionCheck.Table_ID, MPaySelectionCheck.Table_ID, 
-		MDunningRunEntry.Table_ID, X_PP_Order.Table_ID, RefactoryUtil.DD_Order_Table_ID , RefactoryUtil.HR_PaySelectionCheck_Table_ID ,  RefactoryUtil.HR_PaySelectionCheck_Table_ID , MMovement.Table_ID};
+		MDunningRunEntry.Table_ID, X_PP_Order.Table_ID, RefactoryUtil.DD_Order_Table_ID , I_C_PaySelectionCheck.Table_ID ,  I_HR_PaySelectionCheck.Table_ID , MMovement.Table_ID};
 
 	/**************************************************************************
 	 * 	Get Document Print Engine for Document Type.

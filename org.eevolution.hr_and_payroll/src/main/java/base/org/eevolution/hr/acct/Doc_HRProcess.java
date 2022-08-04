@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.adempiere.core.api.I_HR_Movement;
+import org.adempiere.core.domains.I_HR_Movement;
 import org.compiere.acct.Doc;
 import org.compiere.acct.DocLine;
 import org.compiere.acct.Fact;

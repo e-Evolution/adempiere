@@ -16,19 +16,20 @@
  *****************************************************************************/
 package org.compiere.process;
 
+import org.adempiere.core.domains.I_HR_Movement;
+import org.adempiere.core.domains.I_HR_Process;
+import org.adempiere.core.services.PayrollMovementServiceApi;
+import org.adempiere.core.services.PayrollProcessServiceApi;
+import org.adempiere.exceptions.AdempiereException;
+import org.compiere.model.MPaySelection;
+import org.compiere.model.MPaySelectionLine;
+
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.ServiceLoader;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import org.adempiere.core.api.I_HR_Movement;
-import org.adempiere.core.api.I_HR_Process;
-import org.adempiere.exceptions.AdempiereException;
-import org.compiere.model.MPaySelection;
-import org.compiere.model.MPaySelectionLine;
-import org.compiere.model.PO;
-import org.compiere.util.RefactoryUtil;
 
 /**
  * 	Payment Selection Create From Invoice, used for Smart Browse (Create From Payroll Movement)
@@ -37,6 +38,11 @@ import org.compiere.util.RefactoryUtil;
  *		@see https://github.com/adempiere/adempiere/issues/297
  */
 public class PSCreateFromHRMovement extends PSCreateFromHRMovementAbstract {
+
+	PayrollMovementServiceApi payrollMovementProtocol =  ServiceLoader.load(PayrollMovementServiceApi.class)
+			.findFirst().orElseThrow(() -> new AdempiereException("Implementation not found"));
+	PayrollProcessServiceApi payrollProcessProtocol =  ServiceLoader.load(PayrollProcessServiceApi.class)
+			.findFirst().orElseThrow(() -> new AdempiereException("Implementation not found"));
 
 	/**	Sequence			*/
 	private AtomicInteger sequence = new AtomicInteger(10);
@@ -64,10 +70,10 @@ public class PSCreateFromHRMovement extends PSCreateFromHRMovementAbstract {
 			BigDecimal convertedAmount = getSelectionAsBigDecimal(key, "HRM_ConvertedAmount");
 			MPaySelectionLine line = new MPaySelectionLine(paySelection, sequence.getAndAdd(10), paymentRule);
 			//	Add Order
-			I_HR_Movement payrollMovement = RefactoryUtil.getPayrollMovement(getCtx(), movementId, get_TrxName());
+			I_HR_Movement payrollMovement = payrollMovementProtocol.getPayrollMovement(getCtx(), movementId, get_TrxName());
 			Optional<I_HR_Process> mybePayrollProcess = Optional.ofNullable(payrollProcessMap.get(payrollMovement.getHR_Process_ID()));
 			I_HR_Process payrollProcess = mybePayrollProcess.orElseGet(() -> {
-				I_HR_Process processFromMovement = RefactoryUtil.getPayrollProcess(getCtx(), payrollMovement.getHR_Process_ID(), get_TrxName());
+				I_HR_Process processFromMovement = payrollProcessProtocol.getPayrollProcess(getCtx(), payrollMovement.getHR_Process_ID(), get_TrxName());
 				payrollProcessMap.put(payrollMovement.getHR_Process_ID(), processFromMovement);
 				return processFromMovement;
 			});

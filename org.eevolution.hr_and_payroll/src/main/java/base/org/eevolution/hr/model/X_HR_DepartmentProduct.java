@@ -23,7 +23,7 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.Properties;
 
-import org.adempiere.core.api.I_HR_DepartmentProduct;
+import org.adempiere.core.domains.I_HR_DepartmentProduct;
 import org.compiere.model.*;
 import org.compiere.util.Env;
 

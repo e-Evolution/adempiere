@@ -79,6 +79,7 @@
     <!-- copy all image & sound files from src to the build directory -->
     <copy todir="${build.dir}">
       <fileset dir="${src}">
+          <include name="**/META-INF/services/*"/>
         <include name="**/images/*"/>
         <include name="**/*.gif"/>
         <include name="**/*.jpg"/>
