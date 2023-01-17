@@ -1286,7 +1286,7 @@ public class DocumentEngine implements DocAction
 		String error = null;
 		if (MClient.isClientAccounting()) {
 			log.info ("Table=" + AD_Table_ID + ", Record=" + Record_ID);
-			MAcctSchema[] ass = MAcctSchema.getClientAcctSchema(ctx, AD_Client_ID);
+			MAcctSchema[] ass = MAcctSchema.getClientAcctSchema(ctx, AD_Client_ID,trxName);
 			error = Doc.postImmediate(ass, AD_Table_ID, Record_ID, force, trxName);
 			return error;
 		}
