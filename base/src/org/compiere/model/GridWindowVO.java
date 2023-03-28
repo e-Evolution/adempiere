@@ -21,6 +21,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 
@@ -204,7 +205,13 @@ public class GridWindowVO implements Serializable
 		mWindowVO.Tabs = new ArrayList<GridTabVO>();
 		boolean firstTab = true;
 		int tabNo = 0;
-		for(MTab tab : ASPUtil.getInstance(mWindowVO.ctx).getWindowTabs(mWindowVO.AD_Window_ID)) {
+		List<MTab> tabs = ASPUtil.getInstance(mWindowVO.ctx).getWindowTabs(mWindowVO.AD_Window_ID);
+		if(tabs == null ){
+			CLogger.get().log(Level.SEVERE, "No Tabs - AD_Window_ID = " + mWindowVO.AD_Window_ID);
+			return false;
+		}
+		
+		for(MTab tab : tabs) {
 			if(!tab.isActive()) {
 				continue;
 			}

@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
@@ -1812,10 +1813,11 @@ public class GridField
 		ArrayList<GridFieldVO> listVO = new ArrayList<GridFieldVO>();
 		int windowId = 0;
 		boolean readOnly = false;
-		ASPUtil.getInstance(ctx).getWindowFields(tabId).stream().forEach(field -> {
-			GridFieldVO vo = GridFieldVO.create(ctx, windowNo, tabNo, windowId, tabId, readOnly, field);
-			listVO.add(vo);
-		});
+		Optional<List<MField>> maybeFields = java.util.Optional.ofNullable(ASPUtil.getInstance(ctx).getWindowFields(tabId));
+		maybeFields.ifPresent(fields -> fields.stream().filter(java.util.Objects::nonNull).forEach(field -> {
+						org.compiere.model.GridFieldVO vo = org.compiere.model.GridFieldVO.create(ctx, windowNo, tabNo, windowId, tabId, readOnly, field);
+						listVO.add(vo);
+					}));
 		//
 		GridField[] retValue = new GridField[listVO.size()];
 		for (int i = 0; i < listVO.size(); i++)

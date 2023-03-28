@@ -234,16 +234,18 @@ public class GridTabVO implements Evaluatee, Serializable {
 		maybeGridTabVO.ifPresent(gridTabValueObject -> {
 			Optional<ASPUtil> maybeInstance = Optional.ofNullable(ASPUtil.getInstance(gridTabValueObject.ctx));
 			maybeInstance.ifPresent(instance -> {
-				List<MField> fields = instance.getWindowFields(gridTabValueObject.AD_Tab_ID).stream().filter(Objects::nonNull).collect(Collectors.toList());
-				fields.forEach(field -> {
-					GridFieldVO gridFieldVO = GridFieldVO.create(gridTabValueObject.ctx,
-							gridTabValueObject.WindowNo, gridTabValueObject.TabNo,
-							gridTabValueObject.AD_Window_ID, gridTabValueObject.AD_Tab_ID,
-							gridTabValueObject.IsReadOnly, field);
-					gridFieldVOList.add(gridFieldVO);
+				Optional<List<MField>> maybeFields = Optional.ofNullable(instance.getWindowFields(gridTabValueObject.AD_Tab_ID));
+				maybeFields.ifPresent(fields -> {
+					fields.stream().filter(Objects::nonNull).forEach(field -> {
+						GridFieldVO gridFieldVO = GridFieldVO.create(gridTabValueObject.ctx,
+								gridTabValueObject.WindowNo, gridTabValueObject.TabNo,
+								gridTabValueObject.AD_Window_ID, gridTabValueObject.AD_Tab_ID,
+								gridTabValueObject.IsReadOnly, field);
+						gridFieldVOList.add(gridFieldVO);
+					});
+					gridTabVO.Fields = gridFieldVOList;
+					gridTabVO.initFields = true;
 				});
-				gridTabVO.Fields = gridFieldVOList;
-				gridTabVO.initFields = true;
 			});
 		});
 		return gridFieldVOList.size() != 0;
