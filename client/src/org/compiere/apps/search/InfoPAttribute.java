@@ -25,6 +25,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
 import javax.swing.Box;
@@ -353,20 +354,27 @@ public class InfoPAttribute extends CDialog
 	{
 		ArrayList<KeyNamePair> list = new ArrayList<KeyNamePair>();
 		list.add(new KeyNamePair(-1, ""));
-		
+		List<Object> parameters = new ArrayList<>();
+		parameters.add(p_M_AttributeSet_ID);
 		String whereAttributeSet;
-		if (p_M_AttributeSet_ID > 0)
-			whereAttributeSet = "AND M_Product_ID IN (SELECT M_Product_ID FROM M_Product WHERE M_AttributeSet_ID="+p_M_AttributeSet_ID+")";
-		else
+		parameters.add(Env.getAD_Client_ID(Env.getCtx()));
+		parameters.add("Y");
+		if (p_M_AttributeSet_ID > 0) {
+			whereAttributeSet = "AND M_Product_ID IN (SELECT M_Product_ID FROM M_Product WHERE M_AttributeSet_ID=? )";
+			parameters.add(p_M_AttributeSet_ID);
+		}
+		else {
 			whereAttributeSet = "";
+		}
 		String sql = MRole.getDefault().addAccessSQL(
-			"SELECT M_Lot_ID, Name FROM M_Lot WHERE IsActive='Y' " + whereAttributeSet + " ORDER BY 2",
+			"SELECT M_Lot_ID, Name FROM M_Lot WHERE AD_Client_ID=? AND IsActive=? " + whereAttributeSet + " ORDER BY 2",
 			"M_Lot", MRole.SQL_NOTQUALIFIED, MRole.SQL_RO);
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try
 		{
 			pstmt = DB.prepareStatement(sql, null);
+			DB.setParameters(pstmt,parameters);
 			rs = pstmt.executeQuery();
 			while (rs.next())
 				list.add(new KeyNamePair(rs.getInt(1), rs.getString(2)));

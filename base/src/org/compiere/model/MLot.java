@@ -26,6 +26,7 @@ import java.util.logging.Level;
 
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
+import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
 
 /**
@@ -44,6 +45,27 @@ public class MLot extends X_M_Lot
 	/**	Logger					*/
 	private static CLogger		s_log = CLogger.getCLogger(MLot.class);
 
+	/**
+	 * Get By Attribute Set Id
+	 * @param ctx
+	 * @param attributeSetId
+	 * @param trxName
+	 * @return
+	 */
+	public static List<MLot> getByAttributeSetId(Properties ctx , int attributeSetId, String trxName) {
+		StringBuilder whereClause = new StringBuilder();
+		ArrayList<Object> parameters = new ArrayList<>();
+		if (attributeSetId > 0 ) {
+			whereClause.append("M_Product_ID IN (SELECT M_Product_ID FROM M_Product WHERE M_AttributeSet_ID=? )");
+			parameters.add(attributeSetId);
+		}
+		return new Query(ctx, Table_Name, whereClause.toString(), trxName)
+				.setClient_ID()
+				.setOnlyActiveRecords(true)
+				.setParameters(parameters)
+				.setOrderBy("Name")
+				.list();
+	}
 	/**
 	 * 	Get Lots for Product
 	 *	@param ctx context
@@ -90,13 +112,18 @@ public class MLot extends X_M_Lot
 	 */
 	public static KeyNamePair[] getProductLotPairs (int M_Product_ID, String trxName)
 	{
-		String sql = "SELECT M_Lot_ID, Name FROM M_Lot WHERE M_Product_ID=?";
+		List<Object> parameters = new ArrayList<>();
+		parameters.add(Env.getAD_Client_ID(Env.getCtx()));
+		parameters.add("Y");
+		parameters.add(M_Product_ID);
+		String sql = "SELECT M_Lot_ID, Name FROM M_Lot l WHERE l.AD_Client_ID=? AND l.IsActive = ? AND l.M_Product_ID=?";
 		ArrayList<KeyNamePair> list = new ArrayList<KeyNamePair>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try
 		{
 			pstmt = DB.prepareStatement (sql, trxName);
+			DB.setParameters(pstmt,parameters);
 			pstmt.setInt (1, M_Product_ID);
 			rs = pstmt.executeQuery ();
 			while (rs.next ())

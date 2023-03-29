@@ -332,12 +332,12 @@ public class WPAttributeDialog extends Window implements EventListener
 		//		MLookupFactory.get(Env.getCtx(), m_WindowNo, 0, AD_Column_ID, DisplayType.TableDir));
 			String sql = "SELECT M_Lot_ID, Name "
 				+ "FROM M_Lot l "
-				+ "WHERE EXISTS (SELECT M_Product_ID FROM M_Product p "
-					+ "WHERE p.M_AttributeSet_ID=" + m_masi.getM_AttributeSet_ID()
-					+ " AND p.M_Product_ID=l.M_Product_ID)";
+				+ "WHERE l.AD_Client_ID = ? AND l.isActive=? AND EXISTS (SELECT M_Product_ID FROM M_Product p "
+					+ "WHERE p.M_AttributeSet_ID = ? " //+ m_masi.getM_AttributeSet_ID()
+					+ " AND p.M_Product_ID=l.M_Product_ID) ORDER BY 2";
 			fieldLot = new Listbox();
 			fieldLot.setMold("select");
-			KeyNamePair[] keyNamePairs = DB.getKeyNamePairs(sql, true);
+			KeyNamePair[] keyNamePairs = DB.getKeyNamePairs(sql, true, Env.getAD_Client_ID(Env.getCtx()),"Y", m_masi.getM_AttributeSet_ID());
 			for (KeyNamePair pair : keyNamePairs) {
 				fieldLot.appendItem(pair.getName(), pair.getKey());
 			}
