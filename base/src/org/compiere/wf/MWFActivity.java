@@ -77,9 +77,6 @@ import org.compiere.util.Util;
  * @author Yamel Senih, ysenih@erpcya.com, ERPCyA http://www.erpcya.com
  *		<a href="https://github.com/adempiere/adempiere/issues/1875>
  * 		@see FR [ 1875 ] Add Workflow activity translation</a>
- * @author Victor Pérez, E Evolution Consulting,  wwww.e-evolution.com
- * 				<li>[Bug Report] The workflow engine is not correctly handling transactions when processing documents #3170
- * 				<a href="https://github.com/adempiere/adempiere/issues/3170">
  */
 public class MWFActivity extends X_AD_WF_Activity implements Runnable
 {
@@ -207,7 +204,6 @@ public class MWFActivity extends X_AD_WF_Activity implements Runnable
 		m_audit.saveEx();
 		//
 		m_process = process;
-		m_po = process.getPO();
 	}	//	MWFActivity
 
 	/**
@@ -278,11 +274,10 @@ public class MWFActivity extends X_AD_WF_Activity implements Runnable
 			updateEventAudit();			
 			
 			//	Inform Process
-			if (m_process == null) {
-				m_process = new MWFProcess (getCtx(), getAD_WF_Process_ID(), get_TrxName());
-				m_process.setWorkflowProcessTransaction(Trx.get(get_TrxName(), false));
-			}
-			m_process.checkActivities(m_po);
+			if (m_process == null)
+				m_process = new MWFProcess (getCtx(), getAD_WF_Process_ID(), 
+					this.get_TrxName());
+			m_process.checkActivities(this.get_TrxName(), m_po);
 		}
 		else
 		{
@@ -374,14 +369,7 @@ public class MWFActivity extends X_AD_WF_Activity implements Runnable
 	{
 		return getPO(get_TrxName() != null ? Trx.get(get_TrxName(), false) : null);
 	}	//	getPO
-
-	/**
-	 * Set Document to Activity
-	 * @param document
-	 */
-	public void setPO(PO document) {
-		m_po = document;
-	}
+	
 	/**
 	 * 	Get PO AD_Client_ID
 	 *	@return client of PO
@@ -754,6 +742,7 @@ public class MWFActivity extends X_AD_WF_Activity implements Runnable
 		return -1;
 	}	//	getApproval
 
+	
 	/**************************************************************************
 	 * 	Execute Work.
 	 * 	Called from MWFProcess.startNext
@@ -763,12 +752,27 @@ public class MWFActivity extends X_AD_WF_Activity implements Runnable
 	{
 		log.info ("Node=" + getNode());
 		m_newValue = null;
-		Trx transaction = m_process.getWorkflowProcessTransaction();
-		// Declare save point
+		
+		
+		//m_trx = Trx.get(, true);
+		Trx trx = null;
+		boolean localTrx = false;
+		if (get_TrxName() == null)
+		{
+			this.set_TrxName(Trx.createTrxName("WFA"));
+			localTrx = true;
+		}
+		
+		trx = Trx.get(get_TrxName(), true);
+		
 		Savepoint savepoint = null;
+		
+		//
 		try
 		{
-			savepoint = transaction.setSavepoint(null);
+			if (!localTrx)
+				savepoint = trx.setSavepoint(null);
+			
 			if (!m_state.isValidAction(StateEngine.ACTION_Start))
 			{
 				setTextMsg("@WFA.State@ = " + MRefList.getListName(getCtx(), WFSTATE_AD_Reference_ID, getWFState()) + " - @WFCannotStart@");
@@ -778,6 +782,7 @@ public class MWFActivity extends X_AD_WF_Activity implements Runnable
 			}
 			//
 			setWFState(StateEngine.STATE_Running);
+			
 			if (getNode().get_ID() == 0)
 			{
 				setTextMsg("@AD_WF_Node_ID@ @NotFound@ - @AD_WF_Node_ID@: " + getAD_WF_Node_ID());
@@ -786,41 +791,71 @@ public class MWFActivity extends X_AD_WF_Activity implements Runnable
 			}
 			//	Do Work
 			/****	Trx Start	****/
-			boolean done = performWork(transaction);
-			transaction.releaseSavepoint(savepoint);
+			boolean done = performWork(Trx.get(get_TrxName(), false));
+			
 			/****	Trx End		****/
+			// teo_sarca [ 1708835 ]
+			// Reason: if the commit fails the document should be put in Invalid state
+			if (localTrx) 
+			{
+				try {
+					trx.commit(true);					
+				} catch (Exception e) {
+					// If we have a DocStatus, change it to Invalid, and throw the exception to the next level
+					if (m_docStatus != null)
+						m_docStatus = DocAction.STATUS_Invalid;
+					throw e;
+				}
+			}
+			
 			setWFState (done ? StateEngine.STATE_Completed : StateEngine.STATE_Suspended);
-
+			
 		}
 		catch (Exception e)
 		{
 			log.log(Level.WARNING, "" + getNode(), e);
 			/****	Trx Rollback	****/
-			try {
-				transaction.rollback(savepoint);
-			} catch (SQLException sqlException) {
-				throw new AdempiereException(sqlException.getMessage());
+			if (localTrx)
+			{
+				trx.rollback();
 			}
+			else if (savepoint != null) 
+			{
+				try 
+				{
+					trx.rollback(savepoint);
+				} catch (SQLException e1) {}
+			}
+						
+			//
 			if (e.getCause() != null)
 				log.log(Level.WARNING, "Cause", e.getCause());
-
+			
 			String processMsg = e.getLocalizedMessage();
 			if (processMsg == null || processMsg.length() == 0)
 				processMsg = e.getMessage();
 			setTextMsg(processMsg);
 			addTextMsg(e);
 			setWFState (StateEngine.STATE_Terminated);	//	unlocks
-			//	Set Document Status
+			//	Set Document Status 
 			if (m_po != null && m_po instanceof DocAction && m_docStatus != null)
 			{
-				m_po.load(transaction.getTrxName());
+				m_po.load(get_TrxName());
 				DocAction doc = (DocAction)m_po;
 				doc.setDocStatus(m_docStatus);
 				m_po.saveEx();
 			}
 		}
+		finally
+		{
+			if (localTrx && trx != null)
+			{
+				trx.close();
+			}
+		}
 	}	//	run
-
+	
+	
 	/**
 	 * 	Perform Work.
 	 * 	Set Text Msg.
@@ -936,7 +971,7 @@ public class MWFActivity extends X_AD_WF_Activity implements Runnable
 			note.setRecord(getAD_Table_ID(), getRecord_ID());
 			note.saveEx();
 			//	Attachment
-			MAttachment attachment = new MAttachment (getCtx(), MNote.Table_ID, note.getAD_Note_ID(), trx.getTrxName());
+			MAttachment attachment = new MAttachment (getCtx(), MNote.Table_ID, note.getAD_Note_ID(), get_TrxName());
 			attachment.addEntry(report);
 			attachment.setTextMsg(m_node.getName(true));
 			attachment.saveEx();
@@ -1783,4 +1818,5 @@ public class MWFActivity extends X_AD_WF_Activity implements Runnable
 		}
 		return sb.toString();
 	}	//	getSummary
+
 }	//	MWFActivity

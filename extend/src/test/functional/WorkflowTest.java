@@ -63,8 +63,8 @@ public class WorkflowTest extends AdempiereTestCase
 							.first();
 		if (proc != null)
 		{
-			proc.getActivities(true, false);
-			proc.getActivities(true, true);
+			proc.getActivities(true, false, getTrxName());
+			proc.getActivities(true, true, getTrxName());
 		}
 		else
 		{
